@@ -1,0 +1,15 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Login Screen"
+        Button:
+            text: "Go to Dashboard"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "dashboard"
+        Button:
+            text: "Go to Settings"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "settings"
