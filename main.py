@@ -10,6 +10,8 @@ Remark:
 required: python3.10, kivy2.1.0
 """
 
+#reorg003
+
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
