@@ -19,7 +19,7 @@ from kivy.uix.screenmanager import ScreenManager
 from resource_path import resource_path
 from user import user
 
-#reorg08
+# reorg done
 
 import py_files.screen_help
 import py_files.screen_assignment
