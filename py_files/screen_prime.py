@@ -1,26 +1,18 @@
 
 import os
 import pickle
-import shutil
 
 import serial.tools.list_ports
 
-from kivy.app import App
 from kivy.clock import Clock
-from kivy.core.window import Window
-from kivy.lang import Builder
-from kivy.properties import DictProperty, StringProperty
+from kivy.properties import DictProperty
 from kivy.uix.behaviors import DragBehavior
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
-from plyer import filechooser
-
-from __init__ import __version__
-from devices import devices
-from events import left_events_dict, right_events_dict
+from py_files.usb_serial_comms import devices
 from resource_path import resource_path
 from user import user
 

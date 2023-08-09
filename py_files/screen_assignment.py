@@ -1,5 +1,5 @@
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import DictProperty, StringProperty
+from kivy.uix.screenmanager import Screen
+from kivy.properties import DictProperty
 from kivy.uix.widget import Widget
 
 from user import user

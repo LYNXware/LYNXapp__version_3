@@ -5,8 +5,8 @@ import shutil
 
 from plyer import filechooser
 
-from kivy.properties import DictProperty, StringProperty
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import StringProperty
+from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
 from events import left_events_dict, right_events_dict
