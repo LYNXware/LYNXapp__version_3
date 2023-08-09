@@ -1,8 +1,8 @@
 
 
 """
-Version: 1.0.0       major.minor.patch
-Date: 01.01.2023
+Version: 0.2.0
+Date: 09.08.2023
 Developer: Ape Devil
 
 Remark:
