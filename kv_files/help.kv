@@ -1,0 +1,42 @@
+#:kivy 2.1.0
+
+<HelpWindowCustom@Widget>:
+    canvas:
+        Color:
+            rgba: app.theme['background']
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+
+        BoxLayout:                      #Space for the actionbar
+            size_hint_y: 0.1
+
+        FloatLayout:
+
+            Label:
+                text: root.parent.version
+#                size_hint: 0.15, 0.08
+                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+
+
+            GUI_Button:
+                text: 'go to tutorial'
+                size_hint: 0.15, 0.07
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                on_release: root.parent.open_link()
+
+            GUI_Button:
+                text: 'contact'
+                size_hint: 0.15, 0.07
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                on_release: root.parent.open_link()
+
+            GUI_Button:
+                text: 'support the project'
+                size_hint: 0.15, 0.07
+                pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+                on_release: root.parent.open_link()

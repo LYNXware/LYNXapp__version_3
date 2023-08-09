@@ -1,0 +1,650 @@
+
+#:set backdrop (0,0,0,0.3)
+#:set padding_constant [3,4,3,3]
+#:set spacing_constant 1
+#:set radius_constant [5]
+
+<AssignmentWindowCustom@BoxLayout>:
+    size: root.size
+    pos: root.pos
+    canvas:
+        Color:
+            rgba: app.theme['background']
+        Rectangle:
+            size: self.size
+            pos: self.pos
+	BoxLayout:
+	    size: root.size
+        pos: root.pos
+		orientation: 'vertical'
+		padding: [5, 5, 5, 5]
+		spacing: 5
+
+        BoxLayout:               #Space for the actionbar
+            size_hint_y: 0.07
+
+		BoxLayout:          # first black button, function description, save, reset
+			size_hint_y: 0.2
+			padding: padding_constant
+			spacing: 5 #spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			Label:   #button name label
+				text: root.current_button['name']
+				size_hint_x: 0.1
+				color: (1, 1, 1, 1)
+		        canvas.before:
+		            Color:
+		                rgba: 0, 1, 1, .5
+#                    RoundedRectangle:
+#                        size: self.size
+#                        pos: self.pos
+#                        radius: [100]
+		            Rectangle:
+		                pos: self.pos
+		                size: self.size
+
+            BoxLayout:   # funktion and description
+				spacing: 4
+				orientation: 'vertical'
+				BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: backdrop
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Funktion ->'
+                        size_hint_x: 0.15
+                    Label:
+                        text: root.current_button['function']
+                        id: function
+
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: backdrop
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Description ->'
+                        size_hint_x: 0.15
+                    TextInput:
+                        id: description
+                        size_hint: (1,0.8)
+                        pos_hint: {'center_x': 0.36, 'center_y': 0.5}
+                        #hint_text: root.current_button['description']
+                        text: root.current_button['description']
+                        hint_text_color: (.1, .1, .1, 1)
+                        background_color: (1, 1, 1, .7)
+                        multiline: False
+
+            BoxLayout:   #  save and reset
+                size_hint_x: 0.2
+                orientation: 'vertical'
+                Button:
+                    text: 'Reset'
+                    background_color: (1,0,0,1)
+                    on_release: root.reset()
+
+                Button:
+                    text: 'Save'
+                    background_color: (0,1,0,1)
+                    on_release:
+                        root.save_button()
+                        root.reset()
+                        app.root.get_screen('StartWindow').children[1].update_start_window()
+#                        app.root.get_screen('StartWindow').children[1].transmit_layouts()
+                        app.root.current = 'StartWindow' #if not root.hexval_set
+
+
+#                        app.root.current = 'MainWindow'
+#                        root.manager.transition.direction = 'up'
+
+		BoxLayout:          # cat functions
+			size_hint_y: 0.1
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+            KeyButton:
+                text: 'major / minor'
+                hexval: b'\xfa\xfb' #0xFA 0xFB
+            KeyButton:
+                text: 'main / sub'
+                hexval: b'\xfa\xfc'  #0xFA 0xFB
+
+		BoxLayout:         # mouse function
+			size_hint_y: 0.1
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: 'Left Click'
+				hexval: b'\xf0\xf1'
+			KeyButton:
+				text: 'Middle Click'
+				hexval: b'\xf0\xf2'
+			KeyButton:
+				text: 'Right Click'
+				hexval: b'\xf0\xf3'
+			KeyButton:
+				text: 'Scroll Up '
+				hexval: b'\xf0\xf4'
+			KeyButton:
+				text: 'Scroll Down '
+				hexval: b'\xf0\xf5'
+
+
+
+
+        BoxLayout:          # modifiers
+            size_hint_y: 0.4
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: spacing_constant
+                KeyButton:
+                    text: 'ctrl_l'
+                    hexval: b'\x80' #0x80
+                KeyButton:
+                    text: 'shift_l'
+                    hexval: b'\x81' #0x81
+                KeyButton:
+                    text: 'alt_l'
+                    hexval: b'\x82' #0x82
+                KeyButton:
+                    text: 'super_l'
+                    hexval: b'\x83' #0x83
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: spacing_constant
+                KeyButton:
+                    text: 'ctrl_r'
+                    hexval: b'\x84' #0x84
+                KeyButton:
+                    text: 'shift_r'
+                    hexval: b'\x85' #0x85
+                KeyButton:
+                    text: 'alt_r'
+                    hexval: b'\x86' #0x86
+                KeyButton:
+                    text: 'super_r'
+                    hexval: b'\x87' #0x87
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: spacing_constant
+                KeyButton:
+                    text: 'up_arrow'
+                    hexval: b'\xda' #0xDA
+                KeyButton:
+                    text: 'down_arrow'
+                    hexval: b'\xd9' #0xD9
+                KeyButton:
+                    text: 'left_arrow'
+                    hexval: b'\xd8' #0xD8
+                KeyButton:
+                    text: 'right_arrow'
+                    hexval: b'\xd7' #0xD7
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: spacing_constant
+                KeyButton:
+                    text: 'enter'
+                    hexval: b'\x0a' #0x0A
+                KeyButton:
+                    text: 'space'
+                    hexval: b'\x20' #0x20
+                KeyButton:
+                    text: 'backspace'
+                    hexval: b'\xb2' #0xB2
+                KeyButton:
+                    text: 'tab'
+                    hexval: b'\xb3' #0xB3
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: spacing_constant
+                KeyButton:
+                    text: 'caps_lock'
+                    hexval: b'\xc1' #0xC1
+                KeyButton:
+                    text: 'return'
+                    hexval: b'\xb0' #0xB0
+                KeyButton:
+                    text: "insert"
+                    hexval: b'\xd1' #0xD1
+                KeyButton:
+                    text: 'delete'
+                    hexval: b'\xd4' #0xD4
+
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'home'
+                    hexval: b'\xd2' #0xD2
+                KeyButton:
+                    text: 'end'
+                    hexval: b'\xd5' #0xD5
+                KeyButton:
+                    text: 'page_up'
+                    hexval: b'\xd3' #0xD3
+                KeyButton:
+                    text: 'page_down'
+                    hexval: b'\xd6' #0xD6
+                KeyButton:
+                    text: 'ESC'
+                    hexval: b'\xb1' #0xB1
+
+		BoxLayout:          # function keys
+		    size_hint_y: 0.1
+            padding: padding_constant
+            spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: 'F1'
+				hexval: b'\xc2' #0xC2
+			KeyButton:
+				text: 'F2'
+				hexval: b'\xc3' #0xC3
+			KeyButton:
+				text: 'F3'
+				hexval: b'\xc4' #0xC4
+			KeyButton:
+				text: 'F4'
+				hexval: b'\xc5' #0xC5
+			KeyButton:
+				text: 'F5'
+				hexval: b'\xc6' #0xC6
+			KeyButton:
+				text: 'F6'
+				hexval: b'\xc7' #0xC7
+			KeyButton:
+				text: 'F7'
+				hexval: b'\xc8' #0xC8
+			KeyButton:
+				text: 'F8'
+				hexval: b'\xc9' #0xC9
+			KeyButton:
+				text: 'F9'
+				hexval: b'\xca' #0xCA
+			KeyButton:
+				text: 'F10'
+				hexval: b'\xcb' #0xCB
+			KeyButton:
+				text: 'F11'
+				hexval: b'\xcc' #0xCC
+			KeyButton:
+				text: 'F12'
+				hexval: b'\xcd' #0xCD
+			KeyButton:
+				text: 'F13'
+				hexval: b'\xf0' #0xF0
+			KeyButton:
+				text: 'F14'
+				hexval: b'\xf1' #0xF1
+			KeyButton:
+				text: 'F15'
+				hexval: b'\xf2' #0xF2
+			KeyButton:
+				text: 'F16'
+				hexval: b'\xf3' #0xF3
+			KeyButton:
+				text: 'F17'
+				hexval: b'\xf4' #0xF4
+			KeyButton:
+				text: 'F18'
+				hexval: b'\xf5' #0xF5
+			KeyButton:
+				text: 'F19'
+				hexval: b'\xf6' #0xF6
+			KeyButton:
+				text: 'F20'
+				hexval: b'\xf7' #0xF7
+			KeyButton:
+				text: 'F21'
+				hexval: b'\xf8' #0xF8
+			KeyButton:
+				text: 'F22'
+				hexval: b'\xf9' #0xF9
+			KeyButton:
+				text: 'F23'
+				hexval: b'\xfa' #0xFA
+			KeyButton:
+				text: 'F24'
+				hexval: b'\xfb' #0xFB
+
+
+		BoxLayout:          # alphabet
+			size_hint_y: 0.1
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: 'a'
+				hexval: b'\x61'  #0x61
+			KeyButton:
+				text: 'b'
+				hexval: b'\x62' #0x62
+			KeyButton:
+				text: 'c'
+				hexval: b'\x63' #0x63
+			KeyButton:
+				text: 'd'
+				hexval: b'\x64' #0x64
+			KeyButton:
+				text: 'e'
+				hexval: b'\x65' #0x65
+			KeyButton:
+				text: 'f'
+				hexval: b'\x66' #0x66
+			KeyButton:
+				text: 'g'
+				hexval: b'\x67' #0x67
+			KeyButton:
+				text: 'h'
+				hexval: b'\x68' #0x68
+			KeyButton:
+				text: 'i'
+				hexval: b'\x69' #0x69
+			KeyButton:
+				text: 'j'
+				hexval: b'\x6a' #0x6A
+			KeyButton:
+				text: 'k'
+				hexval: b'\x6b' #0x6B
+			KeyButton:
+				text: 'l'
+				hexval: b'\x6c' #0x6C
+			KeyButton:
+				text: 'm'
+				hexval: b'\x6d' #0x6D
+			KeyButton:
+				text: 'n'
+				hexval: b'\x6e' #0x6E
+			KeyButton:
+				text: 'o'
+				hexval: b'\x6f' #0x6F
+			KeyButton:
+				text: 'p'
+				hexval: b'\x70' #0x70
+			KeyButton:
+				text: 'q'
+				hexval: b'\x71' #0x71
+			KeyButton:
+				text: 'r'
+				hexval: b'\x72' #0x72
+			KeyButton:
+				text: 's'
+				hexval: b'\x73' #0x73
+			KeyButton:
+				text: 't'
+				hexval: b'\x74' #0x74
+			KeyButton:
+				text: 'u'
+				hexval: b'\x75' #0x75
+			KeyButton:
+				text: 'v'
+				hexval: b'\x76' #0x76
+			KeyButton:
+				text: 'w'
+				hexval: b'\x77' #0x77
+			KeyButton:
+				text: 'x'
+				hexval: b'\x78' #0x78
+			KeyButton:
+				text: 'y'
+				hexval: b'\x79' #0x79
+			KeyButton:
+				text: 'z'
+				hexval: b'\x7a' #0x7A
+
+		BoxLayout:         # numbers
+			size_hint_y: 0.1
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: '0'
+				hexval: b'\x30' #0x30
+			KeyButton:
+				text: '1'
+				hexval: b'\x31' #0x31
+			KeyButton:
+				text: '2'
+				hexval: b'\x32' #0x32
+			KeyButton:
+				text: '3'
+				hexval: b'\x33' #0x33
+			KeyButton:
+				text: '4'
+				hexval: b'\x34' #0x34
+			KeyButton:
+				text: '5'
+				hexval: b'\x35' #0x35
+			KeyButton:
+				text: '6'
+				hexval: b'\x36' #0x36
+			KeyButton:
+				text: '7'
+				hexval: b'\x37' #0x37
+			KeyButton:
+				text: '8'
+				hexval: b'\x38' #0x38
+			KeyButton:
+				text: '9'
+				hexval: b'\x39' #0x39
+
+		BoxLayout:         # keypad numbers
+			size_hint_y: 0.1
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: 'Keypad-0'
+				hexval: b'\xea' #0xEA
+			KeyButton:
+				text: 'Keypad-1'
+				hexval: b'\xe1' #0xE1
+			KeyButton:
+				text: 'Keypad-2'
+				hexval: b'\xe2' #0xE2
+			KeyButton:
+				text: 'Keypad-3'
+				hexval: b'\xe3' #0xE3
+			KeyButton:
+				text: 'Keypad-4'
+				hexval: b'\xe4' #0xE4
+			KeyButton:
+				text: 'Keypad-5'
+				hexval: b'\xe5' #0xE5
+			KeyButton:
+				text: 'Keypad-6'
+				hexval: b'\xe6' #0xE6
+			KeyButton:
+				text: 'Keypad-7'
+				hexval: b'\xe7' #0xE7
+			KeyButton:
+				text: 'Keypad-8'
+				hexval: b'\xe8' #0xE8
+			KeyButton:
+				text: 'Keypad-9'
+				hexval: b'\xe9' #0xE9
+            KeyButton:
+				text: 'Keypad-dot'
+				hexval: b'\xeb'
+
+
+
+
+
+
+
+		GridLayout:         # special characters
+			cols:16
+			size_hint_y: 0.2
+			padding: padding_constant
+			spacing: spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			KeyButton:
+				text: '+'
+				hexval: b'\x2b' #0x2B
+			KeyButton:
+				text: '-'
+				hexval: b'\x2d' #0x2D
+			KeyButton:
+				text: '*'
+				hexval: b'\x2a' #0x2A
+			KeyButton:
+				text: '/'
+				hexval: b'\x2f' #0x2F
+			KeyButton:
+				text: '='
+				hexval: b'\x3d' #0x3D
+			KeyButton:
+				text: '('
+				hexval: b'\x28' #0x28
+			KeyButton:
+				text: ')'
+				hexval: b'\x29' #0x29
+			KeyButton:
+				text: '{'
+				hexval: b'\x7b' #0x7B
+			KeyButton:
+				text: '}'
+				hexval: b'\x7d' #0x7D
+			KeyButton:
+				text: '['
+				hexval: b'\x5b' #0x5B
+			KeyButton:
+				text: ']'
+				hexval: b'\x5d' #0x5D
+			KeyButton:
+				text: "'"
+				hexval: b'\x27' #0x27
+			KeyButton:
+				text: '"'
+				hexval: b'\x22' #0x22
+			KeyButton:
+				text: '.'
+				hexval: b'\x2e' #0x2E
+			KeyButton:
+				text: ':'
+				hexval: b'\x3a' #0x3A
+			KeyButton:
+				text: ','
+				hexval: b'\x2c' #0x2C
+			KeyButton:
+				text: ';'
+				hexval: b'\x3b' #0x3B
+			KeyButton:
+				text: '?'
+				hexval: b'\x3f' #0x3F
+			KeyButton:
+				text: '!'
+				hexval: b'\x21' #0x21
+			KeyButton:
+				text: '#'
+				hexval: b'\x23' #0x23
+			KeyButton:
+				text: '§'
+				hexval: b'\x80' #0x80
+			KeyButton:
+				text: '$'
+				hexval: b'\x24' #0x24
+			KeyButton:
+				text: '%'
+				hexval: b'\x25' #0x25
+			KeyButton:
+				text: '&'
+				hexval: b'\x26' #0x26
+			KeyButton:
+				text: '@'
+				hexval: b'\x40' #0x40
+			KeyButton:
+				text: '<'
+				hexval: b'\x3c' #0x3C
+			KeyButton:
+				text: '>'
+				hexval: b'\x3e' #0x3E
+			KeyButton:
+				text: "\\"
+				hexval: b'\x5c' #0x5C
+			KeyButton:
+				text: '|'
+				hexval: b'\x7c' #0x7C
+			KeyButton:
+				text: '^'
+				hexval: b'\x5e' #0x5E
+			KeyButton:
+				text: '_'
+				hexval: b'\x5f' #0x5F
+			KeyButton:
+				text: '~'
+				hexval: b'\x7e' #0x7E
+
+

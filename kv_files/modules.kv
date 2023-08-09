@@ -1,0 +1,753 @@
+
+
+<SpinnerLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        GUI_Spinner:
+            size_hint: (0.15, 0.05)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.05}
+            text: 'select device'
+            on_press: self.values = root.get_left_devices()
+            on_text:
+                root.change_device(self.text)
+                root.parent.parent.update_start_window()
+
+<SpinnerRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        GUI_Spinner:
+            size_hint: (0.15, 0.05)
+            pos_hint: {'center_x': 0.9, 'center_y': 0.05}
+            text: 'select device'
+            on_press: self.values = root.get_left_devices()
+            on_text:
+                root.change_device(self.text)
+                root.parent.parent.update_start_window()
+
+
+
+
+<FingerButtonsLeft>:
+    FloatLayout:
+#        id: test_float
+        size: root.size
+        pos: root.pos
+
+        DeviceButton:
+            name: 'LI1'
+            custom_pos_hint: 0.3566, 0.8136
+        DeviceButton:
+            name: 'LI2'
+            id: LI2
+            custom_pos_hint: 0.34489496824621396, 0.7245841035120149
+        DeviceButton:
+            name: 'LI3'
+            id: LI3
+            custom_pos_hint: 0.3321934538348803, 0.6414048059149723
+        DeviceButton:
+            name: 'LI4'
+            id: LI4
+            custom_pos_hint: 0.32046897899364923, 0.5609981515711645
+        DeviceButton:
+            name: 'LM1'
+            id: LM1
+            custom_pos_hint: 0.2589154860771861, 0.8826247689463955
+        DeviceButton:
+            name: 'LM2'
+            id: LM2
+            custom_pos_hint: 0.25500732779677576, 0.7939001848428835
+        DeviceButton:
+            name: 'LM3'
+            id: LM3
+            custom_pos_hint: 0.252076209086468, 0.7042513863216266
+        DeviceButton:
+            name: 'LM4'
+            id: LM4
+            custom_pos_hint: 0.2501221299462628, 0.6127541589648798
+        DeviceButton:
+            name: 'LR1'
+            id: LR1
+            custom_pos_hint: 0.1538837322911578, 0.8493530499075785
+        DeviceButton:
+            name: 'LR2'
+            id: LR2
+            custom_pos_hint: 0.1607230092818759, 0.7624768946395564
+        DeviceButton:
+            name: 'LR3'
+            id: LR3
+            custom_pos_hint: 0.16658524670249145, 0.6719038817005545
+        DeviceButton:
+            name: 'LR4'
+            id: LR4
+            custom_pos_hint: 0.17293600390815828, 0.5822550831792976
+        DeviceButton:
+            name: 'LP1'
+            id: LP1
+            custom_pos_hint: 0.07474352711284807, 0.7024029574861368
+        DeviceButton:
+            name: 'LP2'
+            id: LP2
+            custom_pos_hint: 0.09086468001954079, 0.6164510166358594
+        DeviceButton:
+            name: 'LP3'
+            id: LP3
+            custom_pos_hint: 0.1074743527112848, 0.5258780036968577
+        DeviceButton:
+            name: 'LP4'
+            custom_pos_hint: 0.04689789936492428, 0.5360443622920518
+        DeviceButton:
+            name: 'LP5'
+            custom_pos_hint: 0.0625305324865657, 0.45101663585951945
+
+
+<FingerButtonsLeft2>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        DeviceButton:
+            name: 'LI5'
+            custom_pos_hint: 0.4088910600879336, 0.7384473197781886
+        DeviceButton:
+            name: 'LI6'
+            custom_pos_hint: 0.3961895456765999, 0.6561922365988909
+        DeviceButton:
+            name: 'LI7'
+            custom_pos_hint: 0.3839765510503175, 0.5730129390018484
+
+
+
+
+<FingerButtonsRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+#	    CatButton:
+#            size_hint: 0.25, 0.2
+#            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
+#            text: 'Drag me'
+#            on_release: print('cat button')
+
+
+        DeviceButton:
+            name: 'RI1'
+            id: RI1
+            custom_pos_hint: 0.6448461162677088, 0.8133086876155268
+        DeviceButton:
+            name: 'RI2'
+            id: RI2
+            custom_pos_hint: 0.6565705911089399, 0.7245841035120149
+        DeviceButton:
+            name: 'RI3'
+            id: RI3
+            custom_pos_hint: 0.6697606253053249, 0.6423290203327172
+        DeviceButton:
+            name: 'RI4'
+            id: RI4
+            custom_pos_hint: 0.6809965803615047, 0.5600739371534196
+        DeviceButton:
+            name: 'RM1'
+            id: RM1
+            custom_pos_hint: 0.743038593063019, 0.8835489833641405
+        DeviceButton:
+            name: 'RM2'
+            id: RM2
+            custom_pos_hint: 0.7464582315583781, 0.7939001848428835
+        DeviceButton:
+            name: 'RM3'
+            id: RM3
+            custom_pos_hint: 0.7493893502686859, 0.7042513863216266
+        DeviceButton:
+            name: 'RM4'
+            id: RM4
+            custom_pos_hint: 0.7518319491939424, 0.6127541589648798
+        DeviceButton:
+            name: 'RR1'
+            id: RR1
+            custom_pos_hint: 0.8470933072789448, 0.8475046210720887
+        DeviceButton:
+            name: 'RR2'
+            id: RR2
+            custom_pos_hint: 0.8402540302882266, 0.7624768946395564
+        DeviceButton:
+            name: 'RR3'
+            id: RR3
+            custom_pos_hint: 0.8348803126526624, 0.6719038817005545
+        DeviceButton:
+            name: 'RR4'
+            id: RR4
+            custom_pos_hint: 0.8280410356619443, 0.5822550831792976
+        DeviceButton:
+            name: 'RP1'
+            id: RP1
+            custom_pos_hint: 0.9257449926722032, 0.7033271719038817
+        DeviceButton:
+            name: 'RP2'
+            id: RP2
+            custom_pos_hint: 0.9101123595505618, 0.6182994454713493
+        DeviceButton:
+            name: 'RP3'
+            id: RP3
+            custom_pos_hint: 0.8935026868588177, 0.5258780036968577
+        DeviceButton:
+            name: 'RP4'
+            id: RP2
+            custom_pos_hint: 0.9540791402051783, 0.5369685767097967
+        DeviceButton:
+            name: 'RP5'
+            id: RP3
+            custom_pos_hint: 0.9389350268685882, 0.45101663585951945
+<FingerButtonsRight2>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        DeviceButton:
+            name: 'RI5'
+            custom_pos_hint: 0.5925744992672203, 0.7375231053604436
+        DeviceButton:
+            name: 'RI6'
+            custom_pos_hint: 0.605276013678554, 0.655268022181146
+        DeviceButton:
+            name: 'RI7'
+            custom_pos_hint: 0.6165119687347338, 0.5739371534195934
+
+
+
+
+<ThumbButtonsLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        DeviceButton:
+            name: 'LTA1'
+            id: LT11
+            custom_pos_hint: 0.3659, 0.3835
+        DeviceButton:
+            name: 'LTA2'
+            id: LT12}
+            custom_pos_hint: 0.4025, 0.3003
+        DeviceButton:
+            name: 'LTA3'
+            id: LT13
+            custom_pos_hint: 0.4396, 0.2181
+        DeviceButton:
+            name: 'LTA4'
+            id: LT14
+            custom_pos_hint: 0.4030, 0.1340
+        DeviceButton:
+            name: 'LTA5'
+            id: LT15
+            custom_pos_hint: 0.3659, 0.0499
+        DeviceButton:
+            name: 'LTB1'
+            id: LT21
+            custom_pos_hint: 0.2921, 0.3835
+        DeviceButton:
+            name: 'LTB2'
+            id: LT22
+            custom_pos_hint: 0.3292, 0.2994
+        DeviceButton:
+            name: 'LTB3'
+            id: LT23
+            custom_pos_hint: 0.3659, 0.2171
+        DeviceButton:
+            name: 'LTB4'
+            id: LT24
+            custom_pos_hint: 0.32877, 0.1330
+        DeviceButton:
+            name: 'LTB5'
+            id: LT25
+            custom_pos_hint: 0.2924, 0.0526
+        DeviceButton:
+            name: 'LTC3'
+            id: LT33
+            custom_pos_hint: 0.29213, 0.21719
+
+<ThumbButtonsRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        DeviceButton:
+            name: 'RTA1'
+            id: RT11
+            custom_pos_hint: 0.6350, 0.3826
+        DeviceButton:
+            name: 'RTA2'
+            id: RT12
+            custom_pos_hint: 0.5979, 0.2994
+        DeviceButton:
+            name: 'RTA3'
+            id: RT13
+            custom_pos_hint: 0.5613, 0.2153
+        DeviceButton:
+            name: 'RTA4'
+            id: RT14
+            custom_pos_hint: 0.5984, 0.1321
+        DeviceButton:
+            name: 'RTA5'
+            id: RT15
+            custom_pos_hint: 0.6350, 0.0499
+        DeviceButton:
+            name: 'RTB1'
+            id: RT21
+            custom_pos_hint: 0.7088, 0.3826
+        DeviceButton:
+            name: 'RTB2'
+            id: RT22
+            custom_pos_hint: 0.6717, 0.2994
+        DeviceButton:
+            name: 'RTB3'
+            id: RT23
+            custom_pos_hint: 0.6350, 0.2162
+        DeviceButton:
+            name: 'RTB4'
+            id: RT24
+            custom_pos_hint: 0.6717, 0.1330
+        DeviceButton:
+            name: 'RTB5'
+            id: RT25
+            custom_pos_hint: 0.7083, 0.0499
+        DeviceButton:
+            name: 'RTC3'
+            id: RT33
+            custom_pos_hint: 0.7088, 0.2162
+
+
+
+
+<WheelLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        Label:
+            size_hint: (0.045, 0.25)
+            pos_hint: {'center_x': 0.41, 'center_y': 0.645}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.3)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20]
+
+        DeviceButton:
+            name: 'LWB'
+            custom_pos_hint: 0.41, 0.56
+        DeviceButton:
+            name: 'LWM'
+            custom_pos_hint: 0.41, 0.645
+        DeviceButton:
+            name: 'LWF'
+            custom_pos_hint: 0.41, 0.73
+
+
+
+<WheelRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        Label:
+            size_hint: (0.045, 0.25)
+            pos_hint: {'center_x': 0.59, 'center_y': 0.645}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.3)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20]
+
+        DeviceButton:
+            name: 'RWB'
+            custom_pos_hint: 0.59, 0.56
+        DeviceButton:
+            name: 'RWM'
+            custom_pos_hint: 0.59, 0.645
+        DeviceButton:
+            name: 'RWF'
+            custom_pos_hint: 0.59, 0.73
+
+
+
+<JoystickLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        GUI_Button:
+            text: 'steps'
+            size_hint: (0.07, 0.05)
+            pos_hint: {'center_x': 0.43, 'center_y': 0.15}
+            on_release:
+                root.steps()
+                app.root.get_screen('StartWindow').children[1].update_start_window()
+
+        Label:
+            size_hint: (0.157, 0.09)
+            pos_hint: {'center_x': 0.3590, 'center_y': 0.2375}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+        Label:
+            size_hint: (0.05, 0.28)
+            pos_hint: {'center_x': 0.3590, 'center_y': 0.2375}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+
+        DeviceButton:
+            name: 'LTA1'
+            custom_pos_hint: 0.2799, 0.3780
+        DeviceButton:
+            name: 'LTA5'
+            custom_pos_hint: 0.2799, 0.0970
+        DeviceButton:
+            name: 'LTB1'
+            custom_pos_hint: 0.2061, 0.3770
+        DeviceButton:
+            name: 'LTB5'
+            custom_pos_hint: 0.2061, 0.0970
+
+        DeviceButton:
+            name: 'LJM'
+            custom_pos_hint: 0.3590, 0.2375
+        DeviceButton:
+            name: 'LJF1'
+            custom_pos_hint: 0.4118, 0.2384
+        DeviceButton:
+            name: 'LJB1'
+            custom_pos_hint: 0.3058, 0.2375
+        DeviceButton:
+            name: 'LJL1'
+            custom_pos_hint: 0.3590, 0.3308
+        DeviceButton:
+            name: 'LJR1'
+            custom_pos_hint: 0.3590, 0.1432
+
+<JoystickLeft2>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        GUI_Button:
+            text: 'steps'
+            size_hint: (0.07, 0.05)
+            pos_hint: {'center_x': 0.43, 'center_y': 0.15}
+            on_release:
+                root.steps()
+                app.root.get_screen('StartWindow').children[1].update_start_window()
+
+        Label:
+            size_hint: (0.265, 0.09)
+            pos_hint: {'center_x': 0.3590, 'center_y': 0.2375}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+        Label:
+            size_hint: (0.05, 0.465)
+            pos_hint: {'center_x': 0.3590, 'center_y': 0.2375}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+
+        DeviceButton:
+            name: 'LTA1'
+            custom_pos_hint: 0.2799, 0.3780
+        DeviceButton:
+            name: 'LTA5'
+            custom_pos_hint: 0.2799, 0.0970
+        DeviceButton:
+            name: 'LTB1'
+            custom_pos_hint: 0.2061, 0.3770
+        DeviceButton:
+            name: 'LTB5'
+            custom_pos_hint: 0.2061, 0.0970
+
+        DeviceButton:
+            name: 'LJM'
+            custom_pos_hint: 0.3590, 0.2375
+        DeviceButton:
+            name: 'LJF1'
+            custom_pos_hint: 0.4118, 0.2384
+        DeviceButton:
+            name: 'LJB1'
+            custom_pos_hint: 0.3058, 0.2375
+        DeviceButton:
+            name: 'LJL1'
+            custom_pos_hint: 0.3590, 0.3308
+        DeviceButton:
+            name: 'LJR1'
+            custom_pos_hint: 0.3590, 0.1432
+
+        DeviceButton:
+            name: 'LJF2'
+            custom_pos_hint: 0.4640, 0.2375
+        DeviceButton:
+            name: 'LJB2'
+            custom_pos_hint: 0.2535, 0.2375
+        DeviceButton:
+            name: 'LJL2'
+            custom_pos_hint: 0.3590, 0.4242
+        DeviceButton:
+            name: 'LJR2'
+            custom_pos_hint: 0.3590, 0.0489
+
+
+
+
+<JoystickRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        FloatLayout:
+            id: id_jr
+
+        GUI_Button:
+            text: 'steps'
+            size_hint: (0.07, 0.05)
+            pos_hint: {'center_x': 0.57, 'center_y': 0.15}
+            on_release:
+                root.steps()
+                app.root.get_screen('StartWindow').children[1].update_start_window()
+
+        Label:
+            size_hint: (0.157, 0.09)
+            pos_hint: {'center_x': 0.6424, 'center_y': 0.2365}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+        Label:
+            size_hint: (0.05, 0.28)
+            pos_hint: {'center_x': 0.6424, 'center_y': 0.2365}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+
+        DeviceButton:
+            name: 'RTA1'
+            custom_pos_hint: 0.7210, 0.3780
+        DeviceButton:
+            name: 'RTA5'
+            custom_pos_hint: 0.7215, 0.0970
+        DeviceButton:
+            name: 'RTB1'
+            custom_pos_hint: 0.7948, 0.3780
+        DeviceButton:
+            name: 'RTB3'
+            custom_pos_hint: 0.7948, 0.0961
+
+        DeviceButton:
+            name: 'RJM'
+            custom_pos_hint: 0.6424, 0.2365
+        DeviceButton:
+            name: 'RJF1'
+            custom_pos_hint: 0.5896, 0.2365
+        DeviceButton:
+            name: 'RJB1'
+            custom_pos_hint: 0.6951, 0.2375
+        DeviceButton:
+            name: 'RJL1'
+            custom_pos_hint: 0.6424, 0.1432
+        DeviceButton:
+            name: 'RJR1'
+            custom_pos_hint: 0.6424, 0.3299
+
+<JoystickRight2>:
+    FloatLayout:
+        #id: id_test
+        size: root.size
+        pos: root.pos
+
+        GUI_Button:
+            text: 'steps'
+            size_hint: (0.07, 0.05)
+            pos_hint: {'center_x': 0.57, 'center_y': 0.15}
+            on_release:
+                root.steps()
+                app.root.get_screen('StartWindow').children[1].update_start_window()
+
+        Label:
+            size_hint: (0.265, 0.09)
+            pos_hint: {'center_x': 0.6424, 'center_y': 0.2365}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+        Label:
+            size_hint: (0.05, 0.465)
+            pos_hint: {'center_x': 0.6424, 'center_y': 0.2365}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+
+        DeviceButton:
+            name: 'RTA1'
+            custom_pos_hint: 0.7210, 0.3780
+        DeviceButton:
+            name: 'RTA5'
+            custom_pos_hint: 0.7215, 0.0970
+        DeviceButton:
+            name: 'RTB1'
+            custom_pos_hint: 0.7948, 0.3780
+        DeviceButton:
+            name: 'RTB3'
+            custom_pos_hint: 0.7948, 0.0961
+
+        DeviceButton:
+            name: 'RJM'
+            custom_pos_hint: 0.6424, 0.2365
+        DeviceButton:
+            name: 'RJF1'
+            custom_pos_hint: 0.5896, 0.2365
+        DeviceButton:
+            name: 'RJB1'
+            custom_pos_hint: 0.6951, 0.2375
+        DeviceButton:
+            name: 'RJL1'
+            custom_pos_hint: 0.6424, 0.1432
+        DeviceButton:
+            name: 'RJR1'
+            custom_pos_hint: 0.6424, 0.3299
+
+        DeviceButton:
+            name: 'RJF2'
+            custom_pos_hint: 0.5368, 0.2375
+        DeviceButton:
+            name: 'RJB2'
+            custom_pos_hint: 0.7474, 0.2375
+        DeviceButton:
+            name: 'RJL2'
+            custom_pos_hint: 0.6424, 0.0489
+        DeviceButton:
+            name: 'RJR2'
+            custom_pos_hint: 0.6424, 0.4242
+
+
+
+
+<MouseLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        FloatLayout:
+            size_hint: (0.15, 0.2)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Slider:
+                id: y_mouse_slider
+                size_hint: (1, 1)
+                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                min: 1
+                max: 200
+                step: 1
+                orientation: 'vertical'
+                on_value: root.mouse_vertical(self.value)
+            Label:
+                id: y_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                color: app.theme['gui_text']
+
+
+            Slider:
+                id: x_mouse_slider
+                size_hint: (0.8, 1)
+                pos_hint: {'center_x': 0.6, 'center_y': 0.1}
+                min: 1
+                max: 200
+                step: 1
+                orientation: 'horizontal'
+                on_value: root.mouse_horizontal(self.value)
+            Label:
+                id: x_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                color: app.theme['gui_text']
+
+<MouseRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        FloatLayout:
+            size_hint: (0.15, 0.2)
+            pos_hint: {'center_x': 0.9, 'center_y': 0.25}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Slider:
+                id: y_mouse_slider
+                size_hint: (1, 1)
+                pos_hint: {'center_x': 0.9, 'center_y': 0.5}
+                min: 1
+                max: 200
+                step: 1
+                orientation: 'vertical'
+                on_value: root.mouse_vertical(self.value)
+            Label:
+                id: y_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                color: app.theme['gui_text']
+
+
+            Slider:
+                id: x_mouse_slider
+                size_hint: (0.8, 1)
+                pos_hint: {'center_x': 0.4, 'center_y': 0.1}
+                min: 1
+                max: 200
+                step: 1
+                orientation: 'horizontal'
+                on_value: root.mouse_horizontal(self.value)
+            Label:
+                id: x_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                color: app.theme['gui_text']
+
+

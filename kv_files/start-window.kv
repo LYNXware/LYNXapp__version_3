@@ -1,0 +1,163 @@
+#:kivy 2.1.0
+
+<StartWindowCustom>:
+    size: root.size
+    pos: root.pos
+    canvas:
+        Color:
+            rgba: app.theme['background']
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+	FloatLayout:
+        size: root.size
+        pos: root.pos
+
+    	Image:
+        	source: app.path_image_hands
+        	allow_stretch: True
+        	keep_ratio: False
+
+        BoxLayout:      # gui buttons
+            size_hint: (0.15, 0.15)
+            pos_hint: {'center_x': 0.5, 'top': 0.94}
+            orientation: 'vertical'
+            padding: [0,5,0,0]
+            spacing: 2
+
+            GUI_Spinner:
+                id: spinner_layouts
+                #background_color: (1,1,0,1)
+
+                on_press: self.values = root.get_layouts()
+                on_text:
+                    root.update_layout(self.text)
+                    root.update_start_window()
+
+            BoxLayout:
+                Button:
+                    text: 'Select Layer'
+                    color: app.theme['gui_button_text']
+                    background_color: app.theme['gui_button']
+                    on_release: root.select_layer()
+                    #on_release: print(self.parent)
+                ToggleButton:
+                    id: id_sub
+                    text: 'sub'
+                    color: app.theme['gui_button_text']
+                    background_color: app.theme['gui_button']
+                    on_release:
+                        root.select_sublayer(self.state)
+                        root.update_start_window()
+
+            Button:
+                text: 'update'
+                color: app.theme['gui_button_text']
+                background_color: app.theme['gui_button']
+                size_hint: (1, 1)
+#                pos_hint: {'center_x': 0.5, 'top': 0.6}
+                on_release: root.transmit_layouts()
+
+        BoxLayout:      # layer indicators
+            size_hint: (0.09, 0.15)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.695}
+            orientation: 'vertical'
+            padding: [10,10,10,10]
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.5)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+            BoxLayout:
+                spacing: 10
+                Label:
+                    text: 'major'
+                    color: app.theme['gui_text']
+                Label:
+                    id: id_major
+                    led_color: (0,0,0,0.5)
+                    size_hint: (0.7,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.led_color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [50]
+            BoxLayout:
+                spacing: 10
+                Label:
+                    text: 'minor'
+                    color: app.theme['gui_text']
+                Label:
+                    id: id_minor
+                    led_color: (0,0,0,0.5)
+                    size_hint: (0.7,1)
+                    canvas.before:
+                        Color:
+                            rgba: self.led_color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [50]
+
+
+
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        id: start_window
+        on_touch_up: root.check_button_collision()
+
+#        on_touch_up: root.check_button_collision()
+
+
+#    FloatLayout:
+#        size: root.size
+#        pos: root.pos
+#        id: test_id
+#
+#        on_touch_up: root.check_button_collision()
+#
+#        CatButton:
+#            name: 'B1'
+#            id:b1
+#            function: 'T1'
+#            description: 'D1'
+#            custom_pos_hint: 0.1, 0.1
+##            pos_x: 0.1
+##            pos_y: 0.3
+#
+#        CatButton:
+#            name: 'B2'
+#            id: b2
+#            function: 'F2'
+#            description: 'D2'
+#            custom_pos_hint: 0.2, 0.2
+##            pos_x: 0.2
+##            pos_y: 0.1
+#
+#
+#        CatButton:
+#            name: 'B3'
+#            id: b3
+#            function: 'F3'
+#            description: 'D3'
+#            custom_pos_hint: 0.3, 0.3
+#            pos_x: 0.2
+#            pos_y: 0.2
+
+
+
+
+
+
+
+
+
+
+

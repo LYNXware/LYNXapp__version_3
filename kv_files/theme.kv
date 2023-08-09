@@ -1,0 +1,157 @@
+#:kivy 2.1.0
+<ThemeWindowCustom@BoxLayout>:
+    canvas:
+        Color:
+            rgba: app.theme['background']
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:    # theme objects
+        size: root.size
+        pos: root.pos
+
+        BoxLayout:
+            size_hint: (0.1, 0.05)
+            pos_hint: {'center_x': 0.75, 'center_y': 0.85}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+            Label:
+                text: 'GUI Text'
+                color: app.theme['gui_text']
+
+        ThemeDeviceButton:
+            pos_hint: {'center_x': 0.75, 'center_y': 0.75}
+            #size_hint: (.5,.5)
+
+        GUI_Button:
+            text: 'button'
+#            color: app.theme['gui_button_text']
+#            background_color: app.theme['gui_button']
+            size_hint: (0.1, 0.05)
+            pos_hint: {'center_x': 0.75, 'center_y': 0.65}
+            on_release: root.test()
+
+
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+        padding: [10, 10, 10, 10]
+        spacing: 15
+
+        BoxLayout:              #Space for the actionbar
+            size_hint_y: 0.08
+
+        BoxLayout:              # left side
+            spacing: 10
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+
+                BoxLayout:
+                    padding: [5, 5, 5, 5]
+                    size_hint_y: 0.2
+                    canvas.before:
+                        Color:
+                            rgba: (0,0,0,0.2)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+
+                    GUI_Button:
+                        text: 'bright theme'
+                        on_release:
+                            root.bright_theme()
+                            app.update_theme()
+
+                    GUI_Button:
+                        text: 'dark theme'
+                        on_release:
+                            root.dark_theme()
+                            app.update_theme()
+
+
+                BoxLayout:
+                    padding: [5, 5, 5, 5]
+                    spacing: 10
+                    orientation: 'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: (0,0,0,0.2)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+
+                    BoxLayout:
+                        GUI_Button:
+                            text: 'Background'
+                            on_release:
+                                root.save_theme('background', id_colorpicker.color)
+                                app.update_theme()
+                        GUI_Button:
+                            text: 'GUI Text'
+                            on_release:
+                                root.save_theme('gui_text', id_colorpicker.color)
+                                app.update_theme()
+                    BoxLayout:
+                        GUI_Button:
+                            text: 'Cat Button'
+                            on_release:
+                                root.save_theme('cat_button', id_colorpicker.color)
+                                root.save_theme('cat_button_pushed', [1 - id_colorpicker.color[0], 1 - id_colorpicker.color[1], 1 - id_colorpicker.color[2], 1])
+                                app.update_theme()
+                        GUI_Button:
+                            text: 'Name'
+                            on_release:
+                                root.save_theme('button_name', id_colorpicker.color)
+                                app.update_theme()
+                        GUI_Button:
+                            text: 'Function'
+                            on_release:
+                                root.save_theme('button_function', id_colorpicker.color)
+                                app.update_theme()
+                        GUI_Button:
+                            text: 'Description'
+                            on_release:
+                                root.save_theme('button_description', id_colorpicker.color)
+                                app.update_theme()
+                    BoxLayout:
+                        GUI_Button:
+                            text: 'Button Background'
+                            on_release:
+                                root.save_theme('gui_button', id_colorpicker.color)
+                                root.save_theme('gui_button_pushed', [1 - id_colorpicker.color[0], 1 - id_colorpicker.color[1], 1 - id_colorpicker.color[2], 1])
+                                root.save_theme('gui_dropdown', [id_colorpicker.color[0], id_colorpicker.color[1], id_colorpicker.color[2], 1])
+                                app.update_theme()
+                        GUI_Button:
+                            text: 'Button Text'
+                            on_release:
+                                root.save_theme('gui_button_text', id_colorpicker.color)
+                                app.update_theme()
+#                    BoxLayout:
+#                        GUI_Button:
+#                            text: 'Spinner Background'
+#                            on_release:
+#                                root.save_theme('gui_spinner', id_colorpicker.color)
+#                                app.update_theme()
+#                        GUI_Button:
+#                            text: 'Spinner Text'
+#                            on_release:
+#                                root.save_theme('gui_spinner_text', id_colorpicker.color)
+#                                app.update_theme()
+
+
+            BoxLayout: # free space
+
+        ColorPicker:
+            id: id_colorpicker
+
+
