@@ -1,8 +1,47 @@
+#:kivy 2.1.0
+
 WindowManager:
-    MainScreen:
-#    LoginScreen:
-#        name: 'login'
-#    DashboardScreen:
-#        name: 'dashboard'
-#    SettingsScreen:
-#        name: 'settings'
+    id: WindowManager
+    StartWindow:
+    LayoutsWindow:
+    ThemeWindow:
+    SettingsWindow:
+    HelpWindow:
+    AssignmentWindow:
+
+
+<StartWindow>:
+    name: 'StartWindow'
+	id: MainWindow
+    StartWindowCustom:
+    ActionBarCustom:
+
+<LayoutsWindow>:
+    name: 'LayoutsWindow'
+	id: LayoutsWindow
+    LayoutsWindowCustom:
+    ActionBarCustom:
+
+<ThemeWindow>:
+    name: 'ThemeWindow'
+	id: ThemeWindow
+	ThemeWindowCustom:
+    ActionBarCustom:
+
+<SettingsWindow>:
+    name: 'SettingsWindow'
+	id: SettingsWindow
+    SettingsWindowCustom:
+    ActionBarCustom:
+
+<HelpWindow>:
+    name: 'HelpWindow'
+    HelpWindowCustom:
+    ActionBarCustom:
+
+
+<AssignmentWindow>:
+    name: 'AssignmentWindow'
+	id: AssignmentWindow
+	AssignmentWindowCustom:
+    ActionBarCustom:
