@@ -29,7 +29,7 @@ from plyer import filechooser
 from __init__ import __version__
 from devices import devices
 from events import left_events_dict, right_events_dict
-from functions import resource_path
+from resource_path import resource_path
 from user import user
 
 

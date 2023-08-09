@@ -1,7 +1,5 @@
-from functions import resource_path
+from resource_path import resource_path
 import pickle
-from __init__ import __version__
-
 
 with open(resource_path(f'user/layouts/major/halmak_adjusted.pickle'), 'rb') as f:
     main_left = pickle.load(f)

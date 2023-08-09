@@ -8,7 +8,7 @@ import pickle
 screen_size = (1920, 1080)
 
 
-from functions import resource_path
+from resource_path import resource_path
 
 from __init__ import __version__
 
