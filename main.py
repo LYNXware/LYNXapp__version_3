@@ -24,6 +24,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
+
 from plyer import filechooser
 
 from __init__ import __version__
@@ -36,7 +37,9 @@ from user import user
 import py_files.test
 import py_files.screen_help
 import py_files.screen_assignment
-# import py_files.screen_assignment
+import py_files.screen_layouts
+import py_files.screen_theme
+import py_files.screen_settings
 
 
 
@@ -522,196 +525,196 @@ class MouseRight(Widget):
         user.current_layout.save(user.setup.active_layout)
 
 
-class SettingsWindow(Screen):
-    pass
+# class SettingsWindow(Screen):
+#     pass
+#
+#
+# class SettingsWindowCustom(Widget):
+#     def on_kv_post(self, *args):
+#         self.ids.name.active = user.preferences.button_name
+#         self.ids.function.active = user.preferences.button_function
+#         self.ids.description.active = user.preferences.button_description
+#         # self.ids.float.add_widget(DeviceButton(pos_hint={'center_x': 0.75, 'center_y': 0.75}))
+#         self.update_button()
+#
+#     def update_name(self, state):
+#         user.preferences.update_b_name(state)
+#         self.update_button()
+#         # print(state)
+#
+#     def update_function(self, state):
+#         user.preferences.update_b_function(state)
+#         self.update_button()
+#         # print(state)
+#
+#     def update_description(self, state):
+#         user.preferences.update_b_description(state)
+#         self.update_button()
+#         # print(state)
+#
+#     def update_button(self):
+#         self.ids.button_label.clear_widgets()
+#
+#         if user.preferences.button_name:
+#             self.ids.button_label.add_widget(Label(text='Name',
+#                                                    color=user.theme.color_dict['button_name'],
+#                                                    font_size=15))
+#         if user.preferences.button_function:
+#             self.ids.button_label.add_widget(Label(text='Function',
+#                                                    color=user.theme.color_dict['button_function'],
+#                                                    font_size=15))
+#         if user.preferences.button_description:
+#             self.ids.button_label.add_widget(Label(text='Description',
+#                                                    color=user.theme.color_dict['button_description'],
+#                                                    font_size=15))
 
 
-class SettingsWindowCustom(Widget):
-    def on_kv_post(self, *args):
-        self.ids.name.active = user.preferences.button_name
-        self.ids.function.active = user.preferences.button_function
-        self.ids.description.active = user.preferences.button_description
-        # self.ids.float.add_widget(DeviceButton(pos_hint={'center_x': 0.75, 'center_y': 0.75}))
-        self.update_button()
-
-    def update_name(self, state):
-        user.preferences.update_b_name(state)
-        self.update_button()
-        # print(state)
-
-    def update_function(self, state):
-        user.preferences.update_b_function(state)
-        self.update_button()
-        # print(state)
-
-    def update_description(self, state):
-        user.preferences.update_b_description(state)
-        self.update_button()
-        # print(state)
-
-    def update_button(self):
-        self.ids.button_label.clear_widgets()
-
-        if user.preferences.button_name:
-            self.ids.button_label.add_widget(Label(text='Name',
-                                                   color=user.theme.color_dict['button_name'],
-                                                   font_size=15))
-        if user.preferences.button_function:
-            self.ids.button_label.add_widget(Label(text='Function',
-                                                   color=user.theme.color_dict['button_function'],
-                                                   font_size=15))
-        if user.preferences.button_description:
-            self.ids.button_label.add_widget(Label(text='Description',
-                                                   color=user.theme.color_dict['button_description'],
-                                                   font_size=15))
+# class ThemeWindow(Screen):
+#     pass
+#
+#
+# class ThemeWindowCustom(Widget):
+#
+#     def test(self):
+#         print(user.theme.color_dict)
+#
+#     def save_theme(self, widget_color, rgba):
+#         user.theme.save(widget_color, rgba)
+#
+#     def bright_theme(self):
+#         user.theme.bright_theme()
+#         # print('bright)
+#
+#     def dark_theme(self):
+#         user.theme.dark_theme()
+#         # print('update theme')
 
 
-class ThemeWindow(Screen):
-    pass
-
-
-class ThemeWindowCustom(Widget):
-
-    def test(self):
-        print(user.theme.color_dict)
-
-    def save_theme(self, widget_color, rgba):
-        user.theme.save(widget_color, rgba)
-
-    def bright_theme(self):
-        user.theme.bright_theme()
-        # print('bright)
-
-    def dark_theme(self):
-        user.theme.dark_theme()
-        # print('update theme')
-
-
-class LayoutsWindow(Screen):
-    pass
-
-
-class LayoutsWindowCustom(Widget):
-    layer = StringProperty('major/minor')
-
-    def select_layer(self):
-        if self.layer == 'major/minor':
-            self.layer = 'minor'
-        elif self.layer == 'major':
-            self.layer = 'minor'
-        else:
-            self.layer = 'major'
-
-        self.ids.id_layoutSpinner.text = 'Existing Layouts'
-        print(self.layer)
-
-    def save_new_layout(self, layout_title):
-        if self.layer == 'major/minor':
-            self.ids.id_message_label.text = 'select layer: major or minor'
-        elif not layout_title:
-            self.ids.id_message_label.text = 'type in the layout title'
-        else:
-            with open(resource_path(f'user/layouts/{self.layer}/{layout_title}.pickle'), 'wb') as f:
-                pickle.dump(left_events_dict, f)  # main_left - empty
-                pickle.dump(right_events_dict, f)  # main_right - empty
-                pickle.dump(left_events_dict, f)  # sub_left - empty
-                pickle.dump(right_events_dict, f)  # sub_right - empty
-                pickle.dump(__version__, f)
-            self.ids.id_message_label.text = f'new layout "{layout_title}" was created'
-
-    def find_layouts(self):
-        if self.layer != 'major/minor':
-            ll = os.listdir(resource_path(f'user/layouts/{self.layer}'))
-            layouts_list = [x.split('.')[0] for x in ll]
-            return layouts_list
-        else:
-            self.ids.id_message_label.text = 'select layer: major or minor'
-            return []
-
-    def copyLayout(self):
-        layout = self.ids.id_layoutSpinner.text
-
-        if layout == 'Existing Layouts':
-            self.ids.id_message_label.text = 'Select Layout !!!'
-        else:
-            src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
-            dst = resource_path(f'user/layouts/{self.layer}/{layout}_copy.pickle')
-            shutil.copyfile(src, dst)
-            self.ids.id_message_label.text = f'Layout "{layout}" was copied.'
-
-    def renameLayout(self):
-        newTitle = self.ids.id_layout_title.text
-        layout = self.ids.id_layoutSpinner.text
-
-        if layout == 'Existing Layouts':
-            self.ids.id_message_label.text = 'Select Layout'
-        elif newTitle == '':
-            self.ids.id_message_label.text = 'Type in new Layout Title !!!'
-        else:
-            src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
-            dst = resource_path(f'user/layouts/{self.layer}/{newTitle}.pickle')
-            os.rename(src, dst)
-            self.ids.id_message_label.text = f'Layout "{layout}" was renamed to "{newTitle}"'
-            self.ids.id_layoutSpinner.text = newTitle
-
-    def deleteLayout(self):
-
-        layout = self.ids.id_layoutSpinner.text
-
-        if layout == 'Existing Layouts':
-            self.ids.id_message_label.text = 'Select Layout'
-
-        elif len(os.listdir(resource_path(f'user/layouts/{self.layer}'))) <= 1:
-            self.ids.id_message_label.text = f'{self.layer} folder must have at leased one layout.'
-
-        else:
-            src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
-            os.remove(src)
-            self.ids.id_message_label.text = f'Layout "{layout}" was deleted.'
-            self.ids.id_layoutSpinner.text = 'Existing Layouts'
-
-            if layout == user.setup.selected_major_layout:
-                ll = os.listdir(resource_path(f'user/layouts/major'))
-                layouts_list = [x.split('.')[0] for x in ll]
-                user.setup.update_major_layout(layouts_list[0])
-
-            elif layout == user.setup.selected_minor_layout:
-                print(user.setup.selected_minor_layout)
-                ll = os.listdir(resource_path(f'user/layouts/minor'))
-                layouts_list = [x.split('.')[0] for x in ll]
-                user.setup.update_minor_layout(layouts_list[0])
-                print(user.setup.selected_minor_layout)
-
-    def import_layout(self):
-        if self.layer == 'major/minor':
-            self.ids.id_message_label.text = 'Select Layer: major or minor'
-        else:
-            import_directory = resource_path(f"user/layouts/{self.layer}")
-            filters = ["*.pickle"]
-            file_path = filechooser.open_file(filters=filters)[0]
-            shutil.copy(file_path, import_directory)
-
-    def export_layout(self):
-        layout = self.ids.id_layoutSpinner.text
-        if self.layer == 'major/minor':
-            self.ids.id_message_label.text = 'Select Layer:  major or minor'
-        elif layout == 'Existing Layouts':
-            self.ids.id_message_label.text = 'Select Layout'
-        else:
-            file_path = resource_path(f"user/layouts/{self.layer}/{layout}.pickle")
-            export_directory = filechooser.choose_dir()[0]
-            shutil.copy(file_path, export_directory)
-
-    def export_all(self):
-
-        dest = f"{filechooser.choose_dir()[0]}/exported_layouts"
-        print(dest)
-
-        src = resource_path("user/layouts/")
-        print(src)
-
-        shutil.copytree(src, dest)
-
+# class LayoutsWindow(Screen):
+#     pass
+#
+#
+# class LayoutsWindowCustom(Widget):
+#     layer = StringProperty('major/minor')
+#
+#     def select_layer(self):
+#         if self.layer == 'major/minor':
+#             self.layer = 'minor'
+#         elif self.layer == 'major':
+#             self.layer = 'minor'
+#         else:
+#             self.layer = 'major'
+#
+#         self.ids.id_layoutSpinner.text = 'Existing Layouts'
+#         print(self.layer)
+#
+#     def save_new_layout(self, layout_title):
+#         if self.layer == 'major/minor':
+#             self.ids.id_message_label.text = 'select layer: major or minor'
+#         elif not layout_title:
+#             self.ids.id_message_label.text = 'type in the layout title'
+#         else:
+#             with open(resource_path(f'user/layouts/{self.layer}/{layout_title}.pickle'), 'wb') as f:
+#                 pickle.dump(left_events_dict, f)  # main_left - empty
+#                 pickle.dump(right_events_dict, f)  # main_right - empty
+#                 pickle.dump(left_events_dict, f)  # sub_left - empty
+#                 pickle.dump(right_events_dict, f)  # sub_right - empty
+#                 pickle.dump(__version__, f)
+#             self.ids.id_message_label.text = f'new layout "{layout_title}" was created'
+#
+#     def find_layouts(self):
+#         if self.layer != 'major/minor':
+#             ll = os.listdir(resource_path(f'user/layouts/{self.layer}'))
+#             layouts_list = [x.split('.')[0] for x in ll]
+#             return layouts_list
+#         else:
+#             self.ids.id_message_label.text = 'select layer: major or minor'
+#             return []
+#
+#     def copyLayout(self):
+#         layout = self.ids.id_layoutSpinner.text
+#
+#         if layout == 'Existing Layouts':
+#             self.ids.id_message_label.text = 'Select Layout !!!'
+#         else:
+#             src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
+#             dst = resource_path(f'user/layouts/{self.layer}/{layout}_copy.pickle')
+#             shutil.copyfile(src, dst)
+#             self.ids.id_message_label.text = f'Layout "{layout}" was copied.'
+#
+#     def renameLayout(self):
+#         newTitle = self.ids.id_layout_title.text
+#         layout = self.ids.id_layoutSpinner.text
+#
+#         if layout == 'Existing Layouts':
+#             self.ids.id_message_label.text = 'Select Layout'
+#         elif newTitle == '':
+#             self.ids.id_message_label.text = 'Type in new Layout Title !!!'
+#         else:
+#             src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
+#             dst = resource_path(f'user/layouts/{self.layer}/{newTitle}.pickle')
+#             os.rename(src, dst)
+#             self.ids.id_message_label.text = f'Layout "{layout}" was renamed to "{newTitle}"'
+#             self.ids.id_layoutSpinner.text = newTitle
+#
+#     def deleteLayout(self):
+#
+#         layout = self.ids.id_layoutSpinner.text
+#
+#         if layout == 'Existing Layouts':
+#             self.ids.id_message_label.text = 'Select Layout'
+#
+#         elif len(os.listdir(resource_path(f'user/layouts/{self.layer}'))) <= 1:
+#             self.ids.id_message_label.text = f'{self.layer} folder must have at leased one layout.'
+#
+#         else:
+#             src = resource_path(f'user/layouts/{self.layer}/{layout}.pickle')
+#             os.remove(src)
+#             self.ids.id_message_label.text = f'Layout "{layout}" was deleted.'
+#             self.ids.id_layoutSpinner.text = 'Existing Layouts'
+#
+#             if layout == user.setup.selected_major_layout:
+#                 ll = os.listdir(resource_path(f'user/layouts/major'))
+#                 layouts_list = [x.split('.')[0] for x in ll]
+#                 user.setup.update_major_layout(layouts_list[0])
+#
+#             elif layout == user.setup.selected_minor_layout:
+#                 print(user.setup.selected_minor_layout)
+#                 ll = os.listdir(resource_path(f'user/layouts/minor'))
+#                 layouts_list = [x.split('.')[0] for x in ll]
+#                 user.setup.update_minor_layout(layouts_list[0])
+#                 print(user.setup.selected_minor_layout)
+#
+#     def import_layout(self):
+#         if self.layer == 'major/minor':
+#             self.ids.id_message_label.text = 'Select Layer: major or minor'
+#         else:
+#             import_directory = resource_path(f"user/layouts/{self.layer}")
+#             filters = ["*.pickle"]
+#             file_path = filechooser.open_file(filters=filters)[0]
+#             shutil.copy(file_path, import_directory)
+#
+#     def export_layout(self):
+#         layout = self.ids.id_layoutSpinner.text
+#         if self.layer == 'major/minor':
+#             self.ids.id_message_label.text = 'Select Layer:  major or minor'
+#         elif layout == 'Existing Layouts':
+#             self.ids.id_message_label.text = 'Select Layout'
+#         else:
+#             file_path = resource_path(f"user/layouts/{self.layer}/{layout}.pickle")
+#             export_directory = filechooser.choose_dir()[0]
+#             shutil.copy(file_path, export_directory)
+#
+#     def export_all(self):
+#
+#         dest = f"{filechooser.choose_dir()[0]}/exported_layouts"
+#         print(dest)
+#
+#         src = resource_path("user/layouts/")
+#         print(src)
+#
+#         shutil.copytree(src, dest)
+#
 
 # class AssignmentWindow(Screen):
 #     pass
@@ -844,12 +847,12 @@ class MainApp(App):
         Window.left = user.screen_width / 2 - window_width / 2
         Window.top = user.screen_height / 2 - window_height / 2
 
-        Builder.load_file(resource_path('kv_files/start-window.kv'))
-        Builder.load_file(resource_path('kv_files/assignment.kv'))
+        Builder.load_file(resource_path('kv_files/screen_prime.kv'))
+        Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
         Builder.load_file(resource_path('kv_files/modules.kv'))
-        Builder.load_file(resource_path('kv_files/layouts.kv'))
-        Builder.load_file(resource_path('kv_files/settings.kv'))
-        Builder.load_file(resource_path('kv_files/theme.kv'))
+        Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
+        Builder.load_file(resource_path('kv_files/screen_settings.kv'))
+        Builder.load_file(resource_path('kv_files/screen_theme.kv'))
         Builder.load_file(resource_path('kv_files/screen_help.kv'))
         Builder.load_file(resource_path('kv_files/custom-widgets .kv'))
 
