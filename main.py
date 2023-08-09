@@ -1,7 +1,7 @@
-
+# start version var
 
 """
-Version: 0.2.0       major.minor.patch
+Version: 0.2.0
 Date: 01.01.2023
 Developer: Ape Devil
 
@@ -19,7 +19,6 @@ from kivy.uix.screenmanager import ScreenManager
 from resource_path import resource_path
 from user import user
 
-# secure dev
 
 import py_files.screen_help
 import py_files.screen_assignment
