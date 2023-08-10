@@ -15,7 +15,6 @@ from resource_path import resource_path
 from py_files.user import user
 
 
-
 from py_files import screen_prime
 from py_files import screen_assignment
 from py_files import screen_layouts
