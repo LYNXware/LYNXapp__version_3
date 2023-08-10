@@ -2,7 +2,7 @@
 
 """
 Version: 0.2.0
-Date: 01.01.2023
+Date: 10.08.2023
 Developer: Ape Devil
 
 Remark:
