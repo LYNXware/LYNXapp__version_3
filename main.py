@@ -20,12 +20,15 @@ from resource_path import resource_path
 from user import user
 
 
-import py_files.screen_help
-import py_files.screen_assignment
-import py_files.screen_layouts
-import py_files.screen_theme
-import py_files.screen_settings
-import py_files.screen_prime
+from py_files import screen_prime
+from py_files import screen_assignment
+from py_files import screen_layouts
+from py_files import screen_theme
+from py_files import screen_settings
+from py_files import screen_help
+from py_files import __version__
+print(f'LYNXapp Version: {__version__}')
+
 
 class WindowManager(ScreenManager):
     pass

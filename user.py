@@ -10,7 +10,7 @@ screen_size = (1920, 1080)
 
 from resource_path import resource_path
 
-from __init__ import __version__
+from py_files import __version__
 
 
 
