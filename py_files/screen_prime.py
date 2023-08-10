@@ -14,7 +14,7 @@ from kivy.uix.widget import Widget
 
 from py_files.usb_serial_comms import devices
 from resource_path import resource_path
-from user import user
+from py_files.user import user
 
 
 class StartWindow(Screen):

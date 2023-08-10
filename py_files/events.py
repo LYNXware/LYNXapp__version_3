@@ -1,3 +1,6 @@
+
+print('events.py started')
+
 class EventClass:
     def __init__(self, ascii_set, function, description):
         self.ascii_set = ascii_set
@@ -84,6 +87,9 @@ for i, event in enumerate(events):
     left_events_dict[f'L{event}'] = event_object
     right_events_dict[f'R{event}'] = event_object
 
+
+
+print('events.py ended')
 # print(left_events_dict)
 # print(right_events_dict)
 #

@@ -1,13 +1,8 @@
-
-
 """
 Version: 0.2.0
-Date: 09.08.2023
+Date: 10.08.2023
 Developer: Ape Devil
-
 Remark:
-
-required: python3.10, kivy2.1.0
 """
 
 from kivy.app import App
@@ -17,17 +12,27 @@ from kivy.properties import DictProperty
 from kivy.uix.screenmanager import ScreenManager
 
 from resource_path import resource_path
-from user import user
+from py_files.user import user
 
-# secure main
 
-import py_files.screen_help
-import py_files.screen_assignment
-import py_files.screen_layouts
-import py_files.screen_theme
-import py_files.screen_settings
-import py_files.screen_prime
+from py_files import screen_prime
+from py_files import screen_assignment
+from py_files import screen_layouts
+from py_files import screen_theme
+from py_files import screen_settings
+from py_files import screen_help
+from py_files import custom_widgets
+from py_files import __version__
+print(f'LYNXapp Version: {__version__}')
 
+Builder.load_file(resource_path('kv_files/screen_prime.kv'))
+Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
+Builder.load_file(resource_path('kv_files/modules.kv'))
+Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
+Builder.load_file(resource_path('kv_files/screen_settings.kv'))
+Builder.load_file(resource_path('kv_files/screen_theme.kv'))
+Builder.load_file(resource_path('kv_files/screen_help.kv'))
+Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 class WindowManager(ScreenManager):
     pass
 
@@ -44,14 +49,14 @@ class MainApp(App):
         Window.left = user.screen_width / 2 - window_width / 2
         Window.top = user.screen_height / 2 - window_height / 2
 
-        Builder.load_file(resource_path('kv_files/screen_prime.kv'))
-        Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
-        Builder.load_file(resource_path('kv_files/modules.kv'))
-        Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
-        Builder.load_file(resource_path('kv_files/screen_settings.kv'))
-        Builder.load_file(resource_path('kv_files/screen_theme.kv'))
-        Builder.load_file(resource_path('kv_files/screen_help.kv'))
-        Builder.load_file(resource_path('kv_files/custom-widgets .kv'))
+        # Builder.load_file(resource_path('kv_files/screen_prime.kv'))
+        # Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
+        # Builder.load_file(resource_path('kv_files/modules.kv'))
+        # Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
+        # Builder.load_file(resource_path('kv_files/screen_settings.kv'))
+        # Builder.load_file(resource_path('kv_files/screen_theme.kv'))
+        # Builder.load_file(resource_path('kv_files/screen_help.kv'))
+        # Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
         main_kv = Builder.load_file(resource_path('kv_files/main.kv'))
         return main_kv

@@ -1,4 +1,3 @@
-#:kivy 2.1.0
 
 <ActionBarCustom@ActionBar>:
     background_normal: ''
@@ -44,8 +43,6 @@
                 #root.manager.transition.direction ='down'
 
 
-
-
 <KeyButton@Button>:
     color: app.theme['gui_button_text']
     background_color: app.theme['gui_button']
@@ -58,8 +55,6 @@
     background_color: app.theme['gui_button']
 
 
-
-
 <SpinnerDropdown@SpinnerOption>:
     color: app.theme['gui_button_text']
     background_color: app.theme['gui_dropdown']
@@ -68,8 +63,6 @@
     color: app.theme['gui_button_text']
     background_color: app.theme['gui_button']
     option_cls: "SpinnerDropdown"
-
-
 
 
 <DeviceButton>:
@@ -114,7 +107,6 @@
 
 
 
-
 <ThemeDeviceButton@Button>:
 
     fs: (root.height*1**2 + root.width*1**2)/8
@@ -144,8 +136,5 @@
             text: 'Description'
             font_size: root.fs
             color:  app.theme['button_description']
-
-
-
 
 
