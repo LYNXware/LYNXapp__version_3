@@ -9,10 +9,10 @@ from kivy.properties import StringProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
-from events import left_events_dict, right_events_dict
+from py_files.events import left_events_dict, right_events_dict
 
 from resource_path import resource_path
-from user import user
+from py_files.user import user
 
 from py_files import __version__
 

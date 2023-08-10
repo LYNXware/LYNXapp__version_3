@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import DictProperty
 from kivy.uix.widget import Widget
 
-from user import user
+from py_files.user import user
 
 
 

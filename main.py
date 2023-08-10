@@ -14,7 +14,7 @@ from kivy.properties import DictProperty
 from kivy.uix.screenmanager import ScreenManager
 
 from resource_path import resource_path
-from user import user
+from py_files.user import user
 
 
 from py_files import screen_prime

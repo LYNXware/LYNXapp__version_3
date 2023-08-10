@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
-from user import user
+from py_files.user import user
 
 class ThemeWindow(Screen):
     pass

@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
-from user import user
+from py_files.user import user
 
 
 class SettingsWindow(Screen):

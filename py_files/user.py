@@ -16,6 +16,7 @@ from py_files import __version__
 
 class Setup:
     def __init__(self):
+        print('setup __init__ started')
         with open(resource_path(f'user/setup.pickle'), 'rb') as f:  # load last setup
             self.active_layer = pickle.load(f)              # mayor / minor
             self.sublayer = pickle.load(f)                  # true / false
@@ -77,6 +78,7 @@ class CurrentLayout:
 
         self.app_version = None
 
+        print('*-* CurrentLayout __init__ loading')
         self.load(self.setup.active_layout)
 
 
@@ -95,6 +97,9 @@ class CurrentLayout:
         layouts_list = [x.split('.')[0] for x in ll]
         if layout_file not in layouts_list:
             layout_file = layouts_list[0]
+
+        print('*-* def load')
+
         with open(resource_path(f'user/layouts/'
                                 f'{self.setup.active_layer}/'
                                 f'{layout_file}.pickle'), 'rb') as f:
@@ -103,6 +108,8 @@ class CurrentLayout:
             self.sub_left = pickle.load(f)
             self.sub_right = pickle.load(f)
             self.app_version = pickle.load(f) #'appVersion'
+
+        print('*-* def load done')
 
     def event_swap(self, event_a, event_b):
         transit_a = None
@@ -226,6 +233,7 @@ class Theme:
 class User:
     def __init__(self):
         self.setup = Setup()
+        print('------------user init')
         self.current_layout = CurrentLayout(self.setup)
         self.preferences = Preferences()
         self.theme = Theme()
@@ -234,7 +242,7 @@ class User:
 
         self.screen_width, self.screen_height = screen_size
 
-
+print('### user = User()')
 user = User()
 
 
