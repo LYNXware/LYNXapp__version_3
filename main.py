@@ -4,10 +4,7 @@
 Version: 0.2.0
 Date: 10.08.2023
 Developer: Ape Devil
-
 Remark:
-
-required: python3.10, kivy2.1.0
 """
 
 from kivy.app import App
