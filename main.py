@@ -33,6 +33,10 @@ Builder.load_file(resource_path('kv_files/screen_settings.kv'))
 Builder.load_file(resource_path('kv_files/screen_theme.kv'))
 Builder.load_file(resource_path('kv_files/screen_help.kv'))
 Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
+
+
+#secure dev
+
 class WindowManager(ScreenManager):
     pass
 
