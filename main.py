@@ -4,8 +4,8 @@ Date: 10.08.2023
 Developer: Ape Devil
 Remark:
 """
-
-#dev
+#main
+#
 
 from kivy.app import App
 from kivy.core.window import Window
