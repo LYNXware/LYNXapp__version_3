@@ -1,5 +1,5 @@
-
 print('events.py started')
+
 
 class EventClass:
     def __init__(self, ascii_set, function, description):
@@ -72,7 +72,7 @@ events = [
 
     # mouse speed
     'MH',  # 44
-    'MV'   # 45
+    'MV'  # 45
 ]
 
 left_events_dict = {}
@@ -86,8 +86,6 @@ for i, event in enumerate(events):
         event_object = EventClass(bytearray(b'\x30'), '-', '-')
     left_events_dict[f'L{event}'] = event_object
     right_events_dict[f'R{event}'] = event_object
-
-
 
 print('events.py ended')
 # print(left_events_dict)
