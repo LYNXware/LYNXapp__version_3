@@ -5,6 +5,8 @@ Developer: Ape Devil
 Remark:
 """
 
+#dev
+
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
@@ -35,7 +37,6 @@ Builder.load_file(resource_path('kv_files/screen_help.kv'))
 Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
 
-#secure dev
 
 class WindowManager(ScreenManager):
     pass
@@ -52,15 +53,6 @@ class MainApp(App):
         Window.size = (window_width, window_height)
         Window.left = user.screen_width / 2 - window_width / 2
         Window.top = user.screen_height / 2 - window_height / 2
-
-        # Builder.load_file(resource_path('kv_files/screen_prime.kv'))
-        # Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
-        # Builder.load_file(resource_path('kv_files/modules.kv'))
-        # Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
-        # Builder.load_file(resource_path('kv_files/screen_settings.kv'))
-        # Builder.load_file(resource_path('kv_files/screen_theme.kv'))
-        # Builder.load_file(resource_path('kv_files/screen_help.kv'))
-        # Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
         main_kv = Builder.load_file(resource_path('kv_files/main.kv'))
         return main_kv

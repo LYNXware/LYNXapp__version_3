@@ -10,7 +10,7 @@ class EventClass:
 
 events = [
     # finger buttons
-    'I1',  # 0
+    'I1',  # 0 array (c, r)
     'I2',  # 1
     'I3',  # 2
     'I4',  # 3
