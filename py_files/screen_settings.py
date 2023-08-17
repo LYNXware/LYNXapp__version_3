@@ -3,6 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
 from py_files.user import user
+from py_files.preferences import prefs
 
 
 class SettingsWindow(Screen):
@@ -11,11 +12,18 @@ class SettingsWindow(Screen):
 
 class SettingsWindowCustom(Widget):
     def on_kv_post(self, *args):
+        # self.ids.name.active = prefs.get('key_display_name')
+        # self.ids.function.active = prefs.get('key_display_function')
+        # self.ids.description.active = prefs.get('key_display_description')
         self.ids.name.active = user.preferences.button_name
         self.ids.function.active = user.preferences.button_function
         self.ids.description.active = user.preferences.button_description
-        # self.ids.float.add_widget(DeviceButton(pos_hint={'center_x': 0.75, 'center_y': 0.75}))
+        self.ids.float.add_widget(DeviceButton(pos_hint={'center_x': 0.75, 'center_y': 0.75}))
         self.update_button()
+
+    def update_key_display(self, elements, state):
+        prefs.set(elements, state)
+
 
     def update_name(self, state):
         user.preferences.update_b_name(state)
