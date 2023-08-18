@@ -22,6 +22,7 @@ from py_files.memory import create_memory_dir
 create_memory_dir()
 
 from py_files.theme import theme
+from py_files.setup import setup
 
 from py_files import __version__
 print(f'LYNXapp Version: {__version__}')
@@ -77,3 +78,5 @@ class MainApp(App):
 
 if __name__ == '__main__':
     MainApp().run()
+
+
