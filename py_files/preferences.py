@@ -6,40 +6,48 @@ print('preferences.py')
 class Preferences:
     def __init__(self):
 
-        self.parameters = {
-            'app_version': __version__,
-            'key_display_name': True,
-            'key_display_function': True,
-            'key_display_description': True,
-            'theme': 'light',
-        }
+        self.file_name = 'preferences.json'
+
+        # self.parameters = {
+        #     'app_version': __version__,
+        #     'key_display_name': True,
+        #     'key_display_function': True,
+        #     'key_display_description': True,
+        #     'theme': 'light',
+        # }
+
+        # self.parameters = {}
+        self.parameters = load_data(self.file_name)
 
         # self.current_settings = self.load()
 
     def load(self):
-        pass
+        load_data(self.file_name)
+
         # Simulate loading settings from a file or database
         # In a real implementation, you would read from a configuration file or database
         # return self.default_settings.copy()
 
     def save(self):
-        save_data(self.parameters, 'preferences.json')
+        save_data(self.parameters, self.file_name)
 
 
     def get(self, key):
         return self.parameters.get(key)
 
+
     def set(self, key, value):
         if key in self.parameters:
             self.parameters[key] = value
-            # self.save_settings()
+            print(f'preferences.py -> set: {key} {value}')
+            save_data(self.parameters, self.file_name)
         else:
             print(f"Invalid setting key: {key}")
 
-        save_data(self.parameters, 'preferences.json')
-        print(f'preferences.py -> set: {key} {value}')
 
-# Usage
+
+
+# initialize preferences object
 prefs = Preferences()
 
 

@@ -1,7 +1,9 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
-from py_files.user import user
+# from py_files.user import user
+
+from py_files.theme import theme
 
 class ThemeWindow(Screen):
     pass
@@ -10,15 +12,18 @@ class ThemeWindow(Screen):
 class ThemeWindowCustom(Widget):
 
     def test(self):
-        print(user.theme.color_dict)
-
-    def save_theme(self, widget_color, rgba):
-        user.theme.save(widget_color, rgba)
+        # print(user.theme.color_dict)
+        print(f'theme.py -> test: {theme.parameters}')
+    def save_theme(self, element, color):
+        theme.set(element, color)
+        # user.theme.save(element, color)
 
     def bright_theme(self):
-        user.theme.bright_theme()
+        theme.bright_theme()
+        # user.theme.bright_theme()
         # print('bright)
 
     def dark_theme(self):
-        user.theme.dark_theme()
+        theme.dark_theme()
+        # user.theme.dark_theme()
         # print('update theme')

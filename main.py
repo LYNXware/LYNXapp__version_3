@@ -17,21 +17,31 @@ from resource_path import resource_path
 from py_files.user import user
 
 
+from py_files.memory import create_memory_dir
+# create a memory directory if it does not exist
+create_memory_dir()
+
+from py_files.theme import theme
+
+from py_files import __version__
+print(f'LYNXapp Version: {__version__}')
+
+
+# load pythong files with kivy CLASSES for the GUI
 from py_files import screen_prime
 from py_files import screen_assignment
 from py_files import screen_layouts
 from py_files import screen_theme
-from py_files import screen_settings
+from py_files import screen_preferences
 from py_files import screen_help
 from py_files import custom_widgets
-from py_files import __version__
-print(f'LYNXapp Version: {__version__}')
 
+# load kivy files for the GUI
 Builder.load_file(resource_path('kv_files/screen_prime.kv'))
 Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
 Builder.load_file(resource_path('kv_files/modules.kv'))
 Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
-Builder.load_file(resource_path('kv_files/screen_settings.kv'))
+Builder.load_file(resource_path('kv_files/screen_preferences.kv'))
 Builder.load_file(resource_path('kv_files/screen_theme.kv'))
 Builder.load_file(resource_path('kv_files/screen_help.kv'))
 Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
@@ -43,7 +53,9 @@ class WindowManager(ScreenManager):
 
 
 class MainApp(App):
-    theme = DictProperty(user.theme.color_dict)
+    # theme = DictProperty(user.theme.color_dict)
+    theme = DictProperty(theme.parameters)
+
     path_image_home = resource_path('images/home1.png')
     path_image_hands = resource_path('images/hands.png')
 
@@ -58,8 +70,9 @@ class MainApp(App):
         return main_kv
 
     def update_theme(self):
-        self.theme = user.theme.color_dict
-        print('update theme')
+        self.theme = theme.parameters
+        # self.theme = user.theme.color_dict
+        print('main.py -> update theme')
 
 
 if __name__ == '__main__':
