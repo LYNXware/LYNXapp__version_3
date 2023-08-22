@@ -5,7 +5,6 @@ from py_files import __version__
 
 print("setup.py")
 
-
 class Setup():
     data = {}
 
