@@ -5,7 +5,7 @@ Developer: Ape Devil
 Remark:
 """
 
-#dev memory
+#dev step one memory
 
 from kivy.app import App
 from kivy.core.window import Window
