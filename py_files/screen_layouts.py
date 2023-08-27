@@ -16,6 +16,7 @@ from py_files.user import user
 
 from py_files import __version__
 
+
 class LayoutsWindow(Screen):
     pass
 
@@ -110,6 +111,11 @@ class LayoutsWindowCustom(Widget):
                 layouts_list = [x.split('.')[0] for x in ll]
                 user.setup.update_minor_layout(layouts_list[0])
                 print(user.setup.selected_minor_layout)
+
+
+
+
+
 
     def import_layout(self):
         if self.layer == 'major/minor':

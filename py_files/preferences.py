@@ -6,7 +6,8 @@ print('preferences.py')
 class Preferences:
     def __init__(self):
 
-        self.file_name = 'preferences.json'
+        self.file_name = 'preferences.pickle'
+        self.parameters = load_data(self.file_name)
 
         # self.parameters = {
         #     'app_version': __version__,
@@ -17,7 +18,7 @@ class Preferences:
         # }
 
         # self.parameters = {}
-        self.parameters = load_data(self.file_name)
+
 
         # self.current_settings = self.load()
 
@@ -49,6 +50,7 @@ class Preferences:
 
 # initialize preferences object
 prefs = Preferences()
+# prefs.save()
 
 
 

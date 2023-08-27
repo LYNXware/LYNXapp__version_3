@@ -8,7 +8,8 @@ print('theme.py')
 class Theme:
     def __init__(self):
 
-        self.file_name = 'theme.json'
+        self.file_name = 'theme.pickle'
+        self.parameters = load_data(self.file_name)
 
         # self.parameters = {'background': [0.20136852394916915, 0.20136852394916915, 0.20136852394916915, 1],
         #                    'cat_button': [0.09999999999999998, 0.6625, 1, 0.19941348973607037],
@@ -23,7 +24,7 @@ class Theme:
         #                    'gui_button_text': [1, 1, 1, 1]}
 
 
-        self.parameters = load_data(self.file_name)
+
 
 
 
@@ -82,3 +83,4 @@ class Theme:
 
 # initialize theme object
 theme = Theme()
+# theme.save()

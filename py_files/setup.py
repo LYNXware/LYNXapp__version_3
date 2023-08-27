@@ -6,11 +6,11 @@ from py_files import __version__
 print("setup.py")
 
 class Setup():
+
     data = {}
 
     active_layer = 'major'
     sublayer = False
-
     active_layout = 'default'
 
     selected_major_layout = 'default'
@@ -22,11 +22,12 @@ class Setup():
     main_right = right_events_dict
     sub_left = left_events_dict
     sub_right = right_events_dict
+
     app_version = __version__
 
     def __init__(self):
 
-        self.file_name = 'setup.json'
+        self.file_name = 'setup.pickle'
 
         self.data = {'active_layer': self.active_layer,
                      'sublayer': self.sublayer,
@@ -41,29 +42,50 @@ class Setup():
                      'app_version': self.app_version
                      }
 
-        # with open(resource_path(f'user/setup.pickle'), 'rb') as f:  # load last setup
-        #     self.active_layer = pickle.load(f)  # mayor / minor
-        #     self.sublayer = pickle.load(f)  # true / false
-        #     self.selected_major_layout = pickle.load(f)
-        #     self.selected_minor_layout = pickle.load(f)
-        #     self.selected_device_left = pickle.load(f)
-        #     self.selected_device_right = pickle.load(f)
-        #
-        #     if self.active_layer == 'major':
-        #         self.active_layout = self.selected_major_layout
-        #     else:
-        #         self.active_layout = self.selected_minor_layout
+
 
     def save(self):
+        self.data['active_layer'] = self.active_layer
+        self.data['sublayer'] = self.sublayer
+        self.data['active_layout'] = self.active_layout
+
+        self.data['selected_major_layout'] = self.selected_major_layout
+        self.data['selected_minor_layout'] = self.selected_minor_layout
+        self.data['selected_device_left'] = self.selected_device_left
+        self.data['selected_device_right'] = self.selected_device_right
+
+        self.data['main_left'] = self.main_left
+        self.data['main_right'] = self.main_right
+        self.data['sub_left'] = self.sub_left
+        self.data['sub_right'] = self.sub_right
+
+        self.data['app_version'] = self.app_version
+
         save_data(self.data, self.file_name)
 
-        # with open(resource_path(f'user/setup.pickle'), 'wb') as f:
-        #     pickle.dump(self.active_layer, f)  # mayor / minor
-        #     pickle.dump(self.sublayer, f)  # true / false
-        #     pickle.dump(self.selected_major_layout, f)
-        #     pickle.dump(self.selected_minor_layout, f)
-        #     pickle.dump(self.selected_device_left, f)
-        #     pickle.dump(self.selected_device_right, f)
+
+
+    def load(self):
+        self.active_layer = self.data['active_layer']
+        self.sublayer = self.data['sublayer']
+        self.active_layout = self.data['active_layout']
+
+        self.selected_major_layout = self.data['selected_major_layout']
+        self.selected_minor_layout = self.data['selected_minor_layout']
+        self.selected_device_left = self.data['selected_device_left']
+        self.selected_device_right = self.data['selected_device_right']
+
+        self.main_left = self.data['main_left']
+        self.main_right = self.data['main_right']
+        self.sub_left = self.data['sub_left']
+        self.sub_right = self.data['sub_right']
+
+        self.app_version = self.data['app_version']
+
+        load_data(self.file_name)
+
+
+
 
     def update_active_layer(self, x):
         self.active_layer = x
@@ -93,4 +115,4 @@ class Setup():
 
 
 setup = Setup()
-# setup.save()0
+# setup.save()
