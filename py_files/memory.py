@@ -14,7 +14,7 @@ def get_memory_dir():
     app_dir = os.getcwd()
     # print(f'memory -> get app_dir: {app_dir}')
     memory_dir = os.path.join(app_dir, "LYNXapp_Memory")
-    print(f'memory.py -> get_memory_dir: {memory_dir}')
+    # print(f'memory.py -> get_memory_dir: {memory_dir}')
     return memory_dir
 
 
@@ -55,6 +55,63 @@ def load_data(file):
 
     with open(filepath, 'rb') as f:
         return pickle.load(f)
+
+
+def save_layout(layer, file, ml, mr, sl, sr, v):
+
+    # data = {'main_left': left_events_dict,
+    #         'main_right': right_events_dict,
+    #         'sub_left': left_events_dict,
+    #         'sub_right': right_events_dict,
+    #         'app_version': __version__
+    #         }
+
+    data = {'main_left': ml,
+            'main_right': mr,
+            'sub_left': sl,
+            'sub_right': sr,
+            'app_version': v}
+
+    memory_dir = get_memory_dir()
+    filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
+
+    print(f'memory.py -> save_layouts: {filepath}')
+
+    with open(filepath, 'wb') as f:
+        pickle.dump(data, f)
+
+
+def load_layout(layer, file):
+
+    memory_dir = get_memory_dir()
+    filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
+
+    print(f'memory.py -> load_layouts: {filepath}')
+
+    with open(filepath, 'rb') as f:
+        return pickle.load(f)
+
+
+def getLayouts(layer):
+
+    memory_dir = get_memory_dir()
+    filepath = f'{memory_dir}/layouts/{layer}'
+
+    layouts_list = os.listdir(filepath)
+    layouts_list = [x.split('.')[0] for x in layouts_list]
+    print(f'memory.py -> get_layouts: {layouts_list}')
+
+    return layouts_list
+
+    # def get_layout_data(layer, file):
+    #
+    #     memory_dir = get_memory_dir()
+    #     filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
+    #
+    #     print(f'memory.py -> get_layout_data: {filepath}')
+    #
+    #     with open(filepath, 'rb') as f:
+    #         return pickle.load(f)
 
 
 

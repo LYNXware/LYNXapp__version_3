@@ -17,6 +17,9 @@ from py_files.user import user
 from py_files import __version__
 
 
+from py_files.memory import save_layout, getLayouts
+
+
 class LayoutsWindow(Screen):
     pass
 
@@ -41,22 +44,28 @@ class LayoutsWindowCustom(Widget):
         elif not layout_title:
             self.ids.id_message_label.text = 'type in the layout title'
         else:
-            with open(resource_path(f'user/layouts/{self.layer}/{layout_title}.pickle'), 'wb') as f:
-                pickle.dump(left_events_dict, f)  # main_left - empty
-                pickle.dump(right_events_dict, f)  # main_right - empty
-                pickle.dump(left_events_dict, f)  # sub_left - empty
-                pickle.dump(right_events_dict, f)  # sub_right - empty
-                pickle.dump(__version__, f)
+            save_layout(self.layer,
+                        layout_title,
+                        left_events_dict,
+                        right_events_dict,
+                        left_events_dict,
+                        right_events_dict,
+                        __version__)
+
             self.ids.id_message_label.text = f'new layout "{layout_title}" was created'
+
+
 
     def find_layouts(self):
         if self.layer != 'major/minor':
-            ll = os.listdir(resource_path(f'user/layouts/{self.layer}'))
-            layouts_list = [x.split('.')[0] for x in ll]
-            return layouts_list
+            return getLayouts(self.layer)
         else:
             self.ids.id_message_label.text = 'select layer: major or minor'
             return []
+
+
+
+
 
     def copyLayout(self):
         layout = self.ids.id_layoutSpinner.text

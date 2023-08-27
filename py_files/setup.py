@@ -1,4 +1,5 @@
-from py_files.memory import load_data, save_data
+
+from py_files.memory import load_data, save_data, load_layout, save_layout
 
 from py_files.events import left_events_dict, right_events_dict
 from py_files import __version__
@@ -13,10 +14,10 @@ class Setup():
     sublayer = False
     active_layout = 'default'
 
-    selected_major_layout = 'default'
-    selected_minor_layout = 'default'
-    selected_device_left = 'default'
-    selected_device_right = 'default'
+    selected_major_layout = 'test_maojr'
+    selected_minor_layout = 'test_minor'
+    selected_device_left = 'CL-B00-B00-000'
+    selected_device_right = 'CR-B00-BW0-M00'
 
     main_left = left_events_dict
     main_right = right_events_dict
@@ -29,18 +30,20 @@ class Setup():
 
         self.file_name = 'setup.pickle'
 
-        self.data = {'active_layer': self.active_layer,
-                     'sublayer': self.sublayer,
-                     'selected_major_layout': self.selected_major_layout,
-                     'selected_minor_layout': self.selected_minor_layout,
-                     'selected_device_left': self.selected_device_left,
-                     'selected_device_right': self.selected_device_right,
-                     'main_left': self.main_left,
-                     'main_right': self.main_right,
-                     'sub_left': self.sub_left,
-                     'sub_right': self.sub_right,
-                     'app_version': self.app_version
-                     }
+        self.swapping_button = None
+
+        # self.data = {'active_layer': self.active_layer,
+        #              'sublayer': self.sublayer,
+        #              'selected_major_layout': self.selected_major_layout,
+        #              'selected_minor_layout': self.selected_minor_layout,
+        #              'selected_device_left': self.selected_device_left,
+        #              'selected_device_right': self.selected_device_right,
+        #              'main_left': self.main_left,
+        #              'main_right': self.main_right,
+        #              'sub_left': self.sub_left,
+        #              'sub_right': self.sub_right,
+        #              'app_version': self.app_version
+        #              }
 
 
 
@@ -66,6 +69,9 @@ class Setup():
 
 
     def load(self):
+
+        self.data = load_data(self.file_name)
+
         self.active_layer = self.data['active_layer']
         self.sublayer = self.data['sublayer']
         self.active_layout = self.data['active_layout']
@@ -82,8 +88,21 @@ class Setup():
 
         self.app_version = self.data['app_version']
 
-        load_data(self.file_name)
 
+
+    def update_layout(self, file):
+        print(f'setup.py -> load_layout: {self.active_layer}  {file}')
+
+        self.data = load_layout(self.active_layer, file)
+
+        self.main_left = self.data['main_left']
+        self.main_right = self.data['main_right']
+        self.sub_left = self.data['sub_left']
+        self.sub_right = self.data['sub_right']
+
+        self.app_version = self.data['app_version']
+
+        self.save()
 
 
 
@@ -112,6 +131,56 @@ class Setup():
     def update_device_right(self, x):
         self.selected_device_right = x
         self.save()
+
+    def event_swap(self, event_a, event_b):
+        transit_a = None
+        transit_b = None
+        layout_a = None
+        layout_b = None
+
+        if self.sublayer:
+            if event_a[0] == 'L':
+                transit_a = self.sub_left[event_a]
+                layout_a = self.sub_left
+            elif event_a[0] == 'R':
+                transit_a = self.sub_right[event_a]
+                layout_a = self.sub_right
+            if event_b[0] == 'L':
+                transit_b = self.sub_left[event_b]
+                layout_b = self.sub_left
+            elif event_b[0] == 'R':
+                transit_b = self.sub_right[event_b]
+                layout_b = self.sub_right
+        else:
+            if event_a[0] == 'L':
+                transit_a = self.main_left[event_a]
+                layout_a = self.main_left
+            elif event_a[0] == 'R':
+                transit_a = self.main_right[event_a]
+                layout_a = self.main_right
+            if event_b[0] == 'L':
+                transit_b = self.main_left[event_b]
+                layout_b = self.main_left
+            elif event_b[0] == 'R':
+                transit_b = self.main_right[event_b]
+                layout_b = self.main_right
+
+        layout_a[event_a] = transit_b
+        layout_b[event_b] = transit_a
+
+        self.save_current_layout()
+        self.save()
+
+
+    def save_current_layout(self):
+        save_layout(self.active_layer,
+                    self.active_layout,
+                    self.main_left,
+                    self.main_right,
+                    self.sub_left,
+                    self.sub_right,
+                    self.app_version)
+
 
 
 setup = Setup()
