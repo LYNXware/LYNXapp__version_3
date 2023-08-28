@@ -78,14 +78,34 @@ events = [
 left_events_dict = {}
 right_events_dict = {}
 
+events_main_left = {}
+events_main_right = {}
+events_sub_left = {}
+events_sub_right = {}
+
+
+
 for i, event in enumerate(events):
     # print(f'i {i}   b {event}')
     if event == 'MH' or event == 'MV':
-        event_object = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_2 = EventClass(bytearray(b'\x65'), '-', '-')
+        event_object_3 = EventClass(bytearray(b'\x66'), '-', '-')
+        event_object_4 = EventClass(bytearray(b'\x67'), '-', '-')
     else:
-        event_object = EventClass(bytearray(b'\x30'), '-', '-')
-    left_events_dict[f'L{event}'] = event_object
-    right_events_dict[f'R{event}'] = event_object
+        # event_object = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x31'), '-', '-')
+        event_object_2 = EventClass(bytearray(b'\x32'), '-', '-')
+        event_object_3 = EventClass(bytearray(b'\x33'), '-', '-')
+        event_object_4 = EventClass(bytearray(b'\x34'), '-', '-')
+
+    events_main_left[f'L{event}'] = event_object_1
+    events_main_right[f'R{event}'] = event_object_2
+    events_sub_left[f'L{event}'] = event_object_3
+    events_sub_right[f'R{event}'] = event_object_4
+
+
+
 
 print('events.py ended')
 # print(left_events_dict)
