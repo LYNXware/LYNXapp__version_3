@@ -1,7 +1,5 @@
 import os
 import shutil
-from pathlib import Path
-# import json
 import pickle
 
 from resource_path import resource_path
@@ -77,42 +75,3 @@ def getLayouts(layer):
     layouts_list = [x.split('.')[0] for x in layouts_list]
     print(f'memory.py -> get_layouts: {layouts_list}')
     return layouts_list
-
-    # def get_layout_data(layer, file):
-    #
-    #     memory_dir = get_memory_dir()
-    #     filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
-    #
-    #     print(f'memory.py -> get_layout_data: {filepath}')
-    #
-    #     with open(filepath, 'rb') as f:
-    #         return pickle.load(f)
-
-
-
-# Function to save data to a file
-# def save_data(data, file):
-#
-#     memory_dir = get_memory_dir()
-#     filepath = os.path.join(memory_dir, file)
-#     print(f'memory.py -> save_data: {file}  {data}')
-#
-#     with open(filepath, 'w') as f:
-#         json.dump(data, f, indent=4)
-#
-#
-# # Function to load data from a file
-# def load_data(file):
-#
-#     memory_dir = get_memory_dir()
-#     filepath = os.path.join(memory_dir, file)
-#     print(f'memory.py -> load_data: {filepath}')
-#
-#     try:
-#         with open(filepath, 'r') as f:
-#             return json.load(f)
-#     except (FileNotFoundError, json.JSONDecodeError):
-#         return None
-
-
-

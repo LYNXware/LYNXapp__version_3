@@ -1,6 +1,5 @@
 
 
-from resource_path import resource_path
 from py_files.memory import load_data, save_data
 
 print('theme.py')
@@ -31,7 +30,6 @@ class Theme:
         load_data(self.file_name)
 
 
-
     def get(self, key):
         return self.parameters.get(key)
 
@@ -59,7 +57,6 @@ class Theme:
                            'gui_button_text': [0.0, 0.06865021137449676, 0.17672790901137359, 1]
                            }
         self.save()
-
 
 
     def dark_theme(self):

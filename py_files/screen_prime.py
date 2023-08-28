@@ -18,11 +18,8 @@ class StartWindow(Screen):
 class StartWindowCustom(Widget):
     # def on_touch_down(self, touch):
     #     print(touch)
-
     count_old = None
-    # first_run = 0
     appStarted = False
-
     led_blue = (0, 0.3, 1, 1)
     led_green = (0, 1, 0, 1)
     led_red = (1, 0, 0, 1)
@@ -34,7 +31,6 @@ class StartWindowCustom(Widget):
 
         if setup.selected_major_layout not in getLayouts('major'):
             setup.update_major_layout(getLayouts('major')[0])
-            print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&update major layout')
         if setup.selected_minor_layout not in getLayouts('minor'):
             setup.update_minor_layout(getLayouts('minor')[0])
 
@@ -48,17 +44,16 @@ class StartWindowCustom(Widget):
             self.ids.id_major.led_color = self.led_off
 
         Clock.schedule_interval(self.window_clock_update, 1)
-        print('StartWindowCustom on_kv_post end')
         self.appStarted = False
 
     def window_clock_update(self, *args):
 
         if devices.available != self.count_old:
             self.count_old = devices.available
-            print(f'----------------------------------device count changed')
+            print(f'screen_prime.py -> window_clock_update')
 
             while devices.running:
-                print(f'devices.running {devices.running}')
+                print(f'screen_prime.py -> devices.running {devices.running}')
 
             if not devices.left:
                 setup.update_device_left('')
@@ -69,10 +64,6 @@ class StartWindowCustom(Widget):
                 setup.update_device_right('')
             else:
                 setup.update_device_right(devices.right[0])
-
-            # print(f'devices:  {devices.left}  {devices.right}  - available {devices.available}')
-            # print(
-            #     f'user.devices  >{setup.selected_device_left}<   >{setup.selected_device_right}<  - count_old {self.count_old}')
 
             self.update_start_window()
 
@@ -178,31 +169,20 @@ class StartWindowCustom(Widget):
         if not self.appStarted:
             if setup.active_layer == 'major':
                 setup.update_major_layout(new_layout)
-                # setup.load(new_layout)
-                # setup.updateLayout(new_layout)
-                print('##########')
-
             else:
                 setup.update_minor_layout(new_layout)
-                # setup.load(new_layout)
-                # setup.updateLayout(new_layout)
-                print('@@@@@@@@@@')
+
 
     def get_layouts(self):  # get available layouts for the spinner
         if setup.active_layer == 'major':
-            # ll = os.listdir(resource_path('user/layouts/major'))
             return getLayouts('major')
         else:
-            # ll = os.listdir(resource_path('user/layouts/minor'))
             return getLayouts('minor')
-        # print(ll)
-        # layouts_list = [x.split('.')[0] for x in ll]
-        # return layouts_list
+
 
     def select_layer(self):
         self.ids.id_sub.state = 'normal'
         setup.update_sublayer(False)
-        # print(setup.sublayer)
 
         if setup.active_layer == 'major':
             setup.update_active_layer('minor')
@@ -230,11 +210,9 @@ class StartWindowCustom(Widget):
             else:
                 self.ids.id_minor.led_color = self.led_green
         print(f'sublayer: {setup.sublayer}')
-        # print(setup.sublayer)
 
     def transmit_layouts(self):
 
-        # if self.first_run != 0:
         print(f'available devices for transmitting >{setup.selected_device_left}< >{setup.selected_device_right}<')
 
         if not setup.selected_device_left:
@@ -269,18 +247,6 @@ class StartWindowCustom(Widget):
         b3 = None
         b4 = None
 
-        # with open(resource_path(f'user/layouts/major/{setup.selected_major_layout}.pickle'), 'rb') as f:
-        #     major_main_left = pickle.load(f)
-        #     major_main_right = pickle.load(f)
-        #     major_sub_left = pickle.load(f)
-        #     major_sub_right = pickle.load(f)
-        #
-        # with open(resource_path(f'user/layouts/minor/{setup.selected_minor_layout}.pickle'), 'rb') as f:
-        #     minor_main_left = pickle.load(f)
-        #     minor_main_right = pickle.load(f)
-        #     minor_sub_left = pickle.load(f)
-        #     minor_sub_right = pickle.load(f)
-
         major_layout = load_layout('major', setup.selected_major_layout)
         major_main_left = major_layout['main_left']
         major_main_right = major_layout['main_right']
@@ -292,7 +258,6 @@ class StartWindowCustom(Widget):
         minor_main_right = minor_layout['main_right']
         minor_sub_left = minor_layout['sub_left']
         minor_sub_right = minor_layout['sub_right']
-
 
         if side == 'left':
             b1 = major_main_left

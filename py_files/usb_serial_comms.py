@@ -77,7 +77,3 @@ class USB_cats:
 
 devices = USB_cats()
 
-
-# print(usb_cats)
-# print(devices.left)
-# print(devices.right)

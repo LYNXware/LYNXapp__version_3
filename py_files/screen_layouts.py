@@ -3,7 +3,6 @@ print('screen_layouts.py')
 # import os
 # import pickle
 # import shutil
-#
 # from plyer import filechooser
 
 from kivy.properties import StringProperty
@@ -11,14 +10,10 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
 from py_files.events import events_main_left, events_main_right, events_sub_left, events_sub_right
-
-from resource_path import resource_path
-
 from py_files import __version__
-
-
 from py_files.memory import save_layout, getLayouts
 
+# from resource_path import resource_path
 
 class LayoutsWindow(Screen):
     pass
@@ -36,7 +31,7 @@ class LayoutsWindowCustom(Widget):
             self.layer = 'major'
 
         # self.ids.id_layoutSpinner.text = 'Existing Layouts'
-        print(self.layer)
+
 
     def save_new_layout(self, layout_title):
         if self.layer == 'major/minor':

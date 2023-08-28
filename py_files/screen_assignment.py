@@ -4,10 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import DictProperty
 from kivy.uix.widget import Widget
 
-
 from py_files.setup import setup
-
-
 
 
 class AssignmentWindow(Screen):
@@ -23,8 +20,6 @@ class AssignmentWindowCustom(Widget):
 
     def assign_event(self, key, hexval):
         self.hexval_set += hexval
-
-        print(self.hexval_set)
 
         if self.function != '':
             self.function = f'{self.function} + {key}'
@@ -68,7 +63,5 @@ class AssignmentWindowCustom(Widget):
                 setup.sub_right[name].function = self.function
                 setup.sub_right[name].description = self.ids.description.text
 
-        # layout.save(setup.current_layout)
-        # setup.save(user.setup.active_layout)
         setup.save_current_layout()
         print('assignment.py -> save_button -> setup.save_current_layout()')
