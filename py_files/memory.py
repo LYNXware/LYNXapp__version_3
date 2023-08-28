@@ -58,7 +58,7 @@ def load_data(file):
 
 
 def save_layout(layer, file, ml, mr, sl, sr, v):
-
+    print(f'memory.py -> save_layouts: {file}')
 
     data = {'main_left': ml,
             'main_right': mr,
@@ -69,18 +69,15 @@ def save_layout(layer, file, ml, mr, sl, sr, v):
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
 
-    print(f'memory.py -> save_layouts: {file}')
-
     with open(filepath, 'wb') as f:
         pickle.dump(data, f)
 
 
 def load_layout(layer, file):
+    print(f'memory.py -> load_layouts: {file}')
 
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
-
-    print(f'memory.py -> load_layouts: {filepath}')
 
     with open(filepath, 'rb') as f:
         return pickle.load(f)

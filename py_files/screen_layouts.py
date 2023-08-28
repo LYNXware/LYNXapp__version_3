@@ -9,7 +9,7 @@ from kivy.properties import StringProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
-from py_files.events import left_events_dict, right_events_dict
+from py_files.events import events_main_left, events_main_right, events_sub_left, events_sub_right
 
 from resource_path import resource_path
 from py_files.user import user
@@ -44,25 +44,37 @@ class LayoutsWindowCustom(Widget):
         elif not layout_title:
             self.ids.id_message_label.text = 'type in the layout title'
         else:
-
-            ml = left_events_dict
-            mr = right_events_dict
-            sl = left_events_dict
-            sr = right_events_dict
-
-            print(sl['LI1'].function)
-
-            ml['LI1'].function = 'L1'
-
-            print(sl['LI1'].function)
-
             save_layout(self.layer,
                         layout_title,
-                        ml,
-                        mr,
-                        sl,
-                        sr,
+                        events_main_left,
+                        events_main_right,
+                        events_sub_left,
+                        events_sub_right,
                         __version__)
+
+            # ml = events_main_left
+            # mr = events_main_right
+            # sl = events_sub_left
+            # sr = events_sub_right
+            #
+            # print(f'ml: {ml["LI1"].function}')
+            # print(f'sl: {sl["LI1"].function}')
+            #
+            # ml['LI1'].function = 'L1'
+            #
+            # print(f'ml: {ml["LI1"].function}')
+            # print(f'sl: {sl["LI1"].function}')
+            #
+            # save_layout(self.layer,
+            #             layout_title,
+            #             ml,
+            #             mr,
+            #             sl,
+            #             sr,
+            #             __version__)
+
+
+
 
             # save_layout(self.layer,
             #             layout_title,

@@ -1,7 +1,9 @@
 
 from py_files.memory import load_data, save_data, load_layout, save_layout
 
-from py_files.events import left_events_dict, right_events_dict
+# from py_files.events import left_events_dict, right_events_dict
+from py_files.events import events_main_left, events_main_right, events_sub_left, events_sub_right
+
 from py_files import __version__
 
 print("setup.py")
@@ -10,19 +12,19 @@ class Setup():
 
     data = {}
 
-    active_layer = 'major'
-    sublayer = False
-    active_layout = 'default'
+    active_layer = None #'major'
+    sublayer = None #False
+    active_layout = None #'default'
 
     selected_major_layout = 'test_maojr'
     selected_minor_layout = 'test_minor'
     selected_device_left = 'CL-B00-B00-000'
     selected_device_right = 'CR-B00-BW0-M00'
 
-    main_left = left_events_dict
-    main_right = right_events_dict
-    sub_left = left_events_dict
-    sub_right = right_events_dict
+    main_left = events_main_left
+    main_right = events_main_right
+    sub_left = events_sub_left
+    sub_right = events_sub_right
 
     app_version = __version__
 
@@ -32,7 +34,7 @@ class Setup():
 
         self.swapping_button = None
 
-
+        self.load()
 
         # self.data = {'active_layer': self.active_layer,
         #              'sublayer': self.sublayer,
