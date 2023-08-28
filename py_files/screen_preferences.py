@@ -1,9 +1,11 @@
+print('screen_preferences.py')
+
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
-from py_files.user import user
 from py_files.preferences import prefs
+from py_files.theme import theme
 
 
 class SettingsWindow(Screen):
@@ -23,22 +25,23 @@ class SettingsWindowCustom(Widget):
 
     def update_key_display(self, element, state):
         prefs.set(element, state)
-
-
-    def update_name(self, state):
-        user.preferences.update_b_name(state)
         self.update_button()
-        # print(state)
 
-    def update_function(self, state):
-        user.preferences.update_b_function(state)
-        self.update_button()
-        # print(state)
 
-    def update_description(self, state):
-        user.preferences.update_b_description(state)
-        self.update_button()
-        # print(state)
+    # def update_name(self, state):
+    #     user.preferences.update_b_name(state)
+    #     self.update_button()
+    #     # print(state)
+    #
+    # def update_function(self, state):
+    #     user.preferences.update_b_function(state)
+    #     self.update_button(
+    #     # print(state)
+    #
+    # def update_description(self, state):
+    #     user.preferences.update_b_description(state)
+    #     self.update_button()
+    #     # print(state)
 
     def update_button(self):
         self.ids.button_label.clear_widgets()
@@ -46,15 +49,15 @@ class SettingsWindowCustom(Widget):
         # if user.preferences.button_name:
         if prefs.get('key_display_name'):
             self.ids.button_label.add_widget(Label(text='Name',
-                                                   color=user.theme.color_dict['button_name'],
+                                                   color=theme.get('button_name'),
                                                    font_size=15))
         # if user.preferences.button_function:
         if prefs.get('key_display_function'):
             self.ids.button_label.add_widget(Label(text='Function',
-                                                   color=user.theme.color_dict['button_function'],
+                                                   color=theme.get('button_function'),
                                                    font_size=15))
         # if user.preferences.button_description:
         if prefs.get('key_display_description'):
             self.ids.button_label.add_widget(Label(text='Description',
-                                                   color=user.theme.color_dict['button_description'],
+                                                   color=theme.get('button_description'),
                                                    font_size=15))

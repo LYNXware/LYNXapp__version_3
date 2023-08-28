@@ -1,8 +1,6 @@
 
 from py_files.memory import load_data, save_data, load_layout, save_layout
 
-# from py_files.events import left_events_dict, right_events_dict
-from py_files.events import events_main_left, events_main_right, events_sub_left, events_sub_right
 
 from py_files import __version__
 
@@ -36,6 +34,9 @@ class Setup():
 
         self.load()
 
+
+        self.updateLayout(self.active_layout)
+
         # self.data = {'active_layer': self.active_layer,
         #              'sublayer': self.sublayer,
         #              'selected_major_layout': self.selected_major_layout,
@@ -52,7 +53,7 @@ class Setup():
 
 
     def save(self):
-        print(f'setup.py -> save: {self.active_layer}  {self.file_name}')
+        print(f'setup.py -> save: {self.file_name}')
 
         self.data['active_layer'] = self.active_layer
         self.data['sublayer'] = self.sublayer
@@ -63,12 +64,11 @@ class Setup():
         self.data['selected_device_left'] = self.selected_device_left
         self.data['selected_device_right'] = self.selected_device_right
 
-        self.data['main_left'] = self.main_left
-        self.data['main_right'] = self.main_right
-        self.data['sub_left'] = self.sub_left
-        self.data['sub_right'] = self.sub_right
-
-        self.data['app_version'] = self.app_version
+        # self.data['main_left'] = self.main_left
+        # self.data['main_right'] = self.main_right
+        # self.data['sub_left'] = self.sub_left
+        # self.data['sub_right'] = self.sub_right
+        # self.data['app_version'] = self.app_version
 
         save_data(self.data, self.file_name)
 
@@ -87,29 +87,12 @@ class Setup():
         self.selected_device_left = self.data['selected_device_left']
         self.selected_device_right = self.data['selected_device_right']
 
-        self.main_left = self.data['main_left']
-        self.main_right = self.data['main_right']
-        self.sub_left = self.data['sub_left']
-        self.sub_right = self.data['sub_right']
-
-        self.app_version = self.data['app_version']
-
-
-
-    def update_layout(self, file):
-        print(f'setup.py -> load_layout: {self.active_layer}  {file}')
-
-        self.data = load_layout(self.active_layer, file)
-
-        self.main_left = self.data['main_left']
-        self.main_right = self.data['main_right']
-        self.sub_left = self.data['sub_left']
-        self.sub_right = self.data['sub_right']
-
-        self.app_version = self.data['app_version']
-
-        self.save()
-
+        # self.main_left = self.data['main_left']
+        # self.main_right = self.data['main_right']
+        # self.sub_left = self.data['sub_left']
+        # self.sub_right = self.data['sub_right']
+        #
+        # self.app_version = self.data['app_version']
 
 
     def update_active_layer(self, x):
@@ -126,12 +109,14 @@ class Setup():
         print(f'setup.py -> update_major_layout: {x}')
         self.selected_major_layout = x
         self.active_layout = x
+        self.updateLayout(x)
         self.save()
 
     def update_minor_layout(self, x):
         print(f'setup.py -> update_minor_layout: {x}')
         self.selected_minor_layout = x
         self.active_layout = x
+        self.updateLayout(x)
         self.save()
 
     def update_device_left(self, x):
@@ -193,6 +178,20 @@ class Setup():
                     self.sub_left,
                     self.sub_right,
                     self.app_version)
+
+    def updateLayout(self, file):
+        print(f'setup.py -> load_layout: {self.active_layer}  {file}')
+
+        self.data = load_layout(self.active_layer, file)
+
+        self.main_left = self.data['main_left']
+        self.main_right = self.data['main_right']
+        self.sub_left = self.data['sub_left']
+        self.sub_right = self.data['sub_right']
+
+        self.app_version = self.data['app_version']
+
+        # self.save()
 
 
 

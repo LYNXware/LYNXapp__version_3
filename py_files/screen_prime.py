@@ -1,27 +1,15 @@
-
-import os
-import pickle
+print("screen_prime.py")
 
 import serial.tools.list_ports
 
 from kivy.clock import Clock
-from kivy.properties import DictProperty
-from kivy.uix.behaviors import DragBehavior
-from kivy.uix.button import Button
-from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 
 from py_files.usb_serial_comms import devices
-from resource_path import resource_path
-from py_files.user import user
-from py_files.theme import theme
-
-from py_files.preferences import prefs
 from py_files.setup import setup
-
-
 from py_files.memory import getLayouts, load_layout
+
 
 class StartWindow(Screen):
     pass
@@ -33,6 +21,7 @@ class StartWindowCustom(Widget):
 
     count_old = None
     # first_run = 0
+    appStarted = False
 
     led_blue = (0, 0.3, 1, 1)
     led_green = (0, 1, 0, 1)
@@ -40,18 +29,27 @@ class StartWindowCustom(Widget):
     led_off = (0, 0, 0, 0.3)
 
     def on_kv_post(self, *args):
+        print('StartWindowCustom on_kv_post')
+        self.appStarted = True
+
+        if setup.selected_major_layout not in getLayouts('major'):
+            setup.update_major_layout(getLayouts('major')[0])
+            print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&update major layout')
+        if setup.selected_minor_layout not in getLayouts('minor'):
+            setup.update_minor_layout(getLayouts('minor')[0])
 
         if setup.active_layer == 'major':
             self.ids.spinner_layouts.text = setup.selected_major_layout
             self.ids.id_major.led_color = self.led_blue
             self.ids.id_minor.led_color = self.led_off
-            print(f'screen_prime.py active layer: {setup.active_layer}  selected layout: {setup.selected_major_layout}')
         else:
             self.ids.spinner_layouts.text = setup.selected_minor_layout
             self.ids.id_minor.led_color = self.led_green
             self.ids.id_major.led_color = self.led_off
 
         Clock.schedule_interval(self.window_clock_update, 1)
+        print('StartWindowCustom on_kv_post end')
+        self.appStarted = False
 
     def window_clock_update(self, *args):
 
@@ -79,6 +77,7 @@ class StartWindowCustom(Widget):
             self.update_start_window()
 
     def update_start_window(self):
+        print(' update_start_window')
         self.ids.start_window.clear_widgets()
 
         if bool(setup.selected_device_left):
@@ -174,15 +173,20 @@ class StartWindowCustom(Widget):
             self.ids.start_window.add_widget(SpinnerRight())
 
     def update_layout(self, new_layout):
-        if setup.active_layer == 'major':
-            setup.update_major_layout(new_layout)
-            # setup.load(new_layout)
-            setup.update_layout(new_layout)
+        print(f'start_window_custom.py -> update_layout: {new_layout}')
+        # prevent update on startup
+        if not self.appStarted:
+            if setup.active_layer == 'major':
+                setup.update_major_layout(new_layout)
+                # setup.load(new_layout)
+                # setup.updateLayout(new_layout)
+                print('##########')
 
-        else:
-            setup.update_minor_layout(new_layout)
-            # setup.load(new_layout)
-            setup.update_layout(new_layout)
+            else:
+                setup.update_minor_layout(new_layout)
+                # setup.load(new_layout)
+                # setup.updateLayout(new_layout)
+                print('@@@@@@@@@@')
 
     def get_layouts(self):  # get available layouts for the spinner
         if setup.active_layer == 'major':

@@ -1,6 +1,6 @@
 """
 Version: 0.2.0
-Date: 10.08.2023
+Date: 01.09.2023
 Developer: Ape Devil
 Remark:
 """
@@ -16,17 +16,20 @@ from kivy.uix.screenmanager import ScreenManager
 from resource_path import resource_path
 
 
+from py_files import __version__
+print(f'LYNXapp Version: {__version__}')
+
+
 from py_files.memory import create_memory_dir
 # create a memory directory if it does not exist
 create_memory_dir()
 
 from py_files.theme import theme
 
-from py_files import __version__
-print(f'LYNXapp Version: {__version__}')
 
 
-# load pythong files with kivy CLASSES for the GUI
+
+# load pythong files for kivy CLASSES for the GUI
 from py_files import screen_prime
 from py_files import screen_assignment
 from py_files import screen_layouts

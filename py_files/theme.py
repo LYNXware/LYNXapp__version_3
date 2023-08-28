@@ -24,10 +24,6 @@ class Theme:
         #                    'gui_button_text': [1, 1, 1, 1]}
 
 
-
-
-
-
     def save(self):
         save_data(self.parameters, self.file_name)
 

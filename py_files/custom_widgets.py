@@ -12,7 +12,6 @@ from kivy.uix.behaviors import DragBehavior
 from kivy.properties import DictProperty
 from kivy.uix.label import Label
 
-from py_files.user import user
 from py_files.theme import theme
 from py_files.preferences import prefs
 

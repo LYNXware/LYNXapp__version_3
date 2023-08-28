@@ -243,13 +243,13 @@ class User:
         self.screen_width, self.screen_height = screen_size
 
 print('### user = User()')
-user = User()
+# user = User()
 
 
 print('------------------------user test')
-print(user)
-print(user.preferences)
-print(user.preferences.button_name)
-
-print(user.current_layout.main_left)
+# print(user)
+# print(user.preferences)
+# print(user.preferences.button_name)
+#
+# print(user.current_layout.main_left)
 

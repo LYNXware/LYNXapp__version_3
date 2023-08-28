@@ -17,7 +17,7 @@
 #        BoxLayout:                      #Space for the actionbar
 #            size_hint_y: 0.05
         BoxLayout:
-#            size_hint_y: 0.4
+#            size_hint_y: 0.05
             padding: [10, 10, 10, 10]
             spacing: 10
             orientation: 'vertical'
@@ -54,58 +54,60 @@
                     on_release: root.save_new_layout(id_layout_title.text)
 
         BoxLayout:
-            size_hint_y: 0.6
-            padding: [10, 10, 10, 10]
-            spacing: 5
-            orientation: 'vertical'
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
 
-            GUI_Spinner:
-                id: id_layoutSpinner
-                text: 'Existing Layouts'
-                #values: root.find_layouts()
-                on_press: self.values = root.find_layouts()
+#        BoxLayout:
+#            size_hint_y: 0.6
+#            padding: [10, 10, 10, 10]
+#            spacing: 5
+#            orientation: 'vertical'
+#            canvas.before:
+#                Color:
+#                    rgba: (0,0,0,0.2)
+#                RoundedRectangle:
+#                    pos: self.pos
+#                    size: self.size
+#                    radius: [10]
+#
+#            GUI_Spinner:
+#                id: id_layoutSpinner
+#                text: 'Existing Layouts'
+#                #values: root.find_layouts()
+#                on_press: self.values = root.find_layouts()
+#
+#
+#            BoxLayout:
+#                #size_hint: (1, 0.1)
+#                spacing: 5
+#                GUI_Button:
+#                    text: 'delete'
+#                    on_release: root.deleteLayout()
+#                GUI_Button:
+#                    text: 'rename'
+#                    on_release: root.renameLayout()
+#                GUI_Button:
+#                    text: 'copy'
+#                    on_release: root.copyLayout()
 
-
-            BoxLayout:
-                #size_hint: (1, 0.1)
-                spacing: 5
-                GUI_Button:
-                    text: 'delete'
-                    on_release: root.deleteLayout()
-                GUI_Button:
-                    text: 'rename'
-                    on_release: root.renameLayout()
-                GUI_Button:
-                    text: 'copy'
-                    on_release: root.copyLayout()
-
-        BoxLayout:
-            size_hint_y: 0.3
-            padding: [10, 10, 10, 10]
-            spacing: 5
-            #deorientation: 'vertical'
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
-
-            GUI_Button:
-                text: 'import'
-                on_release: root.import_layout()
-            GUI_Button:
-                text: 'export'
-                on_release: root.export_layout()
-            GUI_Button:
-                text: 'export all'
-                on_release: root.export_all()
+#        BoxLayout:
+#            size_hint_y: 0.3
+#            padding: [10, 10, 10, 10]
+#            spacing: 5
+#            #deorientation: 'vertical'
+#            canvas.before:
+#                Color:
+#                    rgba: (0,0,0,0.2)
+#                RoundedRectangle:
+#                    pos: self.pos
+#                    size: self.size
+#                    radius: [10]
+#
+#            GUI_Button:
+#                text: 'import'
+#                on_release: root.import_layout()
+#            GUI_Button:
+#                text: 'export'
+#                on_release: root.export_layout()
+#            GUI_Button:
+#                text: 'export all'
+#                on_release: root.export_all()
             #FileChooserListView:
