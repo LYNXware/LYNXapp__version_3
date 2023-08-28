@@ -60,7 +60,9 @@ class MainApp(App):
     path_image_home = resource_path('images/home1.png')
     path_image_hands = resource_path('images/hands.png')
 
+
     def build(self):
+
         window_width = 1400
         window_height = 720
         screen_width = 1920
@@ -76,6 +78,13 @@ class MainApp(App):
     def update_theme(self):
         self.theme = theme.parameters
         print('main.py -> update theme')
+
+
+    # def load_HelpWindow(self):
+    #     print('main.py -> load_HelpWindow')
+    #     from py_files import screen_help
+    #     Builder.load_file(resource_path('kv_files/screen_help.kv'))
+
 
 
 if __name__ == '__main__':
