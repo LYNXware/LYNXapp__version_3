@@ -27,7 +27,7 @@ class USB_cats:
 
         ports_object = serial.tools.list_ports.comports()
         self.available = len(ports_object)
-        print(f'available_usb-cats: {self.available}')
+        print(f'usb_serial_comms.py -> available devices: {self.available}')
 
         for i in range(self.available):
 
@@ -43,14 +43,14 @@ class USB_cats:
 
             time.sleep(0.1)
 
-            cat_version = serial_comm.readline().decode("utf-8")[:-2]
+            cat_variant = serial_comm.readline().decode("utf-8")[:-2]
             serial_comm.close()
-            print(f'cat_version: >{cat_version}<')
+            print(f'usb_serial_comms.py -> cat_variant: >{cat_variant}<')
 
-            if not cat_version:
-                print('>cat_version< is empty')
+            if not cat_variant:
+                print('>cat_variant< is empty')
             else:
-                self.ports_dict[cat_version] = comm_port
+                self.ports_dict[cat_variant] = comm_port
 
         self.right.clear()
         self.left.clear()

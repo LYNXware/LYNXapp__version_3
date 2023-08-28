@@ -52,38 +52,6 @@ class LayoutsWindowCustom(Widget):
                         events_sub_right,
                         __version__)
 
-            # ml = events_main_left
-            # mr = events_main_right
-            # sl = events_sub_left
-            # sr = events_sub_right
-            #
-            # print(f'ml: {ml["LI1"].function}')
-            # print(f'sl: {sl["LI1"].function}')
-            #
-            # ml['LI1'].function = 'L1'
-            #
-            # print(f'ml: {ml["LI1"].function}')
-            # print(f'sl: {sl["LI1"].function}')
-            #
-            # save_layout(self.layer,
-            #             layout_title,
-            #             ml,
-            #             mr,
-            #             sl,
-            #             sr,
-            #             __version__)
-
-
-
-
-            # save_layout(self.layer,
-            #             layout_title,
-            #             left_events_dict,
-            #             right_events_dict,
-            #             left_events_dict,
-            #             right_events_dict,
-            #             __version__)
-
             self.ids.id_message_label.text = f'new layout "{layout_title}" was created'
 
 

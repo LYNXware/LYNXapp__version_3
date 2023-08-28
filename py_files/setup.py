@@ -16,15 +16,15 @@ class Setup():
     sublayer = None #False
     active_layout = None #'default'
 
-    selected_major_layout = 'test_maojr'
-    selected_minor_layout = 'test_minor'
-    selected_device_left = 'CL-B00-B00-000'
-    selected_device_right = 'CR-B00-BW0-M00'
+    selected_major_layout = None #'test_maojr'
+    selected_minor_layout = None #'test_minor'
+    selected_device_left = None #'CL-B00-B00-000'
+    selected_device_right = None #'CR-B00-BW0-M00'
 
-    main_left = events_main_left
-    main_right = events_main_right
-    sub_left = events_sub_left
-    sub_right = events_sub_right
+    main_left = None #events_main_left
+    main_right = None #events_main_right
+    sub_left = None #events_sub_left
+    sub_right = None #events_sub_right
 
     app_version = __version__
 
