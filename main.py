@@ -80,12 +80,6 @@ class MainApp(App):
         print('main.py -> update theme')
 
 
-    # def load_HelpWindow(self):
-    #     print('main.py -> load_HelpWindow')
-    #     from py_files import screen_help
-    #     Builder.load_file(resource_path('kv_files/screen_help.kv'))
-
-
 
 if __name__ == '__main__':
     MainApp().run()
