@@ -59,12 +59,6 @@ def load_data(file):
 
 def save_layout(layer, file, ml, mr, sl, sr, v):
 
-    # data = {'main_left': left_events_dict,
-    #         'main_right': right_events_dict,
-    #         'sub_left': left_events_dict,
-    #         'sub_right': right_events_dict,
-    #         'app_version': __version__
-    #         }
 
     data = {'main_left': ml,
             'main_right': mr,
@@ -75,7 +69,7 @@ def save_layout(layer, file, ml, mr, sl, sr, v):
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/layouts/{layer}/{file}.pickle'
 
-    print(f'memory.py -> save_layouts: {filepath}')
+    print(f'memory.py -> save_layouts: {file}')
 
     with open(filepath, 'wb') as f:
         pickle.dump(data, f)

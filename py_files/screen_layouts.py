@@ -44,13 +44,33 @@ class LayoutsWindowCustom(Widget):
         elif not layout_title:
             self.ids.id_message_label.text = 'type in the layout title'
         else:
+
+            ml = left_events_dict
+            mr = right_events_dict
+            sl = left_events_dict
+            sr = right_events_dict
+
+            print(sl['LI1'].function)
+
+            ml['LI1'].function = 'L1'
+
+            print(sl['LI1'].function)
+
             save_layout(self.layer,
                         layout_title,
-                        left_events_dict,
-                        right_events_dict,
-                        left_events_dict,
-                        right_events_dict,
+                        ml,
+                        mr,
+                        sl,
+                        sr,
                         __version__)
+
+            # save_layout(self.layer,
+            #             layout_title,
+            #             left_events_dict,
+            #             right_events_dict,
+            #             left_events_dict,
+            #             right_events_dict,
+            #             __version__)
 
             self.ids.id_message_label.text = f'new layout "{layout_title}" was created'
 

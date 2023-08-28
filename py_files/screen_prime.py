@@ -403,6 +403,7 @@ class JoystickLeft(Widget):
             setup.main_left['LJS'].ascii_set = b'\x30'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+        print('JoystickLeft')
 
 class JoystickLeft2(Widget):
     def steps(self):
@@ -416,6 +417,7 @@ class JoystickLeft2(Widget):
             setup.main_left['LJS'].ascii_set = b'\x30'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+        print('JoystickLeft2')
 
 class JoystickRight(Widget):
     def steps(self):
@@ -513,6 +515,7 @@ class MouseRight(Widget):
             self.ids.x_mouse_label.text = f'H = {x_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+        print('MouseRight')
 
     def mouse_vertical(self, y_factor):
         if setup.sublayer:
@@ -523,5 +526,6 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+        print('MouseRight')
 
 

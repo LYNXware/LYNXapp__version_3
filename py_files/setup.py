@@ -32,6 +32,8 @@ class Setup():
 
         self.swapping_button = None
 
+
+
         # self.data = {'active_layer': self.active_layer,
         #              'sublayer': self.sublayer,
         #              'selected_major_layout': self.selected_major_layout,
@@ -48,6 +50,8 @@ class Setup():
 
 
     def save(self):
+        print(f'setup.py -> save: {self.active_layer}  {self.file_name}')
+
         self.data['active_layer'] = self.active_layer
         self.data['sublayer'] = self.sublayer
         self.data['active_layout'] = self.active_layout
@@ -107,28 +111,34 @@ class Setup():
 
 
     def update_active_layer(self, x):
+        print(f'setup.py -> update_active_layer: {x}')
         self.active_layer = x
         self.save()
 
     def update_sublayer(self, x):
+        print(f'setup.py -> update_sublayer: {x}')
         self.sublayer = x
         self.save()
 
     def update_major_layout(self, x):
+        print(f'setup.py -> update_major_layout: {x}')
         self.selected_major_layout = x
         self.active_layout = x
         self.save()
 
     def update_minor_layout(self, x):
+        print(f'setup.py -> update_minor_layout: {x}')
         self.selected_minor_layout = x
         self.active_layout = x
         self.save()
 
     def update_device_left(self, x):
+        print(f'setup.py -> update_device_left: {x}')
         self.selected_device_left = x
         self.save()
 
     def update_device_right(self, x):
+        print(f'setup.py -> update_device_right: {x}')
         self.selected_device_right = x
         self.save()
 
@@ -173,6 +183,7 @@ class Setup():
 
 
     def save_current_layout(self):
+        print(f'setup.py -> save_current_layout: {self.active_layer}  {self.active_layout}')
         save_layout(self.active_layer,
                     self.active_layout,
                     self.main_left,

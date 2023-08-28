@@ -37,6 +37,7 @@ class AssignmentWindowCustom(Widget):
         self.ids.description.text = ''
 
     def save_button(self):
+        print('assignment.py -> save_button')
         name = self.current_button['name']
 
         if not self.hexval_set:
@@ -68,3 +69,4 @@ class AssignmentWindowCustom(Widget):
         # layout.save(setup.current_layout)
         # setup.save(user.setup.active_layout)
         setup.save_current_layout()
+        print('assignment.py -> save_button -> setup.save_current_layout()')
