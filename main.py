@@ -1,7 +1,7 @@
 """
 Version: 0.2.0
 Date: 01.09.2023
-Developer: Ape Devil
+Developer: Apd Devil
 Remark:
 """
 

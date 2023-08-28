@@ -1,12 +1,3 @@
-# from kivy.uix.actionbar import ActionBar
-# from kivy.uix.spinner import Spinner
-#
-# class ActionBarCustom(ActionBar):
-#     pass
-#
-# class GUI_Spinner(Spinner):
-#     pass
-
 from kivy.uix.button import Button
 from kivy.uix.behaviors import DragBehavior
 from kivy.properties import DictProperty
@@ -14,7 +5,6 @@ from kivy.uix.label import Label
 
 from py_files.theme import theme
 from py_files.preferences import prefs
-
 from py_files.setup import setup
 
 
@@ -48,7 +38,6 @@ class DeviceButton(DragBehavior, Button):
             else:
                 self.function = setup.sub_right[self.name].function
                 self.description = setup.sub_right[self.name].description
-
 
         if prefs.get('key_display_name'):
             self.ids.button_label.add_widget(Label(text=self.name,
