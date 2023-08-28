@@ -5,7 +5,7 @@ Developer: Ape Devil
 Remark:
 """
 
-#dev
+#dev clean up
 
 from kivy.app import App
 from kivy.core.window import Window
