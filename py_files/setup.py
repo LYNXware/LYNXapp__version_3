@@ -53,6 +53,8 @@ class Setup():
     def save(self):
         print(f'setup.py -> save: {self.file_name}')
 
+        self.data = {}
+
         self.data['active_layer'] = self.active_layer
         self.data['sublayer'] = self.sublayer
         self.data['active_layout'] = self.active_layout
@@ -62,11 +64,12 @@ class Setup():
         self.data['selected_device_left'] = self.selected_device_left
         self.data['selected_device_right'] = self.selected_device_right
 
+        self.data['app_version'] = self.app_version
         # self.data['main_left'] = self.main_left
         # self.data['main_right'] = self.main_right
         # self.data['sub_left'] = self.sub_left
         # self.data['sub_right'] = self.sub_right
-        # self.data['app_version'] = self.app_version
+
 
         save_data(self.data, self.file_name)
 
