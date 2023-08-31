@@ -1,5 +1,5 @@
-
 print('events.py started')
+
 
 class EventClass:
     def __init__(self, ascii_set, function, description):
@@ -9,32 +9,32 @@ class EventClass:
 
 
 events = [
-    # finger buttons
-    'I1',  # 0 array (c, r)
+    # index finger events
+    'I1',  # 0
     'I2',  # 1
     'I3',  # 2
     'I4',  # 3
     'I5',  # 4
     'I6',  # 5
     'I7',  # 6
-
+    # middle finger events
     'M1',  # 7
     'M2',  # 8
     'M3',  # 9
     'M4',  # 10
-
+    # ring finger events
     'R1',  # 11
     'R2',  # 12
     'R3',  # 13
     'R4',  # 14
-
+    # pinky finger events
     'P1',  # 15
     'P2',  # 16
     'P3',  # 17
     'P4',  # 18
     'P5',  # 19
 
-    # thumb buttons
+    # thumb events
     'TA1',  # 20
     'TA2',  # 21
     'TA3',  # 22
@@ -49,7 +49,7 @@ events = [
 
     'TC3',  # 30
 
-    # joystick
+    # joystick events
     'JM',  # 31
     'JS',  # 32
 
@@ -65,38 +65,43 @@ events = [
     'JR1',  # 39
     'JR2',  # 40
 
-    # scroll wheel
+    # scroll wheel events
     'WF',  # 41
     'WM',  # 42
     'WB',  # 43
 
     # mouse speed
     'MH',  # 44
-    'MV'   # 45
+    'MV'  # 45
 ]
 
-left_events_dict = {}
-right_events_dict = {}
+
+events_main_left = {}
+events_main_right = {}
+events_sub_left = {}
+events_sub_right = {}
+
 
 for i, event in enumerate(events):
     # print(f'i {i}   b {event}')
     if event == 'MH' or event == 'MV':
-        event_object = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_2 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_3 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_4 = EventClass(bytearray(b'\x64'), '-', '-')
     else:
-        event_object = EventClass(bytearray(b'\x30'), '-', '-')
-    left_events_dict[f'L{event}'] = event_object
-    right_events_dict[f'R{event}'] = event_object
+        # event_object = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_2 = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_3 = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_4 = EventClass(bytearray(b'\x30'), '-', '-')
+
+    events_main_left[f'L{event}'] = event_object_1
+    events_main_right[f'R{event}'] = event_object_2
+    events_sub_left[f'L{event}'] = event_object_3
+    events_sub_right[f'R{event}'] = event_object_4
 
 
 
 print('events.py ended')
-# print(left_events_dict)
-# print(right_events_dict)
-#
-# print(right_events_dict['RI1'].ascii_set)
-# print(right_events_dict['RMH'].ascii_set)
-# print(right_events_dict['RMV'].ascii_set)
-#
-# print(left_events_dict['LI1'].ascii_set)
-# print(left_events_dict['LMH'].ascii_set)
-# print(left_events_dict['LMV'].ascii_set)
+

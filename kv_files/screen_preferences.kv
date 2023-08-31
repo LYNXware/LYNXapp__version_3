@@ -46,13 +46,22 @@
                     size_hint_x: 0.3
                     CheckBox:
                         id: name
-                        on_release: root.update_name(self.active)
+                        on_release:
+                            root.update_key_display('key_display_name', self.active)
+#                            root.update_name(self.active)
+
                     CheckBox:
                         id: function
-                        on_release: root.update_function(self.active)
+                        on_release:
+                            root.update_key_display('key_display_function', self.active)
+#                            root.update_function(self.active)
+
                     CheckBox:
                         id: description
-                        on_release: root.update_description(self.active)
+                        on_release:
+                            root.update_key_display('key_display_description', self.active)
+#                            root.update_description(self.active)
+
 
                 FloatLayout:
                     Button:

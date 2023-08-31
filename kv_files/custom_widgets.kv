@@ -15,32 +15,33 @@
             on_release:
                 app.root.current = 'StartWindow'
                 app.root.get_screen('StartWindow').children[1].update_start_window()
-                #app.update_theme()
+                app.root.transition.direction ='down'
 
         ActionButton:
             text: 'Help'
             color: app.theme['gui_text']
             on_release:
                 app.root.current = 'HelpWindow'
-                #root.manager.transition.direction ='down'
+                app.root.transition.direction ='down'
         ActionButton:
             text: 'Theme'
             color: app.theme['gui_text']
             on_release:
                 app.root.current = 'ThemeWindow'
-                #root.manager.transition.direction ='down'
+                app.root.transition.direction ='down'
         ActionButton:
             text: 'Settings'
             color: app.theme['gui_text']
             on_release:
                 app.root.current = 'SettingsWindow'
+                app.root.transition.direction ='down'
 
         ActionButton:
             text: 'Layouts'
             color: app.theme['gui_text']
             on_release:
                 app.root.current = 'LayoutsWindow'
-                #root.manager.transition.direction ='down'
+                app.root.transition.direction ='down'
 
 
 <KeyButton@Button>:
@@ -95,6 +96,7 @@
 
     on_release:
         app.root.current = 'AssignmentWindow'
+        app.root.transition.direction ='down'
         app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
         app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
         app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description
