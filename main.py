@@ -5,7 +5,7 @@ Developer: Apd Devil
 Remark:
 """
 
-#dev
+#dev 4.9.23
 
 from kivy.app import App
 from kivy.core.window import Window
