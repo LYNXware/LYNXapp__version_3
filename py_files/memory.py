@@ -78,7 +78,7 @@ def getLayouts(layer):
     return layouts_list
 
 
-def getLanguages():
+def getAsciiLanguages():
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/language'
     languages_list = os.listdir(filepath)
@@ -86,7 +86,7 @@ def getLanguages():
     print(f'memory.py -> get_languages: {languages_list}')
     return languages_list
 
-def loadLanguage(language):
+def loadAsciiLanguage(language):
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/language/{language}.json'
     with open(filepath, 'r') as infile:

@@ -4,7 +4,8 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
-from py_files.memory import getLanguages, loadLanguage
+from py_files.memory import getAsciiLanguages
+from py_files.ascii_language import asciiTable
 from py_files.preferences import prefs
 from py_files.theme import theme
 
@@ -46,10 +47,13 @@ class SettingsWindowCustom(Widget):
                                                    font_size=15))
 
     def get_language(self):
-        return getLanguages()
+        return getAsciiLanguages()
 
     def set_language(self, language):
         prefs.set('language_ascii', language)
+        asciiTable.loadAsciiTable(language)
+
+        # loadAsciiLanguage(language)
         # self.ids.spinner_language.text = language
         # self.update_button()
         # self.update_language()

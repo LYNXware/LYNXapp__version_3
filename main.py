@@ -11,7 +11,7 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.properties import DictProperty
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 from resource_path import resource_path
 
@@ -50,11 +50,20 @@ Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
 
 
+class Test(Screen):
+    pass
+
+
+
 class WindowManager(ScreenManager):
     pass
 
 
 class MainApp(App):
+
+    test = False
+
+
     theme = DictProperty(theme.parameters)
 
     path_image_home = resource_path('images/home1.png')
@@ -78,6 +87,14 @@ class MainApp(App):
     def update_theme(self):
         self.theme = theme.parameters
         print('main.py -> update theme')
+
+    def loadTest(self):
+        if not self.test:
+            from py_files.screen_test import TestCustom
+            Builder.load_file(resource_path('kv_files/screen_test.kv'))
+            self.root.ids.testhhh.add_widget(TestCustom())
+            self.test = True
+            print('test loaded')
 
 
 

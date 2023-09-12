@@ -5,7 +5,7 @@
     background_color: (1,1,1,0.3) #0, 0, 0, 1
 
     pos_hint: {'top':1}
-    size_hint_y: 0.05
+    size_hint_y: 0.1
     ActionView:
         use_separator: False
         ActionPrevious:
@@ -41,6 +41,14 @@
             color: app.theme['gui_text']
             on_release:
                 app.root.current = 'LayoutsWindow'
+                app.root.transition.direction ='down'
+
+        ActionButton:
+            text: 'test'
+            color: app.theme['gui_text']
+            on_release:
+                app.loadTest()
+                app.root.current = 'Test'
                 app.root.transition.direction ='down'
 
 

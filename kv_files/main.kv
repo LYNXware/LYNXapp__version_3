@@ -1,13 +1,28 @@
 #:kivy 2.1.0
 
 WindowManager:
-    id: WindowManager
+#    id: screen_manager
     StartWindow:
     LayoutsWindow:
     ThemeWindow:
     SettingsWindow:
     HelpWindow
     AssignmentWindow:
+
+    Test:
+        name: 'Test'
+        id: testhhh
+        Background:
+#        TestCustom:
+
+
+<Background@Widget>:
+    canvas:
+        Color:
+            rgba: app.theme['background']
+        Rectangle:
+            size: self.size
+            pos: self.pos
 
 
 <StartWindow>:
