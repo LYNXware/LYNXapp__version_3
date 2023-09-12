@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
+from py_files.memory import getLanguages, loadLanguage
 from py_files.preferences import prefs
 from py_files.theme import theme
 
@@ -17,6 +18,7 @@ class SettingsWindowCustom(Widget):
         self.ids.name.active = prefs.get('key_display_name')
         self.ids.function.active = prefs.get('key_display_function')
         self.ids.description.active = prefs.get('key_display_description')
+        self.ids.spinner_language.text = prefs.get('language_ascii')
         self.update_button()
 
     def update_key_display(self, element, state):
@@ -42,3 +44,12 @@ class SettingsWindowCustom(Widget):
             self.ids.button_label.add_widget(Label(text='Description',
                                                    color=theme.get('button_description'),
                                                    font_size=15))
+
+    def get_language(self):
+        return getLanguages()
+
+    def set_language(self, language):
+        prefs.set('language_ascii', language)
+        # self.ids.spinner_language.text = language
+        # self.update_button()
+        # self.update_language()

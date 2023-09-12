@@ -1,6 +1,7 @@
 import os
 import shutil
 import pickle
+import json
 
 from resource_path import resource_path
 
@@ -75,3 +76,20 @@ def getLayouts(layer):
     layouts_list = [x.split('.')[0] for x in layouts_list]
     print(f'memory.py -> get_layouts: {layouts_list}')
     return layouts_list
+
+
+def getLanguages():
+    memory_dir = get_memory_dir()
+    filepath = f'{memory_dir}/language'
+    languages_list = os.listdir(filepath)
+    languages_list = [x.split('.')[0] for x in languages_list]
+    print(f'memory.py -> get_languages: {languages_list}')
+    return languages_list
+
+def loadLanguage(language):
+    memory_dir = get_memory_dir()
+    filepath = f'{memory_dir}/language/{language}.json'
+    with open(filepath, 'r') as infile:
+        # read the JSON data from the file into a dictionary
+        language = json.load(infile)
+    return language

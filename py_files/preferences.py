@@ -12,6 +12,7 @@ class Preferences:
         #     'key_display_name': True,
         #     'key_display_function': True,
         #     'key_display_description': True,
+        #     'language_ascii': 'english'
         # }
 
     def load(self):
@@ -38,3 +39,5 @@ class Preferences:
 # initialize preferences object
 prefs = Preferences()
 # prefs.save()
+# print(f'-------------------------------------preferences.py -> prefs: {prefs.parameters}')
+# # prefs.save()

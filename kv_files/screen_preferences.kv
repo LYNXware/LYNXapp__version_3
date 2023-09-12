@@ -16,9 +16,25 @@
         BoxLayout:                      #Space for the actionbar
             size_hint_y: 0.1
 
+#        BoxLayout:
+#            orientation: 'vertical'
+##            Button:
+##                text: 'language'
+##                pos_hint: {'center_x': 0.15, 'center_y': 0.75}
+##                size_hint: (0.2,0.2)
+        GUI_Spinner:
+            size_hint_y: 0.1
+#            Spinner:
+            id: spinner_language
+            #background_color: (1,1,0,1)
+
+            on_press: self.values = root.get_language()
+            on_text: root.set_language(self.text)
+#                    root.update_layout(self.text)
+#                    root.update_start_window()
         FloatLayout:
 
-            BoxLayout:
+            BoxLayout: #Space for the key settings
                 pos_hint: {'center_x': 0.15, 'center_y': 0.75}
                 size_hint: (0.2,0.2)
                 canvas.before:
@@ -48,19 +64,19 @@
                         id: name
                         on_release:
                             root.update_key_display('key_display_name', self.active)
-#                            root.update_name(self.active)
+    #                            root.update_name(self.active)
 
                     CheckBox:
                         id: function
                         on_release:
                             root.update_key_display('key_display_function', self.active)
-#                            root.update_function(self.active)
+    #                            root.update_function(self.active)
 
                     CheckBox:
                         id: description
                         on_release:
                             root.update_key_display('key_display_description', self.active)
-#                            root.update_description(self.active)
+    #                            root.update_description(self.active)
 
 
                 FloatLayout:
@@ -86,4 +102,8 @@
                         id: button_label
                         orientation: 'vertical'
                         fs: (self.height*1**2 + self.width*1**2)/15
+
+
+
+
 

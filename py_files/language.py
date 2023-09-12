@@ -1,5 +1,5 @@
 
-import json
+from memory import loadLanguage
 
 
 letters = {
@@ -22,12 +22,16 @@ english_ascii = {
 
 print(english_ascii['letters']['a'])
 
-with open("english.json", "w") as outfile:
+# with open("../LYNXapp_Memory/language/english.json", "w") as outfile:
     # write the dictionary to the file in JSON format
-    json.dump(english_ascii, outfile, indent=4)
+#     json.dump(english_ascii, outfile, indent=4)
+#
+# with open("../LYNXapp_Memory/language/english.json", "r") as infile:
+#     # read the JSON data from the file into a dictionary
+#     person = json.load(infile)
 
-with open("english.json", "r") as infile:
-    # read the JSON data from the file into a dictionary
-    person = json.load(infile)
+# print(person['letters']['a'])
 
-print(person['letters']['a'])
+l = loadLanguage('english')
+
+print(l['letters']['a'])
