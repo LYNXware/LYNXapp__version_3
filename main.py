@@ -50,7 +50,7 @@ Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
 
 
-class Test(Screen):
+class KeyAssignment(Screen):
     pass
 
 
@@ -61,7 +61,7 @@ class WindowManager(ScreenManager):
 
 class MainApp(App):
 
-    test = False
+    KeyAssignmentScreenLoaded = False
 
 
     theme = DictProperty(theme.parameters)
@@ -88,12 +88,12 @@ class MainApp(App):
         self.theme = theme.parameters
         print('main.py -> update theme')
 
-    def loadTest(self):
-        if not self.test:
-            from py_files.screen_test import TestCustom
-            Builder.load_file(resource_path('kv_files/screen_test.kv'))
-            self.root.ids.testhhh.add_widget(TestCustom())
-            self.test = True
+    def loadKeyAssignmentScreen(self):
+        if not self.KeyAssignmentScreenLoaded:
+            from py_files.screen_keyassignment import KeyAssignmentCustom
+            Builder.load_file(resource_path('kv_files/screen_keyassignment.kv'))
+            self.root.ids.keyassignment.add_widget(KeyAssignmentCustom())
+            self.KeyAssignmentScreenLoaded = True
             print('test loaded')
 
 

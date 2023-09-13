@@ -1,0 +1,104 @@
+
+
+
+<KeyAssignmentCustom>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+        ActionBarCustom:
+            size_hint_y: 0.15
+
+
+        BoxLayout:          # function description, save, reset
+			size_hint_y: 1
+			padding: padding_constant
+			spacing: 5 #spacing_constant
+            canvas:
+                Color:
+                    rgba: backdrop
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: radius_constant
+
+			Label:   #button name label
+				text: root.current_button['name']
+				size_hint_x: 0.1
+				color: (1, 1, 1, 1)
+		        canvas.before:
+		            Color:
+		                rgba: 0, 1, 1, .5
+
+		            Rectangle:
+		                pos: self.pos
+		                size: self.size
+
+            BoxLayout:   # funktion and description
+				spacing: 4
+				orientation: 'vertical'
+				BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: backdrop
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Funktion ->'
+                        size_hint_x: 0.15
+                    Label:
+                        text: root.current_button['function']
+                        id: function
+
+                BoxLayout:
+                    canvas:
+                        Color:
+                            rgba: backdrop
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Description ->'
+                        size_hint_x: 0.15
+                    TextInput:
+                        id: description
+                        size_hint: (1,0.8)
+                        pos_hint: {'center_x': 0.36, 'center_y': 0.5}
+                        #hint_text: root.current_button['description']
+                        text: root.current_button['description']
+                        hint_text_color: (.1, .1, .1, 1)
+                        background_color: (1, 1, 1, .7)
+                        multiline: False
+
+            BoxLayout:   #  save and reset
+                size_hint_x: 0.2
+                orientation: 'vertical'
+                Button:
+                    text: 'Reset'
+                    background_color: (1,0,0,1)
+                    on_release: root.reset()
+
+                Button:
+                    text: 'Save'
+                    background_color: (0,1,0,1)
+                    on_release:
+                        root.save_button()
+                        root.reset()
+                        app.root.get_screen('StartWindow').children[1].update_start_window()
+#                        app.root.get_screen('StartWindow').children[1].transmit_layouts()
+                        app.root.current = 'StartWindow' #if not root.hexval_set
+
+
+        BoxLayout:
+            id: letters
+        BoxLayout:
+            id: numbers
+        BoxLayout:
+            id: keypad
+
+<CustomButton>:
+    color: app.theme['gui_button_text']
+    background_color: app.theme['gui_button']
+#    font_size: 20
+    on_release: root.custom_callback()  # Define your custom behavior here

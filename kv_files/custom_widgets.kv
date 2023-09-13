@@ -5,7 +5,7 @@
     background_color: (1,1,1,0.3) #0, 0, 0, 1
 
     pos_hint: {'top':1}
-    size_hint_y: 0.1
+    size_hint_y: 0.05
     ActionView:
         use_separator: False
         ActionPrevious:
@@ -47,8 +47,8 @@
             text: 'test'
             color: app.theme['gui_text']
             on_release:
-                app.loadTest()
-                app.root.current = 'Test'
+                app.loadKeyAssignmentScreen()
+                app.root.current = 'KeyAssignment'
                 app.root.transition.direction ='down'
 
 
@@ -103,11 +103,15 @@
     on_touch_move: self.moving = True
 
     on_release:
-        app.root.current = 'AssignmentWindow'
+        app.loadKeyAssignmentScreen()
+        app.root.current = 'KeyAssignment'
         app.root.transition.direction ='down'
-        app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
-        app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
-        app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description
+        app.root.ids.keyassignment.children[0].current_button['name'] = self.name
+        app.root.ids.keyassignment.children[0].current_button['function'] = self.function
+        app.root.ids.keyassignment.children[0].current_button['description'] = self.description
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description
 
     BoxLayout:
         id: button_label
