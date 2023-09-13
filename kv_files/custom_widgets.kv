@@ -5,7 +5,7 @@
     background_color: (1,1,1,0.3) #0, 0, 0, 1
 
     pos_hint: {'top':1}
-    size_hint_y: 0.05
+    size_hint_y: 0.06
     ActionView:
         use_separator: False
         ActionPrevious:
@@ -21,35 +21,33 @@
             text: 'Help'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'HelpWindow'
+                app.loadHelpScreen()
+                app.root.current = 'HelpScreen'
                 app.root.transition.direction ='down'
         ActionButton:
             text: 'Theme'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'ThemeWindow'
+                app.loadThemeScreen()
+                app.root.current = 'ThemeScreen'
                 app.root.transition.direction ='down'
         ActionButton:
-            text: 'Settings'
+            text: 'Preferences'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'SettingsWindow'
+                app.loadPreferencesScreen()
+                app.root.current = 'PreferencesScreen'
                 app.root.transition.direction ='down'
 
         ActionButton:
             text: 'Layouts'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'LayoutsWindow'
+                app.loadLayoutsScreen()
+                app.root.current = 'LayoutsScreen'
                 app.root.transition.direction ='down'
 
-        ActionButton:
-            text: 'test'
-            color: app.theme['gui_text']
-            on_release:
-                app.loadKeyAssignmentScreen()
-                app.root.current = 'KeyAssignment'
-                app.root.transition.direction ='down'
+
 
 
 <KeyButton@Button>:
@@ -106,9 +104,9 @@
         app.loadKeyAssignmentScreen()
         app.root.current = 'KeyAssignment'
         app.root.transition.direction ='down'
-        app.root.ids.keyassignment.children[0].current_button['name'] = self.name
-        app.root.ids.keyassignment.children[0].current_button['function'] = self.function
-        app.root.ids.keyassignment.children[0].current_button['description'] = self.description
+        app.root.ids.keyassignmentscreen.children[0].current_button['name'] = self.name
+        app.root.ids.keyassignmentscreen.children[0].current_button['function'] = self.function
+        app.root.ids.keyassignmentscreen.children[0].current_button['description'] = self.description
 #        app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
 #        app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
 #        app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description

@@ -31,26 +31,34 @@ from py_files.theme import theme
 
 # load pythong files for kivy CLASSES for the GUI
 from py_files import screen_prime
-from py_files import screen_assignment
-from py_files import screen_layouts
-from py_files import screen_theme
-from py_files import screen_preferences
-from py_files import screen_help
+# from py_files import screen_assignment
+# from py_files import screen_layouts
+# from py_files import screen_theme
+# from py_files import screen_preferences
+# from py_files import screen_help
 from py_files import custom_widgets
 
 # load kivy files for the GUI
 Builder.load_file(resource_path('kv_files/screen_prime.kv'))
-Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
+# Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
 Builder.load_file(resource_path('kv_files/modules.kv'))
-Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
-Builder.load_file(resource_path('kv_files/screen_preferences.kv'))
-Builder.load_file(resource_path('kv_files/screen_theme.kv'))
-Builder.load_file(resource_path('kv_files/screen_help.kv'))
+# Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
+# Builder.load_file(resource_path('kv_files/screen_preferences.kv'))
+# Builder.load_file(resource_path('kv_files/screen_theme.kv'))
+# Builder.load_file(resource_path('kv_files/screen_help.kv'))
 Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
 
 
+class LayoutsScreen(Screen):
+    pass
+class ThemeScreen(Screen):
+    pass
+class PreferencesScreen(Screen):
+    pass
 class KeyAssignment(Screen):
+    pass
+class HelpScreen(Screen):
     pass
 
 
@@ -61,7 +69,11 @@ class WindowManager(ScreenManager):
 
 class MainApp(App):
 
+    LayoutsScreenLoaded = False
+    ThemeScreenLoaded = False
+    PreferencesScreenLoaded = False
     KeyAssignmentScreenLoaded = False
+    HelpScreenLoaded = False
 
 
     theme = DictProperty(theme.parameters)
@@ -92,9 +104,35 @@ class MainApp(App):
         if not self.KeyAssignmentScreenLoaded:
             from py_files.screen_keyassignment import KeyAssignmentCustom
             Builder.load_file(resource_path('kv_files/screen_keyassignment.kv'))
-            self.root.ids.keyassignment.add_widget(KeyAssignmentCustom())
+            self.root.ids.keyassignmentscreen.add_widget(KeyAssignmentCustom())
             self.KeyAssignmentScreenLoaded = True
-            print('test loaded')
+
+    def loadLayoutsScreen(self):
+        if not self.LayoutsScreenLoaded:
+            from py_files.screen_layouts import LayoutsScreenCustom
+            Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
+            self.root.ids.layoutsscreen.add_widget(LayoutsScreenCustom())
+            self.LayoutsScreenLoaded = True
+    def loadThemeScreen(self):
+        if not self.ThemeScreenLoaded:
+            from py_files.screen_theme import ThemeScreenCustom
+            Builder.load_file(resource_path('kv_files/screen_theme.kv'))
+            self.root.ids.themescreen.add_widget(ThemeScreenCustom())
+            self.ThemeScreenLoaded = True
+    def loadPreferencesScreen(self):
+        if not self.PreferencesScreenLoaded:
+            from py_files.screen_preferences import PreferencesScreenCustom
+            Builder.load_file(resource_path('kv_files/screen_preferences.kv'))
+            self.root.ids.preferencesscreen.add_widget(PreferencesScreenCustom())
+            self.PreferencesScreenLoaded = True
+
+    def loadHelpScreen(self):
+        if not self.HelpScreenLoaded:
+            from py_files.screen_help import HelpScreenCustom
+            Builder.load_file(resource_path('kv_files/screen_help.kv'))
+            self.root.ids.helpscreen.add_widget(HelpScreenCustom())
+            self.HelpScreenLoaded = True
+
 
 
 

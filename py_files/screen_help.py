@@ -1,15 +1,18 @@
 print('screen_help.py')
 
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
 from py_files import __version__
+import webbrowser
 
-class HelpWindow(Screen):
+
+class HelpScreenCustom(Widget):
     version = f'LYNX app - Version {__version__}'
 
-    def open_link(self):
-        import webbrowser
-        webbrowser.open('https://www.lynx-workshop.com/')
+    def open_link_tutorial(self):
+        webbrowser.open('https://www.lynxware.org/tutorials')
 
-class HelpWindowCustom(Widget):
-    pass
+    def open_link_contact(self):
+        webbrowser.open('https://www.lynxware.org/contact')
+
+    def open_link_shop(self):
+        webbrowser.open('https://lynxware.shop/pages/merchandise')

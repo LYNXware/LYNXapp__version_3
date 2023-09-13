@@ -1,6 +1,6 @@
 #:kivy 2.1.0
 
-<SettingsWindowCustom>:
+<PreferencesScreenCustom>:
     canvas:
         Color:
             rgba: app.theme['background']
@@ -13,8 +13,10 @@
         pos: root.pos
         orientation: 'vertical'
 
-        BoxLayout:                      #Space for the actionbar
-            size_hint_y: 0.1
+        ActionBarCustom:
+
+#        BoxLayout:                      #Space for the actionbar
+#            size_hint_y: 0.1
 
 #        BoxLayout:
 #            orientation: 'vertical'

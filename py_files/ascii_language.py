@@ -6,21 +6,18 @@ from py_files.preferences import prefs
 
 class AsciiTable:
     def __init__(self):
-        loadAsciiLanguage(prefs.get('language_ascii'))
+        self.loadAsciiTable(prefs.get('language_ascii'))
 
     def loadAsciiTable(self, language):
         table = loadAsciiLanguage(language)
         self.letters = table['letters']
         self.numbers = table['numbers']
-        self.keypad = table['keypad']
-        self.punctuations = table['punctuations']
+        self.keypad1 = table['keypad1']
+        self.keypad2 = table['keypad2']
         self.symbols = table['symbols']
-        self.whithespaces = table['whitespaces']
+        self.specials = table['specials']
         self.modifiers = table['modifiers']
-
-        print(table)
-
-
+        self.functions = table['functions']
 
 
 asciiTable = AsciiTable()

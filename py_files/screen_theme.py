@@ -3,11 +3,10 @@ from kivy.uix.widget import Widget
 
 from py_files.theme import theme
 
-class ThemeWindow(Screen):
-    pass
 
 
-class ThemeWindowCustom(Widget):
+
+class ThemeScreenCustom(Widget):
 
     def save_theme(self, element, color):
         theme.set(element, color)

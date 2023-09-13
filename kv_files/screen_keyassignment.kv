@@ -1,4 +1,8 @@
 
+#:set backdrop (0,0,0,0.3)
+#:set padding_constant [3,4,3,3]
+#:set spacing_constant 1
+#:set radius_constant [5]
 
 
 <KeyAssignmentCustom>:
@@ -6,12 +10,12 @@
         size: root.size
         pos: root.pos
         orientation: 'vertical'
-        ActionBarCustom:
-            size_hint_y: 0.15
 
+        ActionBarCustom:
+#            size_hint_y: 0.06
 
         BoxLayout:          # function description, save, reset
-			size_hint_y: 1
+			size_hint_y: 0.2
 			padding: padding_constant
 			spacing: 5 #spacing_constant
             canvas:
@@ -91,14 +95,71 @@
 
 
         BoxLayout:
-            id: letters
-        BoxLayout:
-            id: numbers
-        BoxLayout:
-            id: keypad
+            padding: padding_constant
+			spacing: spacing_constant
+			orientation: 'vertical'
+            CellBox:
+                id: letters
+            CellBox:
+                id: numbers
+            CellBox:
+                id: keypad1
+            CellBox:
+                id: keypad2
+            CellBox:
+                id: symbols
+            CellBox:
+                id: specials
+            CellBox:
+                id: modifiers
+            CellBox:
+                id: functions
 
-<CustomButton>:
+            CellBox:
+                CustomStaticButton:
+                    text: 'Left Click'
+                    asciiValue: b'\xf0\xf1'
+                CustomStaticButton:
+                    text: 'Middle Click'
+                    asciiValue: b'\xf0\xf2'
+                CustomStaticButton:
+                    text: 'Right Click'
+                    asciiValue: b'\xf0\xf3'
+                CustomStaticButton:
+                    text: 'Scroll Up '
+                    asciiValue: b'\xf0\xf4'
+                CustomStaticButton:
+                    text: 'Scroll Down '
+                    asciiValue: b'\xf0\xf5'
+
+            CellBox:
+                CustomStaticButton:
+                    text: 'major / minor'
+                    asciiValue: b'\xfa\xfb' #0xFA 0xFB
+                CustomStaticButton:
+                    text: 'main / sub'
+                    asciiValue: b'\xfa\xfc'  #0xFA 0xFB
+
+
+<CustomDynamicButton>:
     color: app.theme['gui_button_text']
     background_color: app.theme['gui_button']
 #    font_size: 20
-    on_release: root.custom_callback()  # Define your custom behavior here
+
+
+<CustomStaticButton@Button>:
+    color: app.theme['gui_button_text']
+    background_color: app.theme['gui_button']
+    on_release: self.parent.parent.parent.parent.custom_callback(self)  # Define your custom behavior here
+
+
+<CellBox@BoxLayout>:
+    padding: [3,4,3,3]
+    spacing: 1
+    canvas:
+        Color:
+            rgba:  (0,0,0,0.3)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [5]

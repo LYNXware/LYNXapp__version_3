@@ -1,6 +1,5 @@
 print('screen_preferences.py')
 
-from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 
@@ -10,11 +9,10 @@ from py_files.preferences import prefs
 from py_files.theme import theme
 
 
-class SettingsWindow(Screen):
-    pass
 
 
-class SettingsWindowCustom(Widget):
+
+class PreferencesScreenCustom(Widget):
     def on_kv_post(self, *args):
         self.ids.name.active = prefs.get('key_display_name')
         self.ids.function.active = prefs.get('key_display_function')
