@@ -21,21 +21,21 @@
             text: 'Help'
             color: app.theme['gui_text']
             on_release:
-                app.loadHelpScreen()
+                app.load_help_screen()
                 app.root.current = 'HelpScreen'
                 app.root.transition.direction ='down'
         ActionButton:
             text: 'Theme'
             color: app.theme['gui_text']
             on_release:
-                app.loadThemeScreen()
+                app.load_theme_screen()
                 app.root.current = 'ThemeScreen'
                 app.root.transition.direction ='down'
         ActionButton:
             text: 'Preferences'
             color: app.theme['gui_text']
             on_release:
-                app.loadPreferencesScreen()
+                app.load_preferences_screen()
                 app.root.current = 'PreferencesScreen'
                 app.root.transition.direction ='down'
 
@@ -43,7 +43,7 @@
             text: 'Layouts'
             color: app.theme['gui_text']
             on_release:
-                app.loadLayoutsScreen()
+                app.load_layouts_screen()
                 app.root.current = 'LayoutsScreen'
                 app.root.transition.direction ='down'
 
@@ -101,7 +101,7 @@
     on_touch_move: self.moving = True
 
     on_release:
-        app.loadKeyAssignmentScreen()
+        app.load_key_assignment_screen()
         app.root.current = 'KeyAssignment'
         app.root.transition.direction ='down'
         app.root.ids.keyassignmentscreen.children[0].current_button['name'] = self.name
