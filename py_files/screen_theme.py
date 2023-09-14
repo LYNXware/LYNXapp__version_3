@@ -1,12 +1,8 @@
-from kivy.uix.screenmanager import Screen
-from kivy.uix.widget import Widget
-
 from py_files.theme import theme
+from kivy.uix.boxlayout import BoxLayout
 
 
-
-
-class ThemeScreenCustom(Widget):
+class ThemeScreenCustom(BoxLayout):
 
     def save_theme(self, element, color):
         theme.set(element, color)

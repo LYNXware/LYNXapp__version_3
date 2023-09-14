@@ -1,11 +1,11 @@
 print('screen_help.py')
 
-from kivy.uix.widget import Widget
+from kivy.uix.boxlayout import BoxLayout
 from py_files import __version__
 import webbrowser
 
 
-class HelpScreenCustom(Widget):
+class HelpScreenCustom(BoxLayout):
     version = f'LYNX app - Version {__version__}'
 
     def open_link_tutorial(self):

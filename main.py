@@ -5,7 +5,8 @@ Developer: Apd Devil
 Remark:
 """
 
-# dev 4.9.23
+#
+# language
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -14,15 +15,8 @@ from kivy.properties import DictProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 from resource_path import resource_path
-
 from py_files import __version__
-
-print(f'LYNXapp Version: {__version__}')
-
 from py_files.memory import create_memory_dir
-
-
-
 from py_files.theme import theme
 
 # load pythong files for kivy CLASSES for the GUI
@@ -35,15 +29,16 @@ from py_files.theme import theme
 # from py_files import custom_widgets
 
 # load kivy files for the GUI
-# Builder.load_file(resource_path('kv_files/screen_prime.kv'))
-# # Builder.load_file(resource_path('kv_files/screen_assignment.kv'))
+# Builder.load_file(resource_path('kv_files/screen_start.kv'))
+# # Builder.load_file(resource_path('kv_files/Xscreen_assignment.kv'))
 # Builder.load_file(resource_path('kv_files/modules.kv'))
 # # Builder.load_file(resource_path('kv_files/screen_layouts.kv'))
 # # Builder.load_file(resource_path('kv_files/screen_preferences.kv'))
 # # Builder.load_file(resource_path('kv_files/screen_theme.kv'))
 # # Builder.load_file(resource_path('kv_files/screen_help.kv'))
 # Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
-
+class StartScreen(Screen):
+    pass
 
 class LayoutsScreen(Screen):
     pass
@@ -92,11 +87,10 @@ class MainApp(App):
         Window.left = screen_width / 2 - window_width / 2
         Window.top = screen_height / 2 - window_height / 2
 
-        from py_files import screen_prime
+        from py_files import screen_start
         from py_files import custom_widgets
 
-
-        Builder.load_file(resource_path('kv_files/screen_prime.kv'))
+        Builder.load_file(resource_path('kv_files/screen_start.kv'))
         Builder.load_file(resource_path('kv_files/modules.kv'))
         Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
@@ -144,6 +138,7 @@ class MainApp(App):
 
 
 if __name__ == '__main__':
+    print(f'LYNXapp Version: {__version__}')
     # create a memory directory if it does not exist
     create_memory_dir()
     MainApp().run()

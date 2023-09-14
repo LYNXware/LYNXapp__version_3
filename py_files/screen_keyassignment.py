@@ -1,5 +1,5 @@
 
-from kivy.uix.widget import Widget
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.properties import DictProperty
 
@@ -14,7 +14,7 @@ class CustomDynamicButton(Button):
     pass
 
 
-class KeyAssignmentCustom(Widget):
+class KeyAssignmentCustom(BoxLayout):
     # current_button gets values from DeviceButton
     current_button = DictProperty({'name': '', 'function': '', 'description': ''})
     ascii_set = bytearray()

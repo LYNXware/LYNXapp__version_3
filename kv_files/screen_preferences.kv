@@ -1,29 +1,15 @@
 #:kivy 2.1.0
 
 <PreferencesScreenCustom>:
-    canvas:
-        Color:
-            rgba: app.theme['background']
-        Rectangle:
-            size: self.size
-            pos: self.pos
+
+    orientation: 'vertical'
+    ActionBarCustom:
 
     BoxLayout:
         size: root.size
         pos: root.pos
         orientation: 'vertical'
 
-        ActionBarCustom:
-
-#        BoxLayout:                      #Space for the actionbar
-#            size_hint_y: 0.1
-
-#        BoxLayout:
-#            orientation: 'vertical'
-##            Button:
-##                text: 'language'
-##                pos_hint: {'center_x': 0.15, 'center_y': 0.75}
-##                size_hint: (0.2,0.2)
         GUI_Spinner:
             size_hint_y: 0.1
 #            Spinner:

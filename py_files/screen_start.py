@@ -1,21 +1,20 @@
-print("screen_prime.py")
+print("screen_start.py")
 
 import serial.tools.list_ports
 
 from kivy.clock import Clock
-from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
+from kivy.uix.floatlayout import FloatLayout
 
 from py_files.usb_serial_comms import devices
 from py_files.setup import setup
 from py_files.memory import getLayouts, load_layout
 
 
-class StartWindow(Screen):
-    pass
 
 
-class StartWindowCustom(Widget):
+
+class StartScreenCustom(FloatLayout):
     # def on_touch_down(self, touch):
     #     print(touch)
     count_old = None
@@ -50,10 +49,10 @@ class StartWindowCustom(Widget):
 
         if devices.available != self.count_old:
             self.count_old = devices.available
-            print(f'screen_prime.py -> window_clock_update')
+            print(f'screen_start.py -> window_clock_update')
 
             while devices.running:
-                print(f'screen_prime.py -> devices.running {devices.running}')
+                print(f'screen_start.py -> devices.running {devices.running}')
 
             if not devices.left:
                 setup.update_device_left('')

@@ -1,7 +1,7 @@
 print('screen_preferences.py')
 
-from kivy.uix.widget import Widget
 from kivy.uix.label import Label
+from kivy.uix.boxlayout import BoxLayout
 
 from py_files.memory import getAsciiLanguages
 from py_files.ascii_language import asciiTable
@@ -12,7 +12,7 @@ from py_files.theme import theme
 
 
 
-class PreferencesScreenCustom(Widget):
+class PreferencesScreenCustom(BoxLayout):
     def on_kv_post(self, *args):
         self.ids.name.active = prefs.get('key_display_name')
         self.ids.function.active = prefs.get('key_display_function')

@@ -1,55 +1,20 @@
 #:kivy 2.1.0
 <ThemeScreenCustom>:
-    FloatLayout:    # theme objects
-        size: root.size
-        pos: root.pos
 
-        BoxLayout:
-            size_hint: (0.1, 0.05)
-            pos_hint: {'center_x': 0.75, 'center_y': 0.85}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
-            Label:
-                text: 'GUI Text'
-                color: app.theme['gui_text']
-
-        ThemeDeviceButton:
-            pos_hint: {'center_x': 0.75, 'center_y': 0.75}
-            #size_hint: (.5,.5)
-
-        GUI_Button:
-            text: 'button'
-#            color: app.theme['gui_button_text']
-#            background_color: app.theme['gui_button']
-            size_hint: (0.1, 0.05)
-            pos_hint: {'center_x': 0.75, 'center_y': 0.65}
-            on_release: root.test()
+    orientation: 'vertical'
+    ActionBarCustom:
 
     BoxLayout:
-        size: root.size
-        pos: root.pos
         orientation: 'vertical'
-
-        ActionBarCustom:
-
         BoxLayout:
-            size: root.size
-            pos: root.pos
             orientation: 'vertical'
             padding: [10, 10, 10, 10]
             spacing: 15
-
             BoxLayout:              # left side
                 spacing: 10
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: 10
-
                     BoxLayout:
                         padding: [5, 5, 5, 5]
                         size_hint_y: 0.2
@@ -134,7 +99,32 @@
                                     app.update_theme()
 
 
-                BoxLayout: # free space
+                FloatLayout:    # theme objects
+                    BoxLayout:
+                        size_hint: (0.2, 0.1)
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                        canvas.before:
+                            Color:
+                                rgba: (0,0,0,0.2)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
+                        Label:
+                            text: 'GUI Text'
+                            color: app.theme['gui_text']
+
+                    ThemeDeviceButton:
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                        size_hint: (.1,.2)
+
+                    GUI_Button:
+                        text: 'button'
+            #            color: app.theme['gui_button_text']
+            #            background_color: app.theme['gui_button']
+                        size_hint: (0.2, 0.1)
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                        on_release: root.test()
 
 
             ColorPicker:

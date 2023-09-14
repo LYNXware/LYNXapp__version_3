@@ -2,7 +2,14 @@
 
 WindowManager:
 #    id: screen_manager
-    StartWindow:
+    StartScreen:
+        name: 'StartScreen'
+        id: startscreen
+        Background:
+#        ActionBarCustom:
+        StartScreenCustom:
+
+
     LayoutsScreen:
         name: 'LayoutsScreen'
         id: layoutsscreen
@@ -39,11 +46,11 @@ WindowManager:
             pos: self.pos
 
 
-<StartWindow>:
-    name: 'StartWindow'
-	id: MainWindow
-    StartWindowCustom:
-    ActionBarCustom:
+#<StartWindow>:
+#    name: 'StartWindow'
+#	id: MainWindow
+#    StartWindowCustom:
+#    ActionBarCustom:
 
 #<LayoutsWindow>:
 #    name: 'LayoutsWindow'

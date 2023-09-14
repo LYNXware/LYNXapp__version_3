@@ -5,7 +5,7 @@
     background_color: (1,1,1,0.3) #0, 0, 0, 1
 
     pos_hint: {'top':1}
-    size_hint_y: 0.06
+    size_hint_y: 0.05
     ActionView:
         use_separator: False
         ActionPrevious:
@@ -13,9 +13,10 @@
             with_previous: False
             app_icon: app.path_image_home
             on_release:
-                app.root.current = 'StartWindow'
-                app.root.get_screen('StartWindow').children[1].update_start_window()
+                app.root.current = 'StartScreen'
                 app.root.transition.direction ='down'
+                app.root.ids.startscreen.children[0].update_start_window()
+
 
         ActionButton:
             text: 'Help'

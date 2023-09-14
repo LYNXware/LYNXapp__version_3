@@ -6,15 +6,10 @@ print('screen_layouts.py')
 # from plyer import filechooser
 
 from kivy.properties import StringProperty
-from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from py_files.events import events_main_left, events_main_right, events_sub_left, events_sub_right
 from py_files import __version__
 from py_files.memory import save_layout, getLayouts
-
-# from resource_path import resource_path
-
-
 
 
 class LayoutsScreenCustom(BoxLayout):
