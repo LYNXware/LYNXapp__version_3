@@ -2,12 +2,7 @@
 
 <StartScreenCustom>:
 
-#    orientation: 'vertical'
     ActionBarCustom:
-
-#	FloatLayout:
-#        size: root.size
-#        pos: root.pos
 
     Image:
         source: app.path_image_hands
@@ -22,10 +17,7 @@
         spacing: 2
 
         GUI_Spinner:
-#            Spinner:
             id: spinner_layouts
-            #background_color: (1,1,0,1)
-
             on_press: self.values = root.get_layouts()
             on_text:
                 root.update_layout(self.text)

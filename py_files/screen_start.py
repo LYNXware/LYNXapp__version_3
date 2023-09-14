@@ -35,12 +35,22 @@ class StartScreenCustom(FloatLayout):
 
         if setup.active_layer == 'major':
             self.ids.spinner_layouts.text = setup.selected_major_layout
-            self.ids.id_major.led_color = self.led_blue
-            self.ids.id_minor.led_color = self.led_off
+            if setup.sublayer:
+                self.ids.id_sub.state = 'down'
+                self.ids.id_major.led_color = self.led_red
+                self.ids.id_minor.led_color = self.led_off
+            else:
+                self.ids.id_major.led_color = self.led_blue
+                self.ids.id_minor.led_color = self.led_off
         else:
             self.ids.spinner_layouts.text = setup.selected_minor_layout
-            self.ids.id_minor.led_color = self.led_green
-            self.ids.id_major.led_color = self.led_off
+            if setup.sublayer:
+                self.ids.id_sub.state = 'down'
+                self.ids.id_minor.led_color = self.led_red
+                self.ids.id_major.led_color = self.led_off
+            else:
+                self.ids.id_minor.led_color = self.led_green
+                self.ids.id_major.led_color = self.led_off
 
         Clock.schedule_interval(self.window_clock_update, 1)
         self.appStarted = False
@@ -67,7 +77,7 @@ class StartScreenCustom(FloatLayout):
             self.update_start_window()
 
     def update_start_window(self):
-        print(' update_start_window')
+        print(f'screen_start.py -> update_start_window')
         self.ids.start_window.clear_widgets()
 
         if bool(setup.selected_device_left):
@@ -139,7 +149,6 @@ class StartScreenCustom(FloatLayout):
             if 'T00' in thumb_modules:
                 # self.ids.start_window.add_widget(RightThumbTrackball())
                 pass
-
             else:
                 pass
 
@@ -161,6 +170,8 @@ class StartScreenCustom(FloatLayout):
         if len(devices.right) > 1:
             print('add right spinner')
             self.ids.start_window.add_widget(SpinnerRight())
+
+        print(f'screen_start.py -> update_start_window eeeeeeennnnnndddd')
 
     def update_layout(self, new_layout):
         print(f'start_window_custom.py -> update_layout: {new_layout}')
@@ -195,7 +206,7 @@ class StartScreenCustom(FloatLayout):
             self.ids.spinner_layouts.text = setup.selected_major_layout
 
     def select_sublayer(self, state):
-        print(f'sublayer state: {state}')
+        print(f'screen_start.py -> select_sublayer: {state}')
         if state == 'down':
             setup.update_sublayer(True)
             if setup.active_layer == 'major':
@@ -208,7 +219,6 @@ class StartScreenCustom(FloatLayout):
                 self.ids.id_major.led_color = self.led_blue
             else:
                 self.ids.id_minor.led_color = self.led_green
-        print(f'sublayer: {setup.sublayer}')
 
     def transmit_layouts(self):
 
@@ -483,7 +493,6 @@ class MouseRight(Widget):
             self.ids.x_mouse_label.text = f'H = {x_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-        print('MouseRight')
 
     def mouse_vertical(self, y_factor):
         if setup.sublayer:
@@ -494,6 +503,5 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-        print('MouseRight')
 
 

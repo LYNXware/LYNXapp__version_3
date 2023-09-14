@@ -26,6 +26,8 @@ class Setup():
     main_right = None
     sub_left = None
     sub_right = None
+    layout_app_version = None
+
 
     app_version = __version__
 
@@ -182,14 +184,14 @@ class Setup():
     def updateLayout(self, file):
         print(f'setup.py -> load_layout: {self.active_layer}  {file}')
 
-        self.data = load_layout(self.active_layer, file)
+        loaded_layout = load_layout(self.active_layer, file)
 
-        self.main_left = self.data['main_left']
-        self.main_right = self.data['main_right']
-        self.sub_left = self.data['sub_left']
-        self.sub_right = self.data['sub_right']
+        self.main_left = loaded_layout['main_left']
+        self.main_right = loaded_layout['main_right']
+        self.sub_left = loaded_layout['sub_left']
+        self.sub_right = loaded_layout['sub_right']
 
-        self.app_version = self.data['app_version']
+        self.layout_app_version = loaded_layout['app_version']
 
         # self.save()
 
