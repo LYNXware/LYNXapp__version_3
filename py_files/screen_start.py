@@ -11,9 +11,6 @@ from py_files.setup import setup
 from py_files.memory import getLayouts, load_layout
 
 
-
-
-
 class StartScreenCustom(FloatLayout):
     # def on_touch_down(self, touch):
     #     print(touch)
@@ -56,13 +53,19 @@ class StartScreenCustom(FloatLayout):
         self.appStarted = False
 
     def window_clock_update(self, *args):
+        # print(f'screen_start.py -> window_clock_update')
 
         if devices.available != self.count_old:
             self.count_old = devices.available
             print(f'screen_start.py -> window_clock_update')
 
+            # wait for serial thread to finish device search
             while devices.running:
-                print(f'screen_start.py -> devices.running {devices.running}')
+                pass
+                # print(f'screen_start.py -> devices.running {devices.running}')
+                # import time
+                # time.sleep(0.1)
+
 
             if not devices.left:
                 setup.update_device_left('')
@@ -182,13 +185,11 @@ class StartScreenCustom(FloatLayout):
             else:
                 setup.update_minor_layout(new_layout)
 
-
     def get_layouts(self):  # get available layouts for the spinner
         if setup.active_layer == 'major':
             return getLayouts('major')
         else:
             return getLayouts('minor')
-
 
     def select_layer(self):
         self.ids.id_sub.state = 'normal'
@@ -383,6 +384,7 @@ class JoystickLeft(Widget):
         setup.save_current_layout()
         print('JoystickLeft')
 
+
 class JoystickLeft2(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_left['LJS'].ascii_set == b'\x30':
@@ -397,6 +399,7 @@ class JoystickLeft2(Widget):
         setup.save_current_layout()
         print('JoystickLeft2')
 
+
 class JoystickRight(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
@@ -410,6 +413,7 @@ class JoystickRight(Widget):
         # setup.save(setup.active_layout)
         setup.save_current_layout()
 
+
 class JoystickRight2(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
@@ -422,6 +426,7 @@ class JoystickRight2(Widget):
             setup.main_right['RJS'].ascii_set = b'\x30'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
 
 class WheelLeft(Widget):
     pass
@@ -457,6 +462,7 @@ class MouseLeft(Widget):
             self.ids.x_mouse_label.text = f'H = {x_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
     def mouse_vertical(self, y_factor):
         if setup.sublayer:
             setup.sub_left['LMV'].ascii_set = y_factor.to_bytes(1, byteorder='big')
@@ -466,6 +472,7 @@ class MouseLeft(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
 
 class MouseRight(Widget):
     def on_kv_post(self, *args):
@@ -503,5 +510,3 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-
-

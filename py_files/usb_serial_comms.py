@@ -16,18 +16,22 @@ class USB_cats:
         self.running = False
         self.get_devices()
 
-        x = threading.Thread(target=self.monitor_ports, args=(), daemon=True)
-        x.start()
+        self.monitoring_thread = threading.Thread(target=self.monitor_ports, args=(), daemon=True)
+        self.monitoring_thread.start()
 
     # finds connected devices and sorts them into left and right
     def get_devices(self):
 
+
         self.running = True
+        print(f'usb_serial_comms.py -> running: {self.running}')
         self.ports_dict = {}
 
         ports_object = serial.tools.list_ports.comports()
         self.available = len(ports_object)
         print(f'usb_serial_comms.py -> available devices: {self.available}')
+
+
 
         for i in range(self.available):
 
@@ -62,15 +66,19 @@ class USB_cats:
                 self.right.append(device)
 
         self.running = False
+        print(f'usb_serial_comms.py -> running: {self.running}')
 
     # monitors usb ports for changes
     def monitor_ports(self):
         ports_count_old = len(serial.tools.list_ports.comports())
+        print(f'usb_serial_comms.py -> monitor_ports')
         while True:
             time.sleep(0.5)
             ports_count = len(serial.tools.list_ports.comports())
             # print(f'ports count {ports_count}')
             if ports_count != ports_count_old:
+                print(f'usb_serial_comms.py -> ports_count: {ports_count}')
+
                 ports_count_old = ports_count
                 self.get_devices()
 
