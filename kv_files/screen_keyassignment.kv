@@ -89,9 +89,10 @@
                     on_release:
                         root.save_button()
                         root.reset()
-                        app.root.get_screen('StartWindow').children[1].update_start_window()
+#                        app.root.get_screen('StartWindow').children[1].update_start_window()
+                        app.root.ids.startscreen.children[0].update_start_window()
 #                        app.root.get_screen('StartWindow').children[1].transmit_layouts()
-                        app.root.current = 'StartWindow' #if not root.hexval_set
+                        app.root.current = 'StartScreen'
 
 
         BoxLayout:
