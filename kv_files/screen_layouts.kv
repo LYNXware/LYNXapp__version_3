@@ -1,12 +1,9 @@
 #:kivy 2.1.0
 
-<LayoutsWindowCustom@BoxLayout>:
-    canvas:
-        Color:
-            rgba: app.theme['background']
-        Rectangle:
-            size: self.size
-            pos: self.pos
+<LayoutsScreenCustom>:
+
+    orientation: 'vertical'
+    ActionBarCustom:
 
     BoxLayout:
         size: root.size

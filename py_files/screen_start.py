@@ -1,21 +1,17 @@
-print("screen_prime.py")
+print("screen_start.py")
 
 import serial.tools.list_ports
 
 from kivy.clock import Clock
-from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
+from kivy.uix.floatlayout import FloatLayout
 
 from py_files.usb_serial_comms import devices
 from py_files.setup import setup
 from py_files.memory import getLayouts, load_layout
 
 
-class StartWindow(Screen):
-    pass
-
-
-class StartWindowCustom(Widget):
+class StartScreenCustom(FloatLayout):
     # def on_touch_down(self, touch):
     #     print(touch)
     count_old = None
@@ -36,24 +32,40 @@ class StartWindowCustom(Widget):
 
         if setup.active_layer == 'major':
             self.ids.spinner_layouts.text = setup.selected_major_layout
-            self.ids.id_major.led_color = self.led_blue
-            self.ids.id_minor.led_color = self.led_off
+            if setup.sublayer:
+                self.ids.id_sub.state = 'down'
+                self.ids.id_major.led_color = self.led_red
+                self.ids.id_minor.led_color = self.led_off
+            else:
+                self.ids.id_major.led_color = self.led_blue
+                self.ids.id_minor.led_color = self.led_off
         else:
             self.ids.spinner_layouts.text = setup.selected_minor_layout
-            self.ids.id_minor.led_color = self.led_green
-            self.ids.id_major.led_color = self.led_off
+            if setup.sublayer:
+                self.ids.id_sub.state = 'down'
+                self.ids.id_minor.led_color = self.led_red
+                self.ids.id_major.led_color = self.led_off
+            else:
+                self.ids.id_minor.led_color = self.led_green
+                self.ids.id_major.led_color = self.led_off
 
         Clock.schedule_interval(self.window_clock_update, 1)
         self.appStarted = False
 
     def window_clock_update(self, *args):
+        # print(f'screen_start.py -> window_clock_update')
 
         if devices.available != self.count_old:
             self.count_old = devices.available
-            print(f'screen_prime.py -> window_clock_update')
+            print(f'screen_start.py -> window_clock_update')
 
+            # wait for serial thread to finish device search
             while devices.running:
-                print(f'screen_prime.py -> devices.running {devices.running}')
+                pass
+                # print(f'screen_start.py -> devices.running {devices.running}')
+                # import time
+                # time.sleep(0.1)
+
 
             if not devices.left:
                 setup.update_device_left('')
@@ -68,7 +80,7 @@ class StartWindowCustom(Widget):
             self.update_start_window()
 
     def update_start_window(self):
-        print(' update_start_window')
+        print(f'screen_start.py -> update_start_window')
         self.ids.start_window.clear_widgets()
 
         if bool(setup.selected_device_left):
@@ -140,7 +152,6 @@ class StartWindowCustom(Widget):
             if 'T00' in thumb_modules:
                 # self.ids.start_window.add_widget(RightThumbTrackball())
                 pass
-
             else:
                 pass
 
@@ -163,6 +174,8 @@ class StartWindowCustom(Widget):
             print('add right spinner')
             self.ids.start_window.add_widget(SpinnerRight())
 
+        print(f'screen_start.py -> update_start_window eeeeeeennnnnndddd')
+
     def update_layout(self, new_layout):
         print(f'start_window_custom.py -> update_layout: {new_layout}')
         # prevent update on startup
@@ -172,13 +185,11 @@ class StartWindowCustom(Widget):
             else:
                 setup.update_minor_layout(new_layout)
 
-
     def get_layouts(self):  # get available layouts for the spinner
         if setup.active_layer == 'major':
             return getLayouts('major')
         else:
             return getLayouts('minor')
-
 
     def select_layer(self):
         self.ids.id_sub.state = 'normal'
@@ -196,7 +207,7 @@ class StartWindowCustom(Widget):
             self.ids.spinner_layouts.text = setup.selected_major_layout
 
     def select_sublayer(self, state):
-        print(f'sublayer state: {state}')
+        print(f'screen_start.py -> select_sublayer: {state}')
         if state == 'down':
             setup.update_sublayer(True)
             if setup.active_layer == 'major':
@@ -209,7 +220,6 @@ class StartWindowCustom(Widget):
                 self.ids.id_major.led_color = self.led_blue
             else:
                 self.ids.id_minor.led_color = self.led_green
-        print(f'sublayer: {setup.sublayer}')
 
     def transmit_layouts(self):
 
@@ -374,6 +384,7 @@ class JoystickLeft(Widget):
         setup.save_current_layout()
         print('JoystickLeft')
 
+
 class JoystickLeft2(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_left['LJS'].ascii_set == b'\x30':
@@ -388,6 +399,7 @@ class JoystickLeft2(Widget):
         setup.save_current_layout()
         print('JoystickLeft2')
 
+
 class JoystickRight(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
@@ -401,6 +413,7 @@ class JoystickRight(Widget):
         # setup.save(setup.active_layout)
         setup.save_current_layout()
 
+
 class JoystickRight2(Widget):
     def steps(self):
         if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
@@ -413,6 +426,7 @@ class JoystickRight2(Widget):
             setup.main_right['RJS'].ascii_set = b'\x30'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
 
 class WheelLeft(Widget):
     pass
@@ -448,6 +462,7 @@ class MouseLeft(Widget):
             self.ids.x_mouse_label.text = f'H = {x_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
     def mouse_vertical(self, y_factor):
         if setup.sublayer:
             setup.sub_left['LMV'].ascii_set = y_factor.to_bytes(1, byteorder='big')
@@ -457,6 +472,7 @@ class MouseLeft(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
 
 class MouseRight(Widget):
     def on_kv_post(self, *args):
@@ -484,7 +500,6 @@ class MouseRight(Widget):
             self.ids.x_mouse_label.text = f'H = {x_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-        print('MouseRight')
 
     def mouse_vertical(self, y_factor):
         if setup.sublayer:
@@ -495,6 +510,3 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-        print('MouseRight')
-
-

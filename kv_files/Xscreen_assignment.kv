@@ -5,14 +5,14 @@
 #:set radius_constant [5]
 
 <AssignmentWindowCustom@BoxLayout>:
-    size: root.size
-    pos: root.pos
-    canvas:
-        Color:
-            rgba: app.theme['background']
-        Rectangle:
-            size: self.size
-            pos: self.pos
+#    size: root.size
+#    pos: root.pos
+#    canvas:
+#        Color:
+#            rgba: app.theme['background']
+#        Rectangle:
+#            size: self.size
+#            pos: self.pos
 	BoxLayout:
 	    size: root.size
         pos: root.pos
@@ -111,8 +111,8 @@
 
 		BoxLayout:          # cat functions
 			size_hint_y: 0.1
-			padding: padding_constant
-			spacing: spacing_constant
+            padding: padding_constant
+            spacing: spacing_constant
             canvas:
                 Color:
                     rgba: backdrop

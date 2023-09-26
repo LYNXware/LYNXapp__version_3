@@ -13,35 +13,42 @@
             with_previous: False
             app_icon: app.path_image_home
             on_release:
-                app.root.current = 'StartWindow'
-                app.root.get_screen('StartWindow').children[1].update_start_window()
+                app.root.current = 'StartScreen'
                 app.root.transition.direction ='down'
+                app.root.ids.startscreen.children[0].update_start_window()
+
 
         ActionButton:
             text: 'Help'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'HelpWindow'
+                app.load_help_screen()
+                app.root.current = 'HelpScreen'
                 app.root.transition.direction ='down'
         ActionButton:
             text: 'Theme'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'ThemeWindow'
+                app.load_theme_screen()
+                app.root.current = 'ThemeScreen'
                 app.root.transition.direction ='down'
         ActionButton:
-            text: 'Settings'
+            text: 'Preferences'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'SettingsWindow'
+                app.load_preferences_screen()
+                app.root.current = 'PreferencesScreen'
                 app.root.transition.direction ='down'
 
         ActionButton:
             text: 'Layouts'
             color: app.theme['gui_text']
             on_release:
-                app.root.current = 'LayoutsWindow'
+                app.load_layouts_screen()
+                app.root.current = 'LayoutsScreen'
                 app.root.transition.direction ='down'
+
+
 
 
 <KeyButton@Button>:
@@ -95,11 +102,15 @@
     on_touch_move: self.moving = True
 
     on_release:
-        app.root.current = 'AssignmentWindow'
+        app.load_key_assignment_screen()
+        app.root.current = 'KeyAssignment'
         app.root.transition.direction ='down'
-        app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
-        app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
-        app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description
+        app.root.ids.keyassignmentscreen.children[0].current_button['name'] = self.name
+        app.root.ids.keyassignmentscreen.children[0].current_button['function'] = self.function
+        app.root.ids.keyassignmentscreen.children[0].current_button['description'] = self.description
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['name'] = self.name
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['function'] = self.function
+#        app.root.get_screen('AssignmentWindow').children[1].current_button['description'] = self.description
 
     BoxLayout:
         id: button_label
