@@ -17,7 +17,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from resource_path import resource_path
 from py_files import __version__
 from py_files.memory import create_memory_dir
+# create a memory directory if it does not exist
+create_memory_dir()
 from py_files.theme import theme
+
 
 
 class StartScreen(Screen):
@@ -122,6 +125,4 @@ class MainApp(App):
 
 if __name__ == '__main__':
     print(f'LYNXapp Version: {__version__}')
-    # create a memory directory if it does not exist
-    create_memory_dir()
     MainApp().run()
