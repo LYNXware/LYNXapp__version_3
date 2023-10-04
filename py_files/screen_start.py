@@ -223,6 +223,28 @@ class StartScreenCustom(FloatLayout):
 
     def transmit_layouts(self):
 
+        if not devices.lynxhub_port:
+            self.transmit_layout_cats()
+        else:
+            self.transmit_layout_hub()
+
+    def transmit_layout_hub(self):
+        print(f'hub port: {devices.lynxhub_port}')
+
+        delimiter_device = bytearray(b'\x01')
+
+        transmit_bytes = self.get_bytes('left') + delimiter_device + self.get_bytes('right')
+
+        serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
+
+        serial_comm.write(transmit_bytes)
+        serial_comm.flush()
+        serial_comm.close()
+
+        print('transmitted bytes: ', transmit_bytes)
+
+    def transmit_layout_cats(self):
+
         print(f'available devices for transmitting >{setup.selected_device_left}< >{setup.selected_device_right}<')
 
         if not setup.selected_device_left:

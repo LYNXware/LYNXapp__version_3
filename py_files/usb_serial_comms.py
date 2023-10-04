@@ -10,6 +10,7 @@ class USB_cats:
 
     def __init__(self):
         self.ports_dict = {}
+        self.lynxhub_port = ''
         self.available = 0
         self.right = []
         self.left = []
@@ -47,26 +48,47 @@ class USB_cats:
 
             time.sleep(0.1)
 
-            cat_variant = serial_comm.readline().decode("utf-8")[:-2]
+            response = serial_comm.readline().decode("utf-8")[:-2]
             serial_comm.close()
-            print(f'usb_serial_comms.py -> cat_variant: >{cat_variant}<')
 
-            if not cat_variant:
+            if "LYNXhub" in response:
+                self.add_lynxhub(comm_port, response)
+                break
+
+            print(f'usb_serial_comms.py -> cat_variant: >{response}<')
+
+            if not response:
                 print('>cat_variant< is empty')
             else:
-                self.ports_dict[cat_variant] = comm_port
+                self.ports_dict[response] = comm_port
 
-        self.right.clear()
-        self.left.clear()
+        # self.right.clear()
+        # self.left.clear()
+        #
+        # for device in list(self.ports_dict.keys()):    # sort devices
+        #     if 'CL' in device:
+        #         self.left.append(device)
+        #     else:
+        #         self.right.append(device)
 
-        for device in list(self.ports_dict.keys()):    # sort devices
-            if 'CL' in device:
-                self.left.append(device)
-            else:
-                self.right.append(device)
+
 
         self.running = False
         print(f'usb_serial_comms.py -> running: {self.running}')
+
+    def add_lynxhub(self, port, response):
+        self.lynxhub_port = port
+        print(f'usb_serial_comms.py -> lynxhub_port: {self.lynxhub_port}')
+
+        cats = response.split(';')
+
+        for cat in cats:    # sort devices
+            if 'CL' in cat:
+                self.left.append(cat.split('_')[1])
+            elif 'CR' in cat:
+                self.right.append(cat.split('_')[1])
+
+
 
     # monitors usb ports for changes
     def monitor_ports(self):
@@ -85,3 +107,6 @@ class USB_cats:
 
 devices = USB_cats()
 
+print(devices.lynxhub_port)
+print(devices.left)
+print(devices.right)
