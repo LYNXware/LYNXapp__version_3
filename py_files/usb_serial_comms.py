@@ -52,6 +52,7 @@ class USB_cats:
             serial_comm.close()
 
             if "LYNXhub" in response:
+                print(f'usb_serial_comms.py -> response: {response}')
                 self.add_lynxhub(comm_port, response)
                 break
 
@@ -80,7 +81,7 @@ class USB_cats:
         self.lynxhub_port = port
         print(f'usb_serial_comms.py -> lynxhub_port: {self.lynxhub_port}')
 
-        cats = response.split(';')
+        cats = response.split(':')
 
         for cat in cats:    # sort devices
             if 'CL' in cat:

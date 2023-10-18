@@ -233,15 +233,37 @@ class StartScreenCustom(FloatLayout):
 
         delimiter_device = bytearray(b'\x01')
 
-        transmit_bytes = self.get_bytes('left') + delimiter_device + self.get_bytes('right')
+        # transmit_bytes = self.get_bytes('left') + delimiter_device + self.get_bytes('right')
 
-        serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
 
-        serial_comm.write(transmit_bytes)
-        serial_comm.flush()
-        serial_comm.close()
 
-        print('transmitted bytes: ', transmit_bytes)
+        events_package = self.get_events_package()
+
+
+
+        # serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
+        #
+        # serial_comm.write(transmit_bytes)
+        # serial_comm.flush()
+        # serial_comm.close()
+        #
+        # print('transmitted bytes: ', transmit_bytes)
+
+
+    def get_events_package(self):
+        print('get_events_package')
+        print(devices.left)
+        print(devices.right)
+
+        if bool(devices.left):
+            self.packup_events('left')
+        if bool(devices.right):
+            self.packup_events('right')
+
+    def packup_events(self, side):
+        print(side)
+
+
 
     def transmit_layout_cats(self):
 
@@ -323,6 +345,10 @@ class StartScreenCustom(FloatLayout):
         bytes_packet.extend(last_byte)
 
         return bytes_packet
+
+
+
+
 
     def check_button_collision(self):
 
