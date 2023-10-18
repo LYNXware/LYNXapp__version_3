@@ -10,6 +10,9 @@ from py_files.usb_serial_comms import devices
 from py_files.setup import setup
 from py_files.memory import getLayouts, load_layout
 
+import py_files.constants as constants
+
+
 
 class StartScreenCustom(FloatLayout):
     # def on_touch_down(self, touch):
@@ -237,31 +240,67 @@ class StartScreenCustom(FloatLayout):
 
 
 
-        events_package = self.get_events_package()
+        layouts_package = self.get_layouts_package()
 
+        serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
 
-
-        # serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
-        #
-        # serial_comm.write(transmit_bytes)
-        # serial_comm.flush()
-        # serial_comm.close()
+        serial_comm.write(layouts_package)
+        serial_comm.flush()
+        serial_comm.close()
         #
         # print('transmitted bytes: ', transmit_bytes)
 
 
-    def get_events_package(self):
-        print('get_events_package')
+    def get_layouts_package(self):
         print(devices.left)
         print(devices.right)
 
+        left_package = bytearray(b'')
+        right_package = bytearray(b'')
+
         if bool(devices.left):
-            self.packup_events('left')
+            left_package = self.packup_events('left')
+            print(left_package)
+            print(left_package[0])
+            print(left_package[1])
+
         if bool(devices.right):
-            self.packup_events('right')
+            right_package = self.packup_events('right')
+            print(right_package)
+            print(right_package[0])
+            print(right_package[1])
+
+        return left_package + right_package
 
     def packup_events(self, side):
         print(side)
+        device_layouts_package = bytearray(b'')
+
+        if side == 'left':
+            device_layouts_package = constants.LEFT_CAT
+            print(device_layouts_package)
+        elif side == 'right':
+            device_layouts_package = constants.RIGHT_CAT
+            print(device_layouts_package)
+        else:
+            device_layouts_package = bytearray(b'')
+
+        major_layout = load_layout('major', setup.selected_major_layout)
+        minor_layout = load_layout('minor', setup.selected_minor_layout)
+
+        layouts = [major_layout['main_' + side],
+                   major_layout['sub_' + side],
+                   minor_layout['main_' + side],
+                   minor_layout['sub_' + side]]
+
+        for layout in layouts:
+            for event in layout.values():
+                device_layouts_package.extend(event.ascii_set)
+                device_layouts_package.extend(constants.DELIMITER_EVENT)
+            device_layouts_package.extend(constants.DELIMITER_LAYOUT)
+
+        return device_layouts_package
+
 
 
 
