@@ -13,6 +13,8 @@ from py_files.memory import getLayouts, load_layout
 import py_files.constants as constants
 
 
+# from py_files.constants import LEFT_CAT, RIGHT_CAT, DELIMITER_EVENT, DELIMITER_LAYOUT
+
 
 class StartScreenCustom(FloatLayout):
     # def on_touch_down(self, touch):
@@ -68,7 +70,6 @@ class StartScreenCustom(FloatLayout):
                 # print(f'screen_start.py -> devices.running {devices.running}')
                 # import time
                 # time.sleep(0.1)
-
 
             if not devices.left:
                 setup.update_device_left('')
@@ -232,58 +233,34 @@ class StartScreenCustom(FloatLayout):
             self.transmit_layout_hub()
 
     def transmit_layout_hub(self):
-        print(f'hub port: {devices.lynxhub_port}')
-
-        delimiter_device = bytearray(b'\x01')
-
-        # transmit_bytes = self.get_bytes('left') + delimiter_device + self.get_bytes('right')
-
-
 
         layouts_package = self.get_layouts_package()
-
         serial_comm = serial.Serial(devices.lynxhub_port, baudrate=115200, timeout=1)
-
         serial_comm.write(layouts_package)
         serial_comm.flush()
         serial_comm.close()
-        #
-        # print('transmitted bytes: ', transmit_bytes)
 
 
     def get_layouts_package(self):
-        print(devices.left)
-        print(devices.right)
 
-        left_package = bytearray(b'')
-        right_package = bytearray(b'')
+        left_package = bytearray()
+        right_package = bytearray()
 
         if bool(devices.left):
             left_package = self.packup_events('left')
-            print(left_package)
-            print(left_package[0])
-            print(left_package[1])
-
         if bool(devices.right):
             right_package = self.packup_events('right')
-            print(right_package)
-            print(right_package[0])
-            print(right_package[1])
 
         return left_package + right_package
 
     def packup_events(self, side):
-        print(side)
-        device_layouts_package = bytearray(b'')
+
+        device_layouts_package = bytearray()
 
         if side == 'left':
-            device_layouts_package = constants.LEFT_CAT
-            print(device_layouts_package)
+            device_layouts_package = bytearray(constants.LEFT_CAT)
         elif side == 'right':
-            device_layouts_package = constants.RIGHT_CAT
-            print(device_layouts_package)
-        else:
-            device_layouts_package = bytearray(b'')
+            device_layouts_package = bytearray(constants.RIGHT_CAT)
 
         major_layout = load_layout('major', setup.selected_major_layout)
         minor_layout = load_layout('minor', setup.selected_minor_layout)
@@ -300,9 +277,6 @@ class StartScreenCustom(FloatLayout):
             device_layouts_package.extend(constants.DELIMITER_LAYOUT)
 
         return device_layouts_package
-
-
-
 
     def transmit_layout_cats(self):
 
@@ -384,10 +358,6 @@ class StartScreenCustom(FloatLayout):
         bytes_packet.extend(last_byte)
 
         return bytes_packet
-
-
-
-
 
     def check_button_collision(self):
 

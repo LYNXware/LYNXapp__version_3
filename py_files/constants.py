@@ -1,9 +1,9 @@
 
-DELIMITER_EVENT = bytearray(b'\x01')
-DELIMITER_LAYOUT = bytearray(b'\x02')
+DELIMITER_EVENT = b'\x01'
+DELIMITER_LAYOUT = b'\x02'
 
-LEFT_CAT = bytearray(b'\x0c')
-RIGHT_CAT = bytearray(b'\x0b')
+LEFT_CAT = b'\x0c'
+RIGHT_CAT = b'\x0b'
 
 # DELIMITER_DEVICE = bytearray(b'\x01')
 # DELIMITER_LAYOUT = bytearray(b'\x02')
