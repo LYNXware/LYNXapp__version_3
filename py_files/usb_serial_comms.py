@@ -55,6 +55,7 @@ class USB_cats:
                 print(f'usb_serial_comms.py -> response: {response}')
                 self.add_lynxhub(comm_port, response)
                 break
+            # else:
 
             print(f'usb_serial_comms.py -> cat_variant: >{response}<')
 
@@ -63,14 +64,14 @@ class USB_cats:
             else:
                 self.ports_dict[response] = comm_port
 
-        # self.right.clear()
-        # self.left.clear()
-        #
-        # for device in list(self.ports_dict.keys()):    # sort devices
-        #     if 'CL' in device:
-        #         self.left.append(device)
-        #     else:
-        #         self.right.append(device)
+        self.right.clear()
+        self.left.clear()
+
+        for device in list(self.ports_dict.keys()):    # sort devices
+            if 'CL' in device:
+                self.left.append(device)
+            else:
+                self.right.append(device)
 
 
 

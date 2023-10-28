@@ -17,3 +17,5 @@ RIGHT_CAT = b'\x0b'
 #
 # CAT_EVENT_MAIN_SUB = bytearray(b'\x10')
 # CAT_EVENT_MAJOR_MINOR = bytearray(b'\x11')
+
+# copilet
