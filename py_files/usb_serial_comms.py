@@ -92,7 +92,7 @@ class USB_cats:
         elif 'CR' in response:
             self.right.append(response)
 
-    #
+
 
 
     def add_lynxhub(self, port, response):
