@@ -23,10 +23,12 @@ class USB_cats:
     # finds connected devices and sorts them into left and right
     def get_devices(self):
 
-
         self.running = True
-        print(f'usb_serial_comms.py -> running: {self.running}')
+        # print(f'usb_serial_comms.py -> running: {self.running}')
         self.ports_dict = {}
+        self.right.clear()
+        self.left.clear()
+
 
         ports_object = serial.tools.list_ports.comports()
         self.available = len(ports_object)
@@ -54,29 +56,45 @@ class USB_cats:
             if "LYNXhub" in response:
                 print(f'usb_serial_comms.py -> response: {response}')
                 self.add_lynxhub(comm_port, response)
-                break
+                # break
+            else:
+                self.add_cats(comm_port, response)
+
+
+
+
+            # print(f'usb_serial_comms.py -> cat_variant: >{response}<')
+            #
+            # if not response:
+            #     print('>cat_variant< is empty')
             # else:
+            #     self.ports_dict[response] = comm_port
 
-            print(f'usb_serial_comms.py -> cat_variant: >{response}<')
-
-            if not response:
-                print('>cat_variant< is empty')
-            else:
-                self.ports_dict[response] = comm_port
-
-        self.right.clear()
-        self.left.clear()
-
-        for device in list(self.ports_dict.keys()):    # sort devices
-            if 'CL' in device:
-                self.left.append(device)
-            else:
-                self.right.append(device)
+        # self.right.clear()
+        # self.left.clear()
+        #
+        # for device in list(self.ports_dict.keys()):    # sort devices
+        #     if 'CL' in device:
+        #         self.left.append(device)
+        #     else:
+        #         self.right.append(device)
 
 
 
         self.running = False
         print(f'usb_serial_comms.py -> running: {self.running}')
+
+
+    def add_cats(self, port, response):
+
+        self.ports_dict[response] = port
+
+        if 'CL' in response:
+            self.left.append(response)
+        elif 'CR' in response:
+            self.right.append(response)
+
+
 
     def add_lynxhub(self, port, response):
         self.lynxhub_port = port
