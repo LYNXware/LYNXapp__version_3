@@ -52,15 +52,14 @@ class USB_cats:
 
             response = serial_comm.readline().decode("utf-8")[:-2]
             serial_comm.close()
+            print(f'usb_serial_comms.py -> response: {response}')
 
             if "LYNXhub" in response:
-                print(f'usb_serial_comms.py -> response: {response}')
+
                 self.add_lynxhub(comm_port, response)
                 # break
             else:
                 self.add_cats(comm_port, response)
-
-
 
 
             # print(f'usb_serial_comms.py -> cat_variant: >{response}<')
@@ -80,7 +79,6 @@ class USB_cats:
         #         self.right.append(device)
 
 
-
         self.running = False
         print(f'usb_serial_comms.py -> running: {self.running}')
 
@@ -94,6 +92,7 @@ class USB_cats:
         elif 'CR' in response:
             self.right.append(response)
 
+    #
 
 
     def add_lynxhub(self, port, response):
