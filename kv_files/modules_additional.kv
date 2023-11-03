@@ -4,13 +4,9 @@
         size: root.size
         pos: root.pos
 
-#        DeviceButton:
-#            name: 'LGL'
-#            custom_pos_hint: 0.3, 0.2
-
-        FloatLayout:
-            size_hint: (0.15, 0.2)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
+        Label:
+            size_hint: (0.15, 0.3)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
             canvas.before:
                 Color:
                     rgba: (0,0,0,0.2)
@@ -18,6 +14,63 @@
                     pos: self.pos
                     size: self.size
                     radius: [10]
+
+        DeviceButton:
+            name: 'LGF'
+            custom_pos_hint: 0.1, 0.3
+        DeviceButton:
+            name: 'LGB'
+            custom_pos_hint: 0.1, 0.1
+        DeviceButton:
+            name: 'LGL'
+            custom_pos_hint: 0.05, 0.2
+        DeviceButton:
+            name: 'LGL'
+            custom_pos_hint: 0.15, 0.2
+
+#        FloatLayout:
+#            size_hint: (0.1, 0.2)
+#            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
+#            canvas.before:
+#                Rotate:
+#                    angle: 45
+#                    origin: self.center
+#                Color:
+#                    rgba: (0,0,0,0.2)
+#                RoundedRectangle:
+#                    pos: self.pos
+#                    size: self.size
+#                    radius: [10]
+
+
+#        DeviceButton:
+#            name: 'LGF'
+#            custom_pos_hint: 0.1, 0.3
+#        DeviceButton:
+#            name: 'LGB'
+#            custom_pos_hint: 0.1, 0.1
+#        DeviceButton:
+#            name: 'LGL'
+#            custom_pos_hint: 0.05, 0.2
+#        DeviceButton:
+#            name: 'LGL'
+#            custom_pos_hint: 0.15, 0.2
+
+#        FloatLayout:
+#
+#            size_hint: (0.1, 0.2)
+#            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
+#            canvas.before:
+##                Rotate:
+##                    angle: 45
+##                    origin: self.center
+#                Color:
+#                    rgba: (0,0,0,0.2)
+#                RoundedRectangle:
+#                    pos: self.pos
+#                    size: self.size
+#                    radius: [10]
+
 
 #            Slider:
 #                id: y_mouse_slider
