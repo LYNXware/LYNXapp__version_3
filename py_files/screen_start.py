@@ -96,10 +96,10 @@ class StartScreenCustom(FloatLayout):
             finger_modules = setup.selected_device_left[7:10]
             additional_modules = setup.selected_device_left[11:14]
 
-            if 'B00' in thumb_modules:
+            if 'K00' in thumb_modules:
                 self.ids.start_window.add_widget(ThumbButtonsLeft())
 
-            elif 'JB0' in thumb_modules:
+            elif 'KJ0' in thumb_modules:
                 if setup.sublayer:
                     if setup.sub_left['LJS'].ascii_set == b'\x31':
                         self.ids.start_window.add_widget(JoystickLeft2())
@@ -114,14 +114,13 @@ class StartScreenCustom(FloatLayout):
             elif 'T00' in thumb_modules:
                 # self.ids.start_window.add_widget(LeftThumbTrackball())
                 pass
-            else:
-                pass
 
-            if 'B00' in finger_modules:
+
+            if 'K00' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsLeft())
                 self.ids.start_window.add_widget(FingerButtonsLeft2())
 
-            elif 'BW0' in finger_modules:
+            elif 'KW0' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsLeft())
                 self.ids.start_window.add_widget(WheelLeft())
             else:
@@ -129,6 +128,9 @@ class StartScreenCustom(FloatLayout):
 
             if 'M00' in additional_modules:
                 self.ids.start_window.add_widget(MouseLeft())
+            elif 'G00' in additional_modules:
+                self.ids.start_window.add_widget(GyroscopeLeft())
+                print('----------------------------------------------add gyroscope')
 
         if bool(setup.selected_device_right):
             # if True:
@@ -140,9 +142,9 @@ class StartScreenCustom(FloatLayout):
             finger_modules = setup.selected_device_right[7:10]
             additional_modules = setup.selected_device_right[11:14]
 
-            if 'B00' in thumb_modules:
+            if 'K00' in thumb_modules:
                 self.ids.start_window.add_widget(ThumbButtonsRight())
-            elif 'JB0' in thumb_modules:
+            elif 'KJ0' in thumb_modules:
                 if setup.sublayer:
                     if setup.sub_right['RJS'].ascii_set == b'\x31':
                         self.ids.start_window.add_widget(JoystickRight2())
@@ -159,10 +161,10 @@ class StartScreenCustom(FloatLayout):
             else:
                 pass
 
-            if 'B00' in finger_modules:
+            if 'K00' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsRight())
                 self.ids.start_window.add_widget(FingerButtonsRight2())
-            elif 'BW0' in finger_modules:
+            elif 'KW0' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsRight())
                 self.ids.start_window.add_widget(WheelRight())
             else:
@@ -178,7 +180,7 @@ class StartScreenCustom(FloatLayout):
             print('add right spinner')
             self.ids.start_window.add_widget(SpinnerRight())
 
-        print(f'screen_start.py -> update_start_window eeeeeeennnnnndddd')
+
 
     def update_layout(self, new_layout):
         print(f'start_window_custom.py -> update_layout: {new_layout}')
@@ -567,3 +569,7 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {y_factor}'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
+
+
+class GyroscopeLeft(Widget):
+    pass

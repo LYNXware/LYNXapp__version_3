@@ -66,13 +66,23 @@ events = [
     'JR2',  # 40
 
     # scroll wheel events
-    'WF',  # 41
-    'WM',  # 42
+    'WM',  # 41
+    'WF',  # 42
     'WB',  # 43
+    'WS',  # 44
 
-    # mouse speed
-    'MH',  # 44
-    'MV'  # 45
+    # mouse
+    'MNF',  # 45 on/off
+    'MH',  # 46
+    'MV',  # 47
+
+    # gyroscope
+    'GNF',  # 48 on/off
+    'GT',  # 49 Trigger
+    'GF',  # 50 forward
+    'GB',  # 51 backward
+    'GL',  # 52 left
+    'GR',  # 53 right
 ]
 
 

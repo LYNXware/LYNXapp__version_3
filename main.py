@@ -79,6 +79,7 @@ class MainApp(App):
 
         Builder.load_file(resource_path('kv_files/screen_start.kv'))
         Builder.load_file(resource_path('kv_files/modules.kv'))
+        Builder.load_file(resource_path('kv_files/modules_additional.kv'))
         Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
         main_kv = Builder.load_file(resource_path('kv_files/main.kv'))
