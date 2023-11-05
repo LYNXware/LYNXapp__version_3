@@ -18,7 +18,7 @@ class USB_cats:
         self.get_devices()
 
         self.monitoring_thread = threading.Thread(target=self.monitor_ports, args=(), daemon=True)
-        self.monitoring_thread.start()
+        # self.monitoring_thread.start()
 
     # finds connected devices and sorts them into left and right
     def get_devices(self):
@@ -55,29 +55,9 @@ class USB_cats:
             print(f'usb_serial_comms.py -> response: {response}')
 
             if "LYNXhub" in response:
-
                 self.add_lynxhub(comm_port, response)
-                # break
             else:
                 self.add_cats(comm_port, response)
-
-
-            # print(f'usb_serial_comms.py -> cat_variant: >{response}<')
-            #
-            # if not response:
-            #     print('>cat_variant< is empty')
-            # else:
-            #     self.ports_dict[response] = comm_port
-
-        # self.right.clear()
-        # self.left.clear()
-        #
-        # for device in list(self.ports_dict.keys()):    # sort devices
-        #     if 'CL' in device:
-        #         self.left.append(device)
-        #     else:
-        #         self.right.append(device)
-
 
         self.running = False
         print(f'usb_serial_comms.py -> running: {self.running}')

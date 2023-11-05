@@ -5,6 +5,12 @@ DELIMITER_LAYOUT = b'\x02'
 LEFT_CAT = b'\x0c'
 RIGHT_CAT = b'\x0b'
 
+
+MOUSE_FUNCTION = b'\x10'
+CAT_FUNCTION = b'\x1a'
+
+
+
 # DELIMITER_DEVICE = bytearray(b'\x01')
 # DELIMITER_LAYOUT = bytearray(b'\x02')
 # DELIMITER_EVENT = bytearray(b'\x03')

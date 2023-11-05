@@ -280,9 +280,31 @@ class StartScreenCustom(FloatLayout):
 
         return device_layouts_package
 
+
+    # def packup_events_cat(self, side):
+    #
+    #     device_layouts_package = bytearray()
+    #
+    #     major_layout = load_layout('major', setup.selected_major_layout)
+    #     minor_layout = load_layout('minor', setup.selected_minor_layout)
+    #
+    #     layouts = [major_layout['main_' + side],
+    #                major_layout['sub_' + side],
+    #                minor_layout['main_' + side],
+    #                minor_layout['sub_' + side]]
+    #
+    #     for layout in layouts:
+    #         for event in layout.values():
+    #             device_layouts_package.extend(event.ascii_set)
+    #             device_layouts_package.extend(constants.DELIMITER_EVENT)
+    #         device_layouts_package.extend(constants.DELIMITER_LAYOUT)
+    #
+    #     return device_layouts_package
+
+
     def transmit_layout_cats(self):
 
-        print(f'available devices for transmitting >{setup.selected_device_left}< >{setup.selected_device_right}<')
+        print(f'connected >{setup.selected_device_left}< >{setup.selected_device_right}<')
 
         if not setup.selected_device_left:
             print('no left device')
@@ -305,6 +327,9 @@ class StartScreenCustom(FloatLayout):
             serial_comm.flush()
             serial_comm.close()
             print('transmitted bytes right: ', self.get_bytes('right'))
+
+
+
 
     def get_bytes(self, side):
         delimiter = constants.DELIMITER_EVENT #bytearray(b'\xff')
