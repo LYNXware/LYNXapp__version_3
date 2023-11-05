@@ -599,6 +599,7 @@ class MouseRight(Widget):
 class GyroscopeLeft(Widget):
 
     def on_kv_post(self, *args):
+        gyro_state = None
         if setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x30':
             gyro_state = 'off'
         elif setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x31':
@@ -607,11 +608,10 @@ class GyroscopeLeft(Widget):
             gyro_state = 'off'
         elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
             gyro_state = 'on'
-
         self.ids.gyro_on_off_left.text = gyro_state
 
     def gyro_on_off(self):
-
+        gyro_state = None
         if setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x30':
             setup.sub_left['LGNF'].ascii_set = b'\x31'
             gyro_state = 'on'
@@ -624,21 +624,5 @@ class GyroscopeLeft(Widget):
         elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
             setup.main_left['LGNF'].ascii_set = b'\x30'
             gyro_state = 'off'
-
         self.ids.gyro_on_off_left.text = gyro_state
-
-
-        # if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
-        #     setup.sub_right['RJS'].ascii_set = b'\x31'
-        #
-        # elif setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x31':
-        #     setup.sub_right['RJS'].ascii_set = b'\x30'
-        #
-        # elif not setup.sublayer and setup.main_right['RJS'].ascii_set == b'\x30':
-        #     setup.main_right['RJS'].ascii_set = b'\x31'
-        #
-        # elif not setup.sublayer and setup.main_right['RJS'].ascii_set == b'\x31':
-        #     setup.main_right['RJS'].ascii_set = b'\x30'
-
-        # setup.save(setup.active_layout)
         setup.save_current_layout()
