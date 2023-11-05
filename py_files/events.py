@@ -95,16 +95,16 @@ events_sub_right = {}
 for i, event in enumerate(events):
     # print(f'i {i}   b {event}')
     if event == 'MH' or event == 'MV':
-        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_2 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_3 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_4 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_2 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_3 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_4 = EventClass(bytearray(b'\x64'), '-', '-') # 100
     else:
         # event_object = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_1 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_2 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_3 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_4 = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x30'), '0', '0')
+        event_object_2 = EventClass(bytearray(b'\x30'), '0', '0')
+        event_object_3 = EventClass(bytearray(b'\x30'), '0', '0')
+        event_object_4 = EventClass(bytearray(b'\x30'), '0', '0')
 
     events_main_left[f'L{event}'] = event_object_1
     events_main_right[f'R{event}'] = event_object_2

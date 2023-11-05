@@ -15,6 +15,16 @@
                     size: self.size
                     radius: [10]
 
+        GUI_Button:
+            id: gyro_on_off_left
+            size_hint: (0.05, 0.05)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
+            text: 'on/off'
+            on_release:
+                root.gyro_on_off()
+#                app.root.ids.startscreen.children[0].update_start_window()
+
+
         DeviceButton:
             name: 'LGF'
             custom_pos_hint: 0.1, 0.3
@@ -25,7 +35,7 @@
             name: 'LGL'
             custom_pos_hint: 0.05, 0.2
         DeviceButton:
-            name: 'LGL'
+            name: 'LGR'
             custom_pos_hint: 0.15, 0.2
 
 #        FloatLayout:

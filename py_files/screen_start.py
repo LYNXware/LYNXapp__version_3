@@ -307,8 +307,8 @@ class StartScreenCustom(FloatLayout):
             print('transmitted bytes right: ', self.get_bytes('right'))
 
     def get_bytes(self, side):
-        delimiter = bytearray(b'\xff')
-        delimiter_layout = bytearray(b'\xfe')
+        delimiter = constants.DELIMITER_EVENT #bytearray(b'\xff')
+        delimiter_layout = constants.DELIMITER_LAYOUT # bytearray(b'\xfe')
         last_byte = b'\xfd'
         bytes_packet = bytearray(b'')
         b1 = None
@@ -572,4 +572,48 @@ class MouseRight(Widget):
 
 
 class GyroscopeLeft(Widget):
-    pass
+
+    def on_kv_post(self, *args):
+        if setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x30':
+            gyro_state = 'off'
+        elif setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x31':
+            gyro_state = 'on'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x30':
+            gyro_state = 'off'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
+            gyro_state = 'on'
+
+        self.ids.gyro_on_off_left.text = gyro_state
+
+    def gyro_on_off(self):
+
+        if setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x30':
+            setup.sub_left['LGNF'].ascii_set = b'\x31'
+            gyro_state = 'on'
+        elif setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x31':
+            setup.sub_left['LGNF'].ascii_set = b'\x30'
+            gyro_state = 'off'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x30':
+            setup.main_left['LGNF'].ascii_set = b'\x31'
+            gyro_state = 'on'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
+            setup.main_left['LGNF'].ascii_set = b'\x30'
+            gyro_state = 'off'
+
+        self.ids.gyro_on_off_left.text = gyro_state
+
+
+        # if setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x30':
+        #     setup.sub_right['RJS'].ascii_set = b'\x31'
+        #
+        # elif setup.sublayer and setup.sub_right['RJS'].ascii_set == b'\x31':
+        #     setup.sub_right['RJS'].ascii_set = b'\x30'
+        #
+        # elif not setup.sublayer and setup.main_right['RJS'].ascii_set == b'\x30':
+        #     setup.main_right['RJS'].ascii_set = b'\x31'
+        #
+        # elif not setup.sublayer and setup.main_right['RJS'].ascii_set == b'\x31':
+        #     setup.main_right['RJS'].ascii_set = b'\x30'
+
+        # setup.save(setup.active_layout)
+        setup.save_current_layout()
