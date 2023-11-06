@@ -567,6 +567,12 @@ class MouseRight(Widget):
             self.ids.x_mouse_slider.value = h
             self.ids.y_mouse_label.text = f'V = {v}'
             self.ids.x_mouse_label.text = f'H = {h}'
+
+            if setup.sub_right['RMNF'].ascii_set == b'\x31':
+                self.ids.mouse_right_toggle_on.state = 'down'
+            else:
+                self.ids.mouse_right_toggle_off.state = 'down'
+
         else:
             h = ord(setup.main_right['RMH'].ascii_set)
             v = ord(setup.main_right['RMV'].ascii_set)
@@ -575,6 +581,12 @@ class MouseRight(Widget):
             self.ids.y_mouse_label.text = f'V = {v}'
             self.ids.x_mouse_label.text = f'H = {h}'
 
+            if setup.main_right['RMNF'].ascii_set == b'\x31':
+                self.ids.mouse_right_toggle_on.state = 'down'
+            else:
+                self.ids.mouse_right_toggle_off.state = 'down'
+
+
     def mouse_horizontal(self, x_factor):
         if setup.sublayer:
             setup.sub_right['RMH'].ascii_set = x_factor.to_bytes(1, byteorder='big')
@@ -582,7 +594,6 @@ class MouseRight(Widget):
         else:
             setup.main_right['RMH'].ascii_set = x_factor.to_bytes(1, byteorder='big')
             self.ids.x_mouse_label.text = f'H = {x_factor}'
-        # setup.save(setup.active_layout)
         setup.save_current_layout()
 
     def mouse_vertical(self, y_factor):
@@ -592,8 +603,23 @@ class MouseRight(Widget):
         else:
             setup.main_right['RMV'].ascii_set = y_factor.to_bytes(1, byteorder='big')
             self.ids.y_mouse_label.text = f'V = {y_factor}'
-        # setup.save(setup.active_layout)
         setup.save_current_layout()
+
+    def mouse_on(self):
+        if setup.sublayer:
+            setup.sub_right['RMNF'].ascii_set = b'\x31'
+        else:
+            setup.main_right['RMNF'].ascii_set = b'\x31'
+        setup.save_current_layout()
+        print('mouse on')
+
+    def mouse_off(self):
+        if setup.sublayer:
+            setup.sub_right['RMNF'].ascii_set = b'\x30'
+        else:
+            setup.main_right['RMNF'].ascii_set = b'\x30'
+        setup.save_current_layout()
+        print('mouse off')
 
 
 class GyroscopeLeft(Widget):

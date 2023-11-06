@@ -152,28 +152,34 @@
 
 
 
-<MySwitch@Switch>:
-    canvas:
-        Color:
-            #rgb: 0.2, 0.709, 0.898, 1
-            rgb: 1, 1, 1, 0
-#            rgba:1, 1, 1, 1
-        Rectangle:
-            size: [sp(41.5), sp(20)]
-            pos: [self.center_x - sp(41.5), self.center_y - sp(10)]
-        Color:
-            rgb: 0.4, 0.4, 0.4, 1
-        Rectangle:
-            size: [sp(41.5), sp(20)]
-            pos: [self.center_x, self.center_y - sp(10)]
-    Label:
-        text: '[b]ON[/b]'
-        markup: True
-        font_size: 13
-        pos: [root.center_x - sp(70), root.center_y - sp(50)]
-    Label:
-        color: 0.75, 0.75, 0.75, 1
-        text: '[b]OFF[/b]'
-        markup: True
-        font_size: 13
-        pos: [root.center_x - sp(30), root.center_y - sp(50)]
+<CustomToggleButton@ToggleButton>:
+    color: app.theme['gui_button_text']
+    background_color: app.theme['gui_button']
+
+
+
+#<MySwitch@Switch>:
+#    canvas:
+#        Color:
+#            #rgb: 0.2, 0.709, 0.898, 1
+#            rgb: 1, 1, 1, 0
+##            rgba:1, 1, 1, 1
+#        Rectangle:
+#            size: [sp(41.5), sp(20)]
+#            pos: [self.center_x - sp(41.5), self.center_y - sp(10)]
+#        Color:
+#            rgb: 0.4, 0.4, 0.4, 1
+#        Rectangle:
+#            size: [sp(41.5), sp(20)]
+#            pos: [self.center_x, self.center_y - sp(10)]
+#    Label:
+#        text: '[b]ON[/b]'
+#        markup: True
+#        font_size: 13
+#        pos: [root.center_x - sp(70), root.center_y - sp(50)]
+#    Label:
+#        color: 0.75, 0.75, 0.75, 1
+#        text: '[b]OFF[/b]'
+#        markup: True
+#        font_size: 13
+#        pos: [root.center_x - sp(30), root.center_y - sp(50)]
