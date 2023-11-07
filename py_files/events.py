@@ -78,7 +78,7 @@ events = [
 
     # gyroscope
     'GNF',  # 48 on/off
-    'GT',  # 49 Trigger
+    'GM',  # 49 with mouse
     'GF',  # 50 forward
     'GB',  # 51 backward
     'GL',  # 52 left

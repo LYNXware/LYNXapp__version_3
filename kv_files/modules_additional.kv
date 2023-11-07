@@ -43,6 +43,8 @@
                 pos_hint: {'center_x': 0.5, 'center_y': 0.4}
                 color: app.theme['gui_text']
 
+
+
 <MouseRight>:
     FloatLayout:
         size: root.size
@@ -97,24 +99,23 @@
         pos: root.pos
 
         BackgroundLabel:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
+            pos_hint: {'center_x': 0.1, 'center_y': 0.17}
 
         GUI_Button:
-            id: gyro_on_off_left
+            id: gyro_left_mouse_on_off
             size_hint: (0.05, 0.05)
             pos_hint: {'center_x': 0.1, 'center_y': 0.2}
             text: 'on/off'
-            on_release:
-                root.gyro_on_off()
+            on_release: root.gyro_mouse_on_off()
+#                root.gyro_on_off()
 #                app.root.ids.startscreen.children[0].update_start_window()
-
 
         DeviceButton:
             name: 'LGF'
-            custom_pos_hint: 0.1, 0.3
+            custom_pos_hint: 0.1, 0.275
         DeviceButton:
             name: 'LGB'
-            custom_pos_hint: 0.1, 0.1
+            custom_pos_hint: 0.1, 0.13
         DeviceButton:
             name: 'LGL'
             custom_pos_hint: 0.05, 0.2
@@ -124,22 +125,25 @@
 
         BoxLayout:
             size_hint: (0.16, 0.05)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
+            pos_hint: {'center_x': 0.1, 'center_y': 0.06}
             CustomToggleButton:
-                id: mouse_right_toggle_on
+                id: gyro_left_toggle_on
                 text: 'always ON'
                 group: 'gyro-left'
-#                on_release: root.mouse_on()
+#                on_release: root.test()
+                on_release: root.gyro_on()
             CustomToggleButton:
-                id: mouse_right_toggle_off
+                id: gyro_left_toggle_off
                 text: 'trigger'
                 group: 'gyro-left'
-#                on_release: root.mouse_o
+                on_release: root.gyro_off()
 #            CustomToggleButton:
 #                id: mouse_right_toggle_off
 #                text: 'OFF'
 #                group: 'gyro-left'
 ##                on_release: root.mouse_o
+
+
 
 
 <BackgroundLabel@Label>:
