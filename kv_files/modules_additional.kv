@@ -53,7 +53,6 @@
         BackgroundLabel:
             pos_hint: {'center_x': 0.9, 'center_y': 0.2}
 
-
         Y_slider:
             id: y_mouse_slider
             pos_hint: {'center_x': 0.97, 'center_y': 0.25}
@@ -97,18 +96,8 @@
     FloatLayout:
         size: root.size
         pos: root.pos
-
         BackgroundLabel:
             pos_hint: {'center_x': 0.1, 'center_y': 0.17}
-
-        GUI_Button:
-            id: gyro_left_mouse_on_off
-            size_hint: (0.05, 0.05)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
-            text: 'on/off'
-            on_release: root.gyro_mouse_on_off()
-#                root.gyro_on_off()
-#                app.root.ids.startscreen.children[0].update_start_window()
 
         DeviceButton:
             name: 'LGF'
@@ -122,6 +111,30 @@
         DeviceButton:
             name: 'LGR'
             custom_pos_hint: 0.15, 0.2
+
+        BoxLayout:
+            size_hint: (0.05, 0.15)
+            pos_hint: {'center_x': 0.22, 'center_y': 0.15}
+            orientation: 'vertical'
+            GUI_Button:
+                id: gyro_left_mouse_on_off
+                text: 'on/off'
+                on_release: root.gyro_mouse_on_off()
+
+            GUI_Button:
+                id: gyro_left_flip_x
+                text: 'flip X'
+                on_release:
+            GUI_Button:
+                id: gyro_left_flip_y
+                text: 'flip Y'
+                on_release:
+            TextInput:
+                id: gyro_left_sensitivity
+                text: 'sensitivity'
+                multiline: False
+#                on_text_validate: root.gyro_sensitivity(self.text)
+
 
         BoxLayout:
             size_hint: (0.16, 0.05)
