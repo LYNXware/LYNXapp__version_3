@@ -47,44 +47,29 @@
     FloatLayout:
         size: root.size
         pos: root.pos
-        FloatLayout:
-            size_hint: (0.15, 0.2)
-            pos_hint: {'center_x': 0.9, 'center_y': 0.25}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
 
-            Slider:
-                id: y_mouse_slider
-                size_hint: (1, 1)
-                pos_hint: {'center_x': 0.9, 'center_y': 0.5}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'vertical'
-                on_value: root.mouse_vertical(self.value)
-            Label:
-                id: y_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-                color: app.theme['gui_text']
+        BackgroundLabel:
+            pos_hint: {'center_x': 0.9, 'center_y': 0.2}
 
-            Slider:
-                id: x_mouse_slider
-                size_hint: (0.8, 1)
-                pos_hint: {'center_x': 0.4, 'center_y': 0.1}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'horizontal'
-                on_value: root.mouse_horizontal(self.value)
-            Label:
-                id: x_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-                color: app.theme['gui_text']
+
+        Y_slider:
+            id: y_mouse_slider
+            pos_hint: {'center_x': 0.97, 'center_y': 0.25}
+            on_value: root.mouse_vertical(self.value)
+        Label:
+            id: y_mouse_label
+            pos_hint: {'center_x': 0.9, 'center_y': 0.3}
+            color: app.theme['gui_text']
+
+        X_slider:
+            id: x_mouse_slider
+            pos_hint: {'center_x': 0.88, 'center_y': 0.15}
+            orientation: 'horizontal'
+            on_value: root.mouse_horizontal(self.value)
+        Label:
+            id: x_mouse_label
+            pos_hint: {'center_x': 0.9, 'center_y': 0.2}
+            color: app.theme['gui_text']
 
         BoxLayout:
             size_hint: (0.15, 0.05)
@@ -111,16 +96,8 @@
         size: root.size
         pos: root.pos
 
-        Label:
-            size_hint: (0.15, 0.3)
+        BackgroundLabel:
             pos_hint: {'center_x': 0.1, 'center_y': 0.2}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
 
         GUI_Button:
             id: gyro_on_off_left
@@ -145,75 +122,46 @@
             name: 'LGR'
             custom_pos_hint: 0.15, 0.2
 
-#        FloatLayout:
-#            size_hint: (0.1, 0.2)
-#            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
-#            canvas.before:
-#                Rotate:
-#                    angle: 45
-#                    origin: self.center
-#                Color:
-#                    rgba: (0,0,0,0.2)
-#                RoundedRectangle:
-#                    pos: self.pos
-#                    size: self.size
-#                    radius: [10]
+        BoxLayout:
+            size_hint: (0.16, 0.05)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
+            CustomToggleButton:
+                id: mouse_right_toggle_on
+                text: 'always ON'
+                group: 'gyro-left'
+#                on_release: root.mouse_on()
+            CustomToggleButton:
+                id: mouse_right_toggle_off
+                text: 'trigger'
+                group: 'gyro-left'
+#                on_release: root.mouse_o
+#            CustomToggleButton:
+#                id: mouse_right_toggle_off
+#                text: 'OFF'
+#                group: 'gyro-left'
+##                on_release: root.mouse_o
 
 
-#        DeviceButton:
-#            name: 'LGF'
-#            custom_pos_hint: 0.1, 0.3
-#        DeviceButton:
-#            name: 'LGB'
-#            custom_pos_hint: 0.1, 0.1
-#        DeviceButton:
-#            name: 'LGL'
-#            custom_pos_hint: 0.05, 0.2
-#        DeviceButton:
-#            name: 'LGL'
-#            custom_pos_hint: 0.15, 0.2
+<BackgroundLabel@Label>:
+    size_hint: (0.18, 0.3)
+    canvas.before:
+        Color:
+            rgba: (0,0,0,0.2)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
 
-#        FloatLayout:
-#
-#            size_hint: (0.1, 0.2)
-#            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
-#            canvas.before:
-##                Rotate:
-##                    angle: 45
-##                    origin: self.center
-#                Color:
-#                    rgba: (0,0,0,0.2)
-#                RoundedRectangle:
-#                    pos: self.pos
-#                    size: self.size
-#                    radius: [10]
+<Y_slider@Slider>:
+    size_hint: (0.1, 0.2)
+    min: 70
+    max: 200
+    step: 1
+    orientation: 'vertical'
 
-
-#            Slider:
-#                id: y_mouse_slider
-#                size_hint: (1, 1)
-#                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
-#                min: 70
-#                max: 200
-#                step: 1
-#                orientation: 'vertical'
-#                on_value: root.mouse_vertical(self.value)
-#            Label:
-#                id: y_mouse_label
-#                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-#                color: app.theme['gui_text']
-#
-#
-#            Slider:
-#                id: x_mouse_slider
-#                size_hint: (0.8, 1)
-#                pos_hint: {'center_x': 0.6, 'center_y': 0.1}
-#                min: 70
-#                max: 200
-#                step: 1
-#                orientation: 'horizontal'
-#                on_value: root.mouse_horizontal(self.value)
-#            Label:
-#                id: x_mouse_label
-#                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-#                color: app.theme['gui_text']
+<X_slider@Slider>:
+    size_hint: (0.15, 0.1)
+    min: 70
+    max: 200
+    step: 1
+    orientation: 'horizontal'

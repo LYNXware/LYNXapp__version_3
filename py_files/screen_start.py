@@ -634,7 +634,7 @@ class GyroscopeLeft(Widget):
             gyro_state = 'off'
         elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
             gyro_state = 'on'
-        self.ids.gyro_on_off_left.text = gyro_state
+        # self.ids.gyro_on_off_left.text = gyro_state
 
     def gyro_on_off(self):
         gyro_state = None

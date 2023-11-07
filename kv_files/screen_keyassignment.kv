@@ -136,14 +136,16 @@
             CellBox:
                 CustomStaticButton:
                     text: 'major / minor'
-                    asciiValue: b'\x1a\xfb' #0xFA 0xFB
+                    asciiValue: b'\x1a\xfa\xfb'
                 CustomStaticButton:
                     text: 'main / sub'
-                    asciiValue: b'\x1a\xfc'  #0xFA 0xFB
+                    asciiValue: b'\x1a\xfa\xfc'
                 CustomStaticButton:
                     text: 'gyro trigger'
-                    asciiValue: b'\x1a\xfd'  #0xFA 0xFB
-
+                    asciiValue: b'\x1a\xfd'
+                CustomStaticButton:
+                    text: 'none'
+                    asciiValue: b'\x1a\xf0'
 
 <CustomDynamicButton>:
     color: app.theme['gui_button_text']
