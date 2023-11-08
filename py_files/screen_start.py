@@ -666,7 +666,7 @@ class GyroscopeLeft(Widget):
         print('gyro off')
 
     def gyro_mouse_on_off(self):
-        gyro_mouse = None
+        gyro_mouse = ''
         if setup.sublayer and setup.sub_left['LGM'].ascii_set == b'\x30':
             setup.sub_left['LGM'].ascii_set = b'\x31'
             gyro_mouse = 'M-ON'
@@ -680,4 +680,6 @@ class GyroscopeLeft(Widget):
             setup.main_left['LGM'].ascii_set = b'\x30'
             gyro_mouse = 'M-OFF'
         self.ids.gyro_left_mouse_on_off.text = gyro_mouse
+        print(gyro_mouse)
         setup.save_current_layout()
+        print(setup.main_left['LGNF'].ascii_set)
