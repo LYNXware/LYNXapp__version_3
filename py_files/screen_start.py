@@ -625,45 +625,83 @@ class MouseRight(Widget):
 class GyroscopeLeft(Widget):
 
     def on_kv_post(self, *args):
-        if setup.sublayer:
+        pass
+        # if setup.sublayer:
+        #
+        #     if setup.sub_left['LGNF'].ascii_set == b'\x31':
+        #         self.ids.gyro_left_toggle_on.state = 'down'
+        #     else:
+        #         self.ids.gyro_left_toggle_off.state = 'down'
+        #
+        #     if setup.sub_left['LGM'].ascii_set == b'\x31':
+        #         self.ids.gyro_left_mouse_on_off.text = 'M-ON'
+        #     else:
+        #         self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
+        #
+        # else:
+        #     if setup.main_left['LGNF'].ascii_set == b'\x31':
+        #         self.ids.gyro_left_toggle_on.state = 'down'
+        #     else:
+        #         self.ids.gyro_left_toggle_off.state = 'down'
+        #
+        #     if setup.main_left['LGM'].ascii_set == b'\x31':
+        #         self.ids.gyro_left_mouse_on_off.text = 'M-ON'
+        #     else:
+        #         self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
 
-            if setup.sub_left['LGNF'].ascii_set == b'\x31':
-                self.ids.gyro_left_toggle_on.state = 'down'
-            else:
-                self.ids.gyro_left_toggle_off.state = 'down'
-
-            if setup.sub_left['LGM'].ascii_set == b'\x31':
-                self.ids.gyro_left_mouse_on_off.text = 'M-ON'
-            else:
-                self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
-
-        else:
-            if setup.main_left['LGNF'].ascii_set == b'\x31':
-                self.ids.gyro_left_toggle_on.state = 'down'
-            else:
-                self.ids.gyro_left_toggle_off.state = 'down'
-
-            if setup.main_left['LGM'].ascii_set == b'\x31':
-                self.ids.gyro_left_mouse_on_off.text = 'M-ON'
-            else:
-                self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
-
-
-    def gyro_on(self):
-        if setup.sublayer:
+    def gyro_on_off(self):
+        gyro = ''
+        if setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x30':
             setup.sub_left['LGNF'].ascii_set = b'\x31'
-        else:
-            setup.main_left['LGNF'].ascii_set = b'\x31'
-        setup.save_current_layout()
-        print('gyro on')
-
-    def gyro_off(self):
-        if setup.sublayer:
+            gyro = 'ON'
+        elif setup.sublayer and setup.sub_left['LGNF'].ascii_set == b'\x31':
             setup.sub_left['LGNF'].ascii_set = b'\x30'
-        else:
+            gyro = 'OFF'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x30':
+            setup.main_left['LGNF'].ascii_set = b'\x31'
+            gyro = 'ON'
+        elif not setup.sublayer and setup.main_left['LGNF'].ascii_set == b'\x31':
             setup.main_left['LGNF'].ascii_set = b'\x30'
+            gyro = 'OFF'
+        self.ids.gyro_left_on_off.text = gyro
+        print(gyro)
         setup.save_current_layout()
-        print('gyro off')
+        print(setup.main_left['LGNF'].ascii_set)
+
+    def gyro_absolute_relative(self):
+        gyro = ''
+        if setup.sublayer and setup.sub_left['LGAR'].ascii_set == b'\x30':
+            setup.sub_left['LGAR'].ascii_set = b'\x31'
+            gyro = 'absolut'
+        elif setup.sublayer and setup.sub_left['LGAR'].ascii_set == b'\x31':
+            setup.sub_left['LGAR'].ascii_set = b'\x30'
+            gyro = 'relativ'
+        elif not setup.sublayer and setup.main_left['LGAR'].ascii_set == b'\x30':
+            setup.main_left['LGAR'].ascii_set = b'\x31'
+            gyro = 'absolut'
+        elif not setup.sublayer and setup.main_left['LGAR'].ascii_set == b'\x31':
+            setup.main_left['LGAR'].ascii_set = b'\x30'
+            gyro = 'relativ'
+        self.ids.gyro_left_absolute_relative.text = gyro
+        print(gyro)
+        setup.save_current_layout()
+        print(setup.main_left['LGAR'].ascii_set)
+
+    # def gyro_on(self):
+    #     if setup.sublayer:
+    #         setup.sub_left['LGNF'].ascii_set = b'\x31'
+    #     else:
+    #         setup.main_left['LGNF'].ascii_set = b'\x31'
+    #     setup.save_current_layout()
+    #     print('gyro on')
+    #
+    # def gyro_off(self):
+    #     if setup.sublayer:
+    #         setup.sub_left['LGNF'].ascii_set = b'\x30'
+    #     else:
+    #         setup.main_left['LGNF'].ascii_set = b'\x30'
+    #     setup.save_current_layout()
+    #     print('gyro off')
 
     def gyro_mouse_on_off(self):
         gyro_mouse = ''

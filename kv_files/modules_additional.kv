@@ -139,17 +139,29 @@
         BoxLayout:
             size_hint: (0.16, 0.05)
             pos_hint: {'center_x': 0.1, 'center_y': 0.06}
-            CustomToggleButton:
-                id: gyro_left_toggle_on
+            GUI_Button:
+                id: gyro_left_on_off
                 text: 'always ON'
-                group: 'gyro-left'
-#                on_release: root.test()
-                on_release: root.gyro_on()
-            CustomToggleButton:
-                id: gyro_left_toggle_off
-                text: 'trigger'
-                group: 'gyro-left'
-                on_release: root.gyro_off()
+                on_release: root.gyro_on_off()
+
+            GUI_Button:
+                text: 'absolute/relative'
+                id: gyro_left_absolute_relative
+                on_release: root.gyro_absolute_relative()
+
+
+
+#            CustomToggleButton:
+#                id: gyro_left_toggle_on
+#                text: 'always ON'
+#                group: 'gyro-left'
+##                on_release: root.test()
+#                on_release: root.gyro_on()
+#            CustomToggleButton:
+#                id: gyro_left_toggle_off
+#                text: 'trigger'
+#                group: 'gyro-left'
+#                on_release: root.gyro_off()
 
 
 

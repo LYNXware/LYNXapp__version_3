@@ -78,15 +78,15 @@ events = [
 
     # gyroscope
     'GNF',  # 48 on/off
-    'GM',   # 49 with mouse
-    'GMSF',  # 50 mouse speed factor
-    'GMXD',  # 51 mouse x direction
-    'GMYD',  # 52 mouse y direction
-    'GF',    # 53 forward
-    'GB',   # 54 backward
-    'GL',   # 55 left
-    'GR',   # 56 right
-    'test'
+    'GAR',   # 49 absolute/relative
+    'GM',   # 50 with mouse
+    'GMSF',  # 51 mouse speed factor
+    'GMXD',  # 52 mouse x direction
+    'GMYD',  # 53 mouse y direction
+    'GF',    # 54 forward
+    'GB',   # 55 backward
+    'GL',   # 56 left
+    'GR',   # 57 right
 ]
 
 
@@ -103,11 +103,11 @@ for i, event in enumerate(events):
         event_object_2 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_3 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_4 = EventClass(bytearray(b'\x64'), '-', '-') # 100
-    elif event == 'GNF' or event == 'GM':
-        event_object_1 = EventClass(bytearray(b'\x30'), '0', '0')
-        event_object_2 = EventClass(bytearray(b'\x30'), '0', '0')
-        event_object_3 = EventClass(bytearray(b'\x30'), '0', '0')
-        event_object_4 = EventClass(bytearray(b'\x30'), '0', '0')
+    elif event == 'GNF' or event == 'GM' or event == 'GAR':
+        event_object_1 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_2 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_3 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_4 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
     else:
         # event_object = EventClass(bytearray(b'\x30'), '-', '-')
         # event_object_1 = EventClass(bytearray(b'\x30'), '0', '0')
