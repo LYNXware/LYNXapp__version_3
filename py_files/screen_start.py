@@ -672,16 +672,16 @@ class GyroscopeLeft(Widget):
         gyro = ''
         if setup.sublayer and setup.sub_left['LGAR'].ascii_set == b'\x30':
             setup.sub_left['LGAR'].ascii_set = b'\x31'
-            gyro = 'absolut'
+            gyro = 'relativ'
         elif setup.sublayer and setup.sub_left['LGAR'].ascii_set == b'\x31':
             setup.sub_left['LGAR'].ascii_set = b'\x30'
-            gyro = 'relativ'
+            gyro = 'absolut'
         elif not setup.sublayer and setup.main_left['LGAR'].ascii_set == b'\x30':
             setup.main_left['LGAR'].ascii_set = b'\x31'
-            gyro = 'absolut'
+            gyro = 'relativ'
         elif not setup.sublayer and setup.main_left['LGAR'].ascii_set == b'\x31':
             setup.main_left['LGAR'].ascii_set = b'\x30'
-            gyro = 'relativ'
+            gyro = 'absolut'
         self.ids.gyro_left_absolute_relative.text = gyro
         print(gyro)
         setup.save_current_layout()
