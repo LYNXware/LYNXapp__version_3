@@ -200,6 +200,8 @@
             name: 'RP5'
             id: RP3
             custom_pos_hint: 0.9389350268685882, 0.45101663585951945
+
+
 <FingerButtonsRight2>:
     FloatLayout:
         size: root.size
@@ -353,15 +355,15 @@
         pos: root.pos
 
         Label:
-            size_hint: (0.045, 0.25)
-            pos_hint: {'center_x': 0.59, 'center_y': 0.645}
+            size_hint: (0.045, 0.325)
+            pos_hint: {'center_x': 0.59, 'center_y': 0.615}
             canvas.before:
                 Color:
                     rgba: (0,0,0,0.3)
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]
+                    radius: [10]
 
         DeviceButton:
             name: 'RWB'
@@ -372,6 +374,11 @@
         DeviceButton:
             name: 'RWF'
             custom_pos_hint: 0.59, 0.73
+        CustomTextInput:
+            id: right_ws
+            size_hint: (0.04, 0.05)
+            pos_hint: {'center_x': 0.59, 'center_y': 0.488}
+            on_text_validate: root.set_wheel_speed(self.text)
 
 
 

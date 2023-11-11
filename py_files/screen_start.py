@@ -517,7 +517,44 @@ class WheelLeft(Widget):
 
 
 class WheelRight(Widget):
-    pass
+
+    def on_kv_post(self, *args):
+        ws = ''
+        if setup.sublayer:
+            try:
+                # ws = ord(setup.sub_right['RWS'].ascii_set)
+                ws = setup.sub_right['RWS'].ascii_set
+            except:
+                ws = '0'
+        else:
+            try:
+                # ws = ord(setup.main_right['RWS'].ascii_set)
+                ws = setup.main_right['RWS'].ascii_set
+            except:
+                ws = '0'
+        print(f'wheel speed {ws}')
+        print(f'wheel speed {type(ws)}')
+        # self.ids.right_ws.text = str(ws)
+        self.ids.right_ws.text = ws
+
+
+    def set_wheel_speed(self, speed):
+        s = bytearray()
+        s = speed.encode('ascii')
+        # s = (int(speed)+48).to_bytes(1, byteorder='big')
+        if setup.sublayer:
+            setup.sub_right['RWS'].ascii_set = s
+            # setup.sub_right['RWS'].ascii_set = speed_int.to_bytes(1, byteorder='big')
+        else:
+            setup.main_right['RWS'].ascii_set = s
+            # setup.main_right['RWS'].ascii_set = speed_int.to_bytes(1, byteorder='big')
+        setup.save_current_layout()
+        print(f'wheel speed {s}')
+        #how to pint in HEX
+        print(f'wheel speed {s.hex()}')
+        print(f'RWS {setup.main_right["RWS"].ascii_set.hex()}')
+        print(f'RWS {setup.main_right["RWS"].ascii_set}')
+
 
 
 class MouseLeft(Widget):
@@ -625,7 +662,38 @@ class MouseRight(Widget):
 class GyroscopeLeft(Widget):
 
     def on_kv_post(self, *args):
-        pass
+        if setup.sublayer:
+            if setup.sub_left['LGNF'].ascii_set == b'\x31':
+                self.ids.gyro_left_on_off.text = 'ON'
+            else:
+                self.ids.gyro_left_on_off.text = 'OFF'
+
+            if setup.sub_left['LGAR'].ascii_set == b'\x31':
+                self.ids.gyro_left_absolute_relative.text = 'relativ'
+            else:
+                self.ids.gyro_left_absolute_relative.text = 'absolut'
+
+            if setup.sub_left['LGM'].ascii_set == b'\x31':
+                self.ids.gyro_left_mouse_on_off.text = 'M-ON'
+            else:
+                self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
+
+        else:
+            if setup.main_left['LGNF'].ascii_set == b'\x31':
+                self.ids.gyro_left_on_off.text = 'ON'
+            else:
+                self.ids.gyro_left_on_off.text = 'OFF'
+
+            if setup.main_left['LGAR'].ascii_set == b'\x31':
+                self.ids.gyro_left_absolute_relative.text = 'relativ'
+            else:
+                self.ids.gyro_left_absolute_relative.text = 'absolut'
+
+            if setup.main_left['LGM'].ascii_set == b'\x31':
+                self.ids.gyro_left_mouse_on_off.text = 'M-ON'
+            else:
+                self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
+
         # if setup.sublayer:
         #
         #     if setup.sub_left['LGNF'].ascii_set == b'\x31':
