@@ -124,11 +124,11 @@
             GUI_Button:
                 id: gyro_left_flip_x
                 text: 'flip X'
-                on_release:
+                on_release: root.gyro_flip_x()
             GUI_Button:
                 id: gyro_left_flip_y
                 text: 'flip Y'
-                on_release:
+                on_release: root.gyro_flip_y()
             CustomTextInput:
                 id: gyro_left_sensitivity
                 text: 'ee'

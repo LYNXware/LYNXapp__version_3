@@ -103,26 +103,22 @@ for i, event in enumerate(events):
         event_object_2 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_3 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_4 = EventClass(bytearray(b'\x64'), '-', '-') # 100
-    elif event == 'WS' or event == 'GMSF':
+    elif event == 'MNF' or  event == 'WS' or event == 'GMSF':
         event_object_1 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_2 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_3 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_4 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
-    elif event == 'GNF' or event == 'GM' or event == 'GAR':
+    elif event == 'GNF' or event == 'GM' or event == 'GAR' or event == 'GMXD' or event == 'GMYD':
         event_object_1 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
         event_object_2 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
         event_object_3 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
         event_object_4 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
     else:
-        # event_object = EventClass(bytearray(b'\x30'), '-', '-')
-        # event_object_1 = EventClass(bytearray(b'\x30'), '0', '0')
-        # event_object_2 = EventClass(bytearray(b'\x30'), '0', '0')
-        # event_object_3 = EventClass(bytearray(b'\x30'), '0', '0')
-        # event_object_4 = EventClass(bytearray(b'\x30'), '0', '0')
         event_object_1 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
         event_object_2 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
         event_object_3 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
         event_object_4 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
+
     events_main_left[f'L{event}'] = event_object_1
     events_main_right[f'R{event}'] = event_object_2
     events_sub_left[f'L{event}'] = event_object_3

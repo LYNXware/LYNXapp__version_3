@@ -535,7 +535,7 @@ class WheelRight(Widget):
         print(f'wheel speed {ws}')
         print(f'wheel speed {type(ws)}')
         # self.ids.right_ws.text = str(ws)
-        self.ids.right_ws.text = ws
+        self.ids.right_ws.text = ws.decode('ascii')
 
 
     def set_wheel_speed(self, speed):
@@ -678,6 +678,16 @@ class GyroscopeLeft(Widget):
             else:
                 self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
 
+            if setup.sub_left['LGMXD'].ascii_set == b'\x30':
+                self.ids.gyro_left_flip_x.text = 'X=0'
+            else:
+                self.ids.gyro_left_flip_x.text = 'X=180'
+
+            if setup.sub_left['LGMYD'].ascii_set == b'\x30':
+                self.ids.gyro_left_flip_y.text = 'Y=0'
+            else:
+                self.ids.gyro_left_flip_y.text = 'Y=180'
+
         else:
             if setup.main_left['LGNF'].ascii_set == b'\x31':
                 self.ids.gyro_left_on_off.text = 'ON'
@@ -694,28 +704,16 @@ class GyroscopeLeft(Widget):
             else:
                 self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
 
-        # if setup.sublayer:
-        #
-        #     if setup.sub_left['LGNF'].ascii_set == b'\x31':
-        #         self.ids.gyro_left_toggle_on.state = 'down'
-        #     else:
-        #         self.ids.gyro_left_toggle_off.state = 'down'
-        #
-        #     if setup.sub_left['LGM'].ascii_set == b'\x31':
-        #         self.ids.gyro_left_mouse_on_off.text = 'M-ON'
-        #     else:
-        #         self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
-        #
-        # else:
-        #     if setup.main_left['LGNF'].ascii_set == b'\x31':
-        #         self.ids.gyro_left_toggle_on.state = 'down'
-        #     else:
-        #         self.ids.gyro_left_toggle_off.state = 'down'
-        #
-        #     if setup.main_left['LGM'].ascii_set == b'\x31':
-        #         self.ids.gyro_left_mouse_on_off.text = 'M-ON'
-        #     else:
-        #         self.ids.gyro_left_mouse_on_off.text = 'M-OFF'
+            if setup.main_left['LGMXD'].ascii_set == b'\x30':
+                self.ids.gyro_left_flip_x.text = 'X=0'
+            else:
+                self.ids.gyro_left_flip_x.text = 'X=180'
+
+            if setup.main_left['LGMYD'].ascii_set == b'\x30':
+                self.ids.gyro_left_flip_y.text = 'Y=0'
+            else:
+                self.ids.gyro_left_flip_y.text = 'Y=180'
+
 
     def gyro_on_off(self):
         gyro = ''
@@ -755,22 +753,6 @@ class GyroscopeLeft(Widget):
         setup.save_current_layout()
         print(setup.main_left['LGAR'].ascii_set)
 
-    # def gyro_on(self):
-    #     if setup.sublayer:
-    #         setup.sub_left['LGNF'].ascii_set = b'\x31'
-    #     else:
-    #         setup.main_left['LGNF'].ascii_set = b'\x31'
-    #     setup.save_current_layout()
-    #     print('gyro on')
-    #
-    # def gyro_off(self):
-    #     if setup.sublayer:
-    #         setup.sub_left['LGNF'].ascii_set = b'\x30'
-    #     else:
-    #         setup.main_left['LGNF'].ascii_set = b'\x30'
-    #     setup.save_current_layout()
-    #     print('gyro off')
-
     def gyro_mouse_on_off(self):
         gyro_mouse = ''
         if setup.sublayer and setup.sub_left['LGM'].ascii_set == b'\x30':
@@ -789,3 +771,37 @@ class GyroscopeLeft(Widget):
         print(gyro_mouse)
         setup.save_current_layout()
         print(setup.main_left['LGNF'].ascii_set)
+
+    def gyro_flip_x(self):
+        gyro_flip_x = ''
+        if setup.sublayer and setup.sub_left['LGMXD'].ascii_set == b'\x30':
+            setup.sub_left['LGMXD'].ascii_set = b'\x31'
+            gyro_flip_x = 'X=180'
+        elif setup.sublayer and setup.sub_left['LGMXD'].ascii_set == b'\x31':
+            setup.sub_left['LGMXD'].ascii_set = b'\x30'
+            gyro_flip_x = 'X=0'
+        elif not setup.sublayer and setup.main_left['LGMXD'].ascii_set == b'\x30':
+            setup.main_left['LGMXD'].ascii_set = b'\x31'
+            gyro_flip_x = 'X=180'
+        elif not setup.sublayer and setup.main_left['LGMXD'].ascii_set == b'\x31':
+            setup.main_left['LGMXD'].ascii_set = b'\x30'
+            gyro_flip_x = 'X=0'
+        self.ids.gyro_left_flip_x.text = gyro_flip_x
+        setup.save_current_layout()
+
+    def gyro_flip_y(self):
+        gyro_flip_y = ''
+        if setup.sublayer and setup.sub_left['LGMYD'].ascii_set == b'\x30':
+            setup.sub_left['LGMYD'].ascii_set = b'\x31'
+            gyro_flip_y = 'Y=180'
+        elif setup.sublayer and setup.sub_left['LGMYD'].ascii_set == b'\x31':
+            setup.sub_left['LGMYD'].ascii_set = b'\x30'
+            gyro_flip_y = 'Y=0'
+        elif not setup.sublayer and setup.main_left['LGMYD'].ascii_set == b'\x30':
+            setup.main_left['LGMYD'].ascii_set = b'\x31'
+            gyro_flip_y = 'Y=180'
+        elif not setup.sublayer and setup.main_left['LGMYD'].ascii_set == b'\x31':
+            setup.main_left['LGMYD'].ascii_set = b'\x30'
+            gyro_flip_y = 'Y=0'
+        self.ids.gyro_left_flip_y.text = gyro_flip_y
+        setup.save_current_layout()
