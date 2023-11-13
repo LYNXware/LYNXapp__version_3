@@ -79,10 +79,13 @@ events = [
     # gyroscope
     'GNF',  # 48 on/off
     'GAR',   # 49 absolute/relative
+    'GDZ',   # 50 dead zone
+
     'GM',   # 50 with mouse
     'GMSF',  # 51 mouse speed factor
     'GMXD',  # 52 mouse x direction
     'GMYD',  # 53 mouse y direction
+
     'GF',    # 54 forward
     'GB',   # 55 backward
     'GL',   # 56 left
