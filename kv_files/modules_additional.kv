@@ -50,7 +50,7 @@
         size: root.size
         pos: root.pos
 
-        BackgroundLabel:
+        BackgroundMouse:
             pos_hint: {'center_x': 0.9, 'center_y': 0.2}
 
         Y_slider:
@@ -90,14 +90,12 @@
 
 
 
-
-
 <GyroscopeLeft>:
     FloatLayout:
         size: root.size
         pos: root.pos
-        BackgroundLabel:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.17}
+        BackgroundGyro:
+            pos_hint: {'center_x': 0.134, 'center_y': 0.17}
 
         DeviceButton:
             name: 'LGF'
@@ -114,13 +112,12 @@
 
         BoxLayout:
             size_hint: (0.05, 0.2)
-            pos_hint: {'center_x': 0.22, 'center_y': 0.15}
+            pos_hint: {'center_x': 0.22, 'center_y': 0.2}
             orientation: 'vertical'
             GUI_Button:
                 id: gyro_left_mouse_on_off
                 text: 'on/off'
                 on_release: root.gyro_mouse_on_off()
-
             GUI_Button:
                 id: gyro_left_flip_x
                 text: 'flip X'
@@ -130,14 +127,14 @@
                 text: 'flip Y'
                 on_release: root.gyro_flip_y()
             CustomTextInput:
-                id: gyro_left_sensitivity
+                id: gyro_left_speed
                 text: 'ee'
                 multiline: False
-#                on_text_validate: root.gyro_sensitivity(self.text)
+                on_text_validate: root.gyro_set_speed(self.text)
 
 
         BoxLayout:
-            size_hint: (0.16, 0.05)
+            size_hint: (0.15, 0.05)
             pos_hint: {'center_x': 0.1, 'center_y': 0.06}
             GUI_Button:
                 id: gyro_left_on_off
@@ -151,23 +148,23 @@
 
 
 
-#            CustomToggleButton:
-#                id: gyro_left_toggle_on
-#                text: 'always ON'
-#                group: 'gyro-left'
-##                on_release: root.test()
-#                on_release: root.gyro_on()
-#            CustomToggleButton:
-#                id: gyro_left_toggle_off
-#                text: 'trigger'
-#                group: 'gyro-left'
-#                on_release: root.gyro_off()
+
+
+
+<BackgroundGyro@Label>:
+    size_hint: (0.24, 0.3)
+    canvas.before:
+        Color:
+            rgba: (0,0,0,0.2)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
 
 
 
 
-
-<BackgroundLabel@Label>:
+<BackgroundMouse@Label>:
     size_hint: (0.18, 0.3)
     canvas.before:
         Color:
@@ -177,6 +174,10 @@
             size: self.size
             radius: [10]
 
+
+
+
+
 <Y_slider@Slider>:
     size_hint: (0.1, 0.2)
     min: 70
@@ -184,9 +185,15 @@
     step: 1
     orientation: 'vertical'
 
+
+
+
 <X_slider@Slider>:
     size_hint: (0.15, 0.1)
     min: 70
     max: 200
     step: 1
     orientation: 'horizontal'
+
+
+

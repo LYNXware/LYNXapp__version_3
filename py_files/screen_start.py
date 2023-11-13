@@ -532,29 +532,17 @@ class WheelRight(Widget):
                 ws = setup.main_right['RWS'].ascii_set
             except:
                 ws = '0'
-        print(f'wheel speed {ws}')
-        print(f'wheel speed {type(ws)}')
-        # self.ids.right_ws.text = str(ws)
         self.ids.right_ws.text = ws.decode('ascii')
 
 
     def set_wheel_speed(self, speed):
-        s = bytearray()
+        # s = bytearray()
         s = speed.encode('ascii')
-        # s = (int(speed)+48).to_bytes(1, byteorder='big')
         if setup.sublayer:
             setup.sub_right['RWS'].ascii_set = s
-            # setup.sub_right['RWS'].ascii_set = speed_int.to_bytes(1, byteorder='big')
         else:
             setup.main_right['RWS'].ascii_set = s
-            # setup.main_right['RWS'].ascii_set = speed_int.to_bytes(1, byteorder='big')
         setup.save_current_layout()
-        print(f'wheel speed {s}')
-        #how to pint in HEX
-        print(f'wheel speed {s.hex()}')
-        print(f'RWS {setup.main_right["RWS"].ascii_set.hex()}')
-        print(f'RWS {setup.main_right["RWS"].ascii_set}')
-
 
 
 class MouseLeft(Widget):
@@ -688,6 +676,9 @@ class GyroscopeLeft(Widget):
             else:
                 self.ids.gyro_left_flip_y.text = 'Y=180'
 
+            self.ids.gyro_left_speed.text = setup.sub_left['LGMSF'].ascii_set.decode('ascii')
+
+
         else:
             if setup.main_left['LGNF'].ascii_set == b'\x31':
                 self.ids.gyro_left_on_off.text = 'ON'
@@ -714,6 +705,7 @@ class GyroscopeLeft(Widget):
             else:
                 self.ids.gyro_left_flip_y.text = 'Y=180'
 
+            self.ids.gyro_left_speed.text = setup.main_left['LGMSF'].ascii_set.decode('ascii')
 
     def gyro_on_off(self):
         gyro = ''
@@ -804,4 +796,12 @@ class GyroscopeLeft(Widget):
             setup.main_left['LGMYD'].ascii_set = b'\x30'
             gyro_flip_y = 'Y=0'
         self.ids.gyro_left_flip_y.text = gyro_flip_y
+        setup.save_current_layout()
+
+    def gyro_set_speed(self, speed):
+        s = speed.encode('ascii')
+        if setup.sublayer:
+            setup.sub_left['LGMSF'].ascii_set = s
+        else:
+            setup.main_left['LGMSF'].ascii_set = s
         setup.save_current_layout()
