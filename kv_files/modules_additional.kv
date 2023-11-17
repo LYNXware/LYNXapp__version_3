@@ -89,7 +89,6 @@
 
 
 
-
 <GyroscopeLeft>:
     FloatLayout:
         size: root.size
@@ -166,6 +165,77 @@
 
 
 
+<GyroscopeRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        BackgroundGyro:
+            pos_hint: {'center_x': 0.866, 'center_y': 0.17}
+
+        DeviceButton:
+            name: 'RGF'
+            custom_pos_hint: 0.9, 0.275
+        DeviceButton:
+            name: 'RGB'
+            custom_pos_hint: 0.9, 0.13
+        DeviceButton:
+            name: 'RGL'
+            custom_pos_hint: 0.85, 0.2
+        DeviceButton:
+            name: 'RGR'
+            custom_pos_hint: 0.95, 0.2
+
+        BoxLayout:
+            size_hint: (0.05, 0.25)
+            pos_hint: {'center_x': 0.78, 'center_y': 0.18}
+            orientation: 'vertical'
+            GUI_Button:
+                id: gyro_right_mouse_on_off
+                text: 'on/off'
+                on_release: root.gyro_mouse_on_off()
+            GUI_Button:
+                id: gyro_right_flip_x
+                text: 'flip X'
+                on_release: root.gyro_flip_x()
+            GUI_Button:
+                id: gyro_right_flip_y
+                text: 'flip Y'
+                on_release: root.gyro_flip_y()
+            BoxLayout:
+                Label:
+                    text: 'SF'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_right_speed
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_speed(self.text)
+            BoxLayout:
+                Label:
+                    text: 'DZ'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_right_deadzone
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_deadzone(self.text)
+
+        BoxLayout:
+            size_hint: (0.15, 0.05)
+            pos_hint: {'center_x': 0.9, 'center_y': 0.06}
+            GUI_Button:
+                id: gyro_right_on_off
+                text: 'always ON'
+                on_release: root.gyro_on_off()
+
+            GUI_Button:
+                text: 'absolute/relative'
+                id: gyro_right_absolute_relative
+                on_release: root.gyro_absolute_relative()
+
+
+
+
 <BackgroundGyro@Label>:
     size_hint: (0.24, 0.3)
     canvas.before:
@@ -175,7 +245,6 @@
             pos: self.pos
             size: self.size
             radius: [10]
-
 
 
 
@@ -191,15 +260,12 @@
 
 
 
-
-
 <Y_slider@Slider>:
     size_hint: (0.1, 0.2)
     min: 70
     max: 200
     step: 1
     orientation: 'vertical'
-
 
 
 

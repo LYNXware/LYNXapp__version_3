@@ -88,10 +88,6 @@ class StartScreenCustom(FloatLayout):
         self.ids.start_window.clear_widgets()
 
         if bool(setup.selected_device_left):
-            # if True:
-            # finger_modules = 'BW0'
-            # thumb_modules = 'BJ0'
-            # additional_modules = '000'
             thumb_modules = setup.selected_device_left[3:6]
             finger_modules = setup.selected_device_left[7:10]
             additional_modules = setup.selected_device_left[11:14]
@@ -119,7 +115,6 @@ class StartScreenCustom(FloatLayout):
             if 'K00' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsLeft())
                 self.ids.start_window.add_widget(FingerButtonsLeft2())
-
             elif 'KW0' in finger_modules:
                 self.ids.start_window.add_widget(FingerButtonsLeft())
                 self.ids.start_window.add_widget(WheelLeft())
@@ -130,14 +125,8 @@ class StartScreenCustom(FloatLayout):
                 self.ids.start_window.add_widget(MouseLeft())
             elif 'G00' in additional_modules:
                 self.ids.start_window.add_widget(GyroscopeLeft())
-                print('----------------------------------------------add gyroscope')
 
         if bool(setup.selected_device_right):
-            # if True:
-            #     finger_modules = 'BW0'
-            #     thumb_modules = 'BJ0'
-            #     additional_modules = '000'
-
             thumb_modules = setup.selected_device_right[3:6]
             finger_modules = setup.selected_device_right[7:10]
             additional_modules = setup.selected_device_right[11:14]
@@ -172,6 +161,8 @@ class StartScreenCustom(FloatLayout):
 
             if 'M00' in additional_modules:
                 self.ids.start_window.add_widget(MouseRight())
+            elif 'G00' in additional_modules:
+                self.ids.start_window.add_widget(GyroscopeRight())
 
         if len(devices.left) > 1:
             print('add left spinner')
@@ -179,7 +170,6 @@ class StartScreenCustom(FloatLayout):
         if len(devices.right) > 1:
             print('add right spinner')
             self.ids.start_window.add_widget(SpinnerRight())
-
 
 
     def update_layout(self, new_layout):
@@ -815,3 +805,165 @@ class GyroscopeLeft(Widget):
         else:
             setup.main_left['LGDZ'].ascii_set = d
         setup.save_current_layout()
+
+
+class GyroscopeRight(Widget):
+
+        def on_kv_post(self, *args):
+            if setup.sublayer:
+                if setup.sub_right['RGNF'].ascii_set == b'\x31':
+                    self.ids.gyro_right_on_off.text = 'ON'
+                else:
+                    self.ids.gyro_right_on_off.text = 'OFF'
+
+                if setup.sub_right['RGAR'].ascii_set == b'\x31':
+                    self.ids.gyro_right_absolute_relative.text = 'relativ'
+                else:
+                    self.ids.gyro_right_absolute_relative.text = 'absolut'
+
+                if setup.sub_right['RGM'].ascii_set == b'\x31':
+                    self.ids.gyro_right_mouse_on_off.text = 'M-ON'
+                else:
+                    self.ids.gyro_right_mouse_on_off.text = 'M-OFF'
+
+                if setup.sub_right['RGMXD'].ascii_set == b'\x30':
+                    self.ids.gyro_right_flip_x.text = 'X=0'
+                else:
+                    self.ids.gyro_right_flip_x.text = 'X=180'
+
+                if setup.sub_right['RGMYD'].ascii_set == b'\x30':
+                    self.ids.gyro_right_flip_y.text = 'Y=0'
+                else:
+                    self.ids.gyro_right_flip_y.text = 'Y=180'
+
+                self.ids.gyro_right_speed.text = setup.sub_right['RGMSF'].ascii_set.decode('ascii')
+                self.ids.gyro_right_deadzone.text = setup.sub_right['RGDZ'].ascii_set.decode('ascii')
+            else:
+                if setup.main_right['RGNF'].ascii_set == b'\x31':
+                    self.ids.gyro_right_on_off.text = 'ON'
+                else:
+                    self.ids.gyro_right_on_off.text = 'OFF'
+
+                if setup.main_right['RGAR'].ascii_set == b'\x31':
+                    self.ids.gyro_right_absolute_relative.text = 'relativ'
+                else:
+                    self.ids.gyro_right_absolute_relative.text = 'absolut'
+
+                if setup.main_right['RGM'].ascii_set == b'\x31':
+                    self.ids.gyro_right_mouse_on_off.text = 'M-ON'
+                else:
+                    self.ids.gyro_right_mouse_on_off.text = 'M-OFF'
+
+                if setup.main_right['RGMXD'].ascii_set == b'\x30':
+                    self.ids.gyro_right_flip_x.text = 'X=0'
+                else:
+                    self.ids.gyro_right_flip_x.text = 'X=180'
+
+                if setup.main_right['RGMYD'].ascii_set == b'\x30':
+                    self.ids.gyro_right_flip_y.text = 'Y=0'
+                else:
+                    self.ids.gyro_right_flip_y.text = 'Y=180'
+
+                self.ids.gyro_right_speed.text = setup.main_right['RGMSF'].ascii_set.decode('ascii')
+                self.ids.gyro_right_deadzone.text = setup.main_right['RGDZ'].ascii_set.decode('ascii')
+
+        def gyro_on_off(self):
+            gyro = ''
+            if setup.sublayer and setup.sub_right['RGNF'].ascii_set == b'\x30':
+                setup.sub_right['RGNF'].ascii_set = b'\x31'
+                gyro = 'ON'
+            elif setup.sublayer and setup.sub_right['RGNF'].ascii_set == b'\x31':
+                setup.sub_right['RGNF'].ascii_set = b'\x30'
+                gyro = 'OFF'
+            elif not setup.sublayer and setup.main_right['RGNF'].ascii_set == b'\x30':
+                setup.main_right['RGNF'].ascii_set = b'\x31'
+                gyro = 'ON'
+            elif not setup.sublayer and setup.main_right['RGNF'].ascii_set == b'\x31':
+                setup.main_right['RGNF'].ascii_set = b'\x30'
+                gyro = 'OFF'
+            self.ids.gyro_right_on_off.text = gyro
+            setup.save_current_layout()
+
+        def gyro_absolute_relative(self):
+            gyro = ''
+            if setup.sublayer and setup.sub_right['RGAR'].ascii_set == b'\x30':
+                setup.sub_right['RGAR'].ascii_set = b'\x31'
+                gyro = 'relativ'
+            elif setup.sublayer and setup.sub_right['RGAR'].ascii_set == b'\x31':
+                setup.sub_right['RGAR'].ascii_set = b'\x30'
+                gyro = 'absolut'
+            elif not setup.sublayer and setup.main_right['RGAR'].ascii_set == b'\x30':
+                setup.main_right['RGAR'].ascii_set = b'\x31'
+                gyro = 'relativ'
+            elif not setup.sublayer and setup.main_right['RGAR'].ascii_set == b'\x31':
+                setup.main_right['RGAR'].ascii_set = b'\x30'
+                gyro = 'absolut'
+            self.ids.gyro_right_absolute_relative.text = gyro
+            setup.save_current_layout()
+
+        def gyro_mouse_on_off(self):
+            gyro_mouse = ''
+            if setup.sublayer and setup.sub_right['RGM'].ascii_set == b'\x30':
+                setup.sub_right['RGM'].ascii_set = b'\x31'
+                gyro_mouse = 'M-ON'
+            elif setup.sublayer and setup.sub_right['RGM'].ascii_set == b'\x31':
+                setup.sub_right['RGM'].ascii_set = b'\x30'
+                gyro_mouse = 'M-OFF'
+            elif not setup.sublayer and setup.main_right['RGM'].ascii_set == b'\x30':
+                setup.main_right['RGM'].ascii_set = b'\x31'
+                gyro_mouse = 'M-ON'
+            elif not setup.sublayer and setup.main_right['RGM'].ascii_set == b'\x31':
+                setup.main_right['RGM'].ascii_set = b'\x30'
+                gyro_mouse = 'M-OFF'
+            self.ids.gyro_right_mouse_on_off.text = gyro_mouse
+            setup.save_current_layout()
+
+        def gyro_flip_x(self):
+            gyro_flip_x = ''
+            if setup.sublayer and setup.sub_right['RGMXD'].ascii_set == b'\x30':
+                setup.sub_right['RGMXD'].ascii_set = b'\x31'
+                gyro_flip_x = 'X=180'
+            elif setup.sublayer and setup.sub_right['RGMXD'].ascii_set == b'\x31':
+                setup.sub_right['RGMXD'].ascii_set = b'\x30'
+                gyro_flip_x = 'X=0'
+            elif not setup.sublayer and setup.main_right['RGMXD'].ascii_set == b'\x30':
+                setup.main_right['RGMXD'].ascii_set = b'\x31'
+                gyro_flip_x = 'X=180'
+            elif not setup.sublayer and setup.main_right['RGMXD'].ascii_set == b'\x31':
+                setup.main_right['RGMXD'].ascii_set = b'\x30'
+                gyro_flip_x = 'X=0'
+            self.ids.gyro_right_flip_x.text = gyro_flip_x
+            setup.save_current_layout()
+
+        def gyro_flip_y(self):
+            gyro_flip_y = ''
+            if setup.sublayer and setup.sub_right['RGMYD'].ascii_set == b'\x30':
+                setup.sub_right['RGMYD'].ascii_set = b'\x31'
+                gyro_flip_y = 'Y=180'
+            elif setup.sublayer and setup.sub_right['RGMYD'].ascii_set == b'\x31':
+                setup.sub_right['RGMYD'].ascii_set = b'\x30'
+                gyro_flip_y = 'Y=0'
+            elif not setup.sublayer and setup.main_right['RGMYD'].ascii_set == b'\x30':
+                setup.main_right['RGMYD'].ascii_set = b'\x31'
+                gyro_flip_y = 'Y=180'
+            elif not setup.sublayer and setup.main_right['RGMYD'].ascii_set == b'\x31':
+                setup.main_right['RGMYD'].ascii_set = b'\x30'
+                gyro_flip_y = 'Y=0'
+            self.ids.gyro_right_flip_y.text = gyro_flip_y
+            setup.save_current_layout()
+
+        def gyro_set_speed(self, speed):
+            s = speed.encode('ascii')
+            if setup.sublayer:
+                setup.sub_right['RGMSF'].ascii_set = s
+            else:
+                setup.main_right['RGMSF'].ascii_set = s
+            setup.save_current_layout()
+
+        def gyro_set_deadzone(self, deadzone):
+            d = deadzone.encode('ascii')
+            if setup.sublayer:
+                setup.sub_right['RGDZ'].ascii_set = d
+            else:
+                setup.main_right['RGDZ'].ascii_set = d
+            setup.save_current_layout()
