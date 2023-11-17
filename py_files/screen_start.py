@@ -677,6 +677,7 @@ class GyroscopeLeft(Widget):
                 self.ids.gyro_left_flip_y.text = 'Y=180'
 
             self.ids.gyro_left_speed.text = setup.sub_left['LGMSF'].ascii_set.decode('ascii')
+            self.ids.gyro_left_deadzone.text = setup.sub_left['LGDZ'].ascii_set.decode('ascii')
 
 
         else:
@@ -706,6 +707,7 @@ class GyroscopeLeft(Widget):
                 self.ids.gyro_left_flip_y.text = 'Y=180'
 
             self.ids.gyro_left_speed.text = setup.main_left['LGMSF'].ascii_set.decode('ascii')
+            self.ids.gyro_left_deadzone.text = setup.main_left['LGDZ'].ascii_set.decode('ascii')
 
     def gyro_on_off(self):
         gyro = ''
@@ -804,4 +806,12 @@ class GyroscopeLeft(Widget):
             setup.sub_left['LGMSF'].ascii_set = s
         else:
             setup.main_left['LGMSF'].ascii_set = s
+        setup.save_current_layout()
+
+    def gyro_set_deadzone(self, deadzone):
+        d = deadzone.encode('ascii')
+        if setup.sublayer:
+            setup.sub_left['LGDZ'].ascii_set = d
+        else:
+            setup.main_left['LGDZ'].ascii_set = d
         setup.save_current_layout()

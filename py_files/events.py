@@ -106,7 +106,7 @@ for i, event in enumerate(events):
         event_object_2 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_3 = EventClass(bytearray(b'\x64'), '-', '-') # 100
         event_object_4 = EventClass(bytearray(b'\x64'), '-', '-') # 100
-    elif event == 'MNF' or  event == 'WS' or event == 'GMSF':
+    elif event == 'MNF' or  event == 'WS' or event == 'GMSF' or event == 'GDZ':
         event_object_1 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_2 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_3 = EventClass(bytearray(b'\x31'), '-', '-')   # 1

@@ -111,8 +111,8 @@
             custom_pos_hint: 0.15, 0.2
 
         BoxLayout:
-            size_hint: (0.05, 0.2)
-            pos_hint: {'center_x': 0.22, 'center_y': 0.2}
+            size_hint: (0.05, 0.25)
+            pos_hint: {'center_x': 0.22, 'center_y': 0.18}
             orientation: 'vertical'
             GUI_Button:
                 id: gyro_left_mouse_on_off
@@ -126,11 +126,26 @@
                 id: gyro_left_flip_y
                 text: 'flip Y'
                 on_release: root.gyro_flip_y()
-            CustomTextInput:
-                id: gyro_left_speed
-                text: 'ee'
-                multiline: False
-                on_text_validate: root.gyro_set_speed(self.text)
+            BoxLayout:
+                Label:
+                    text: 'SF'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_left_speed
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_speed(self.text)
+            BoxLayout:
+                Label:
+                    text: 'DZ'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_left_deadzone
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_deadzone(self.text)
+
+
 
 
         BoxLayout:
