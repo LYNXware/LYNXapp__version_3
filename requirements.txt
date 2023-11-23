@@ -1,4 +1,5 @@
-#kivy==2.1.0
+
 kivy==2.2.1
 pyserial==3.5
 plyer==2.1.0
+pyinstaller==5.13.2
