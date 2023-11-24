@@ -195,11 +195,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.usb_serial_comms" />
         <item itemvalue="Python.TEST" />
         <item itemvalue="Python.preferences" />
-        <item itemvalue="Python.events" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
