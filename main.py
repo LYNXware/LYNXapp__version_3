@@ -1,12 +1,12 @@
 """
 Version: 0.3.0
-Date: 01.11.2023
+Date: 01.12.2023
 Developer: Apd Devil
 Remark:
 """
-#test
 
-#test
+#gyro branch
+
 
 from kivy.app import App
 from kivy.core.window import Window
