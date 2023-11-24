@@ -5,7 +5,7 @@ Developer: Apd Devil
 Remark:
 """
 
-#gyro branch
+# dep after gyro branch merge
 
 
 from kivy.app import App
