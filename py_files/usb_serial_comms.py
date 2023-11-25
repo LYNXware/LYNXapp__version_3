@@ -18,7 +18,7 @@ class USB_cats:
         self.get_devices()
 
         self.monitoring_thread = threading.Thread(target=self.monitor_ports, args=(), daemon=True)
-        # self.monitoring_thread.start()
+        self.monitoring_thread.start()
 
     # finds connected devices and sorts them into left and right
     def get_devices(self):
