@@ -13,6 +13,8 @@
                 root.change_device(self.text)
                 root.parent.parent.update_start_window()
 
+
+
 <SpinnerRight>:
     FloatLayout:
         size: root.size
@@ -124,13 +126,6 @@
     FloatLayout:
         size: root.size
         pos: root.pos
-
-#	    CatButton:
-#            size_hint: 0.25, 0.2
-#            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
-#            text: 'Drag me'
-#            on_release: print('cat button')
-
 
         DeviceButton:
             name: 'RI1'
@@ -269,6 +264,7 @@
             id: LT33
             custom_pos_hint: 0.29213, 0.21719
 
+
 <ThumbButtonsRight>:
     FloatLayout:
         size: root.size
@@ -327,15 +323,15 @@
         pos: root.pos
 
         Label:
-            size_hint: (0.045, 0.25)
-            pos_hint: {'center_x': 0.41, 'center_y': 0.645}
+            size_hint: (0.045, 0.325)
+            pos_hint: {'center_x': 0.41, 'center_y': 0.615}
             canvas.before:
                 Color:
                     rgba: (0,0,0,0.3)
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]
+                    radius: [10]
 
         DeviceButton:
             name: 'LWB'
@@ -346,7 +342,11 @@
         DeviceButton:
             name: 'LWF'
             custom_pos_hint: 0.41, 0.73
-
+        CustomTextInput:
+            id: left_ws
+            size_hint: (0.04, 0.05)
+            pos_hint: {'center_x': 0.41, 'center_y': 0.488}
+            on_text_validate: root.set_wheel_speed(self.text)
 
 
 <WheelRight>:

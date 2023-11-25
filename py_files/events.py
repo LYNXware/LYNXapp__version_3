@@ -111,7 +111,7 @@ for i, event in enumerate(events):
         event_object_2 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_3 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
         event_object_4 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
-    elif event == 'GNF' or event == 'GM' or event == 'GAR' or event == 'GMXD' or event == 'GMYD':
+    elif event == 'JS' or event == 'GNF' or event == 'GM' or event == 'GAR' or event == 'GMXD' or event == 'GMYD':
         event_object_1 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
         event_object_2 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
         event_object_3 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off

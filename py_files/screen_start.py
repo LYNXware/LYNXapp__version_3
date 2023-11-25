@@ -457,6 +457,7 @@ class JoystickLeft(Widget):
         # setup.save(setup.active_layout)
         setup.save_current_layout()
         print('JoystickLeft')
+        print(setup.main_left['LJS'].ascii_set)
 
 
 class JoystickLeft2(Widget):
@@ -503,30 +504,34 @@ class JoystickRight2(Widget):
 
 
 class WheelLeft(Widget):
-    pass
+
+    def on_kv_post(self, *args):
+        if setup.sublayer:
+            ws = setup.sub_left['LWS'].ascii_set
+        else:
+            ws = setup.main_left['LWS'].ascii_set
+        self.ids.left_ws.text = ws.decode('ascii')
+
+    def set_wheel_speed(self, speed):
+        s = speed.encode('ascii')
+        if setup.sublayer:
+            setup.sub_left['LWS'].ascii_set = s
+        else:
+            setup.main_left['LWS'].ascii_set = s
+        setup.save_current_layout()
 
 
 class WheelRight(Widget):
 
     def on_kv_post(self, *args):
-        ws = ''
         if setup.sublayer:
-            try:
-                # ws = ord(setup.sub_right['RWS'].ascii_set)
-                ws = setup.sub_right['RWS'].ascii_set
-            except:
-                ws = '0'
+            ws = setup.sub_right['RWS'].ascii_set
         else:
-            try:
-                # ws = ord(setup.main_right['RWS'].ascii_set)
-                ws = setup.main_right['RWS'].ascii_set
-            except:
-                ws = '0'
+            ws = setup.main_right['RWS'].ascii_set
         self.ids.right_ws.text = ws.decode('ascii')
 
 
     def set_wheel_speed(self, speed):
-        # s = bytearray()
         s = speed.encode('ascii')
         if setup.sublayer:
             setup.sub_right['RWS'].ascii_set = s
