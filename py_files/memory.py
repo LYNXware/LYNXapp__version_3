@@ -89,6 +89,11 @@ def getAsciiLanguages():
 def loadAsciiLanguage(language):
     memory_dir = get_memory_dir()
     filepath = f'{memory_dir}/language/{language}.json'
+
+    if not os.path.exists(filepath):
+        filepath = f'{memory_dir}/language/{os.listdir(f"{memory_dir}/language")[0]}'
+
+
     with open(filepath, 'r') as infile:
         # read the JSON data from the file into a dictionary
         language = json.load(infile)
