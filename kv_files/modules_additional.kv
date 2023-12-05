@@ -45,6 +45,8 @@
 
 
 
+
+
 <MouseRight>:
     FloatLayout:
         size: root.size
@@ -110,8 +112,8 @@
             custom_pos_hint: 0.15, 0.2
 
         BoxLayout:
-            size_hint: (0.05, 0.25)
-            pos_hint: {'center_x': 0.22, 'center_y': 0.18}
+            size_hint: (0.04, 0.2)
+            pos_hint: {'center_x': 0.22, 'center_y': 0.2}
             orientation: 'vertical'
             GUI_Button:
                 id: gyro_left_mouse_on_off
@@ -134,22 +136,10 @@
                     text: 'ee'
                     multiline: False
                     on_text_validate: root.gyro_set_speed(self.text)
-            BoxLayout:
-                Label:
-                    text: 'DZ'
-                    color: app.theme['gui_text']
-                CustomTextInput:
-                    id: gyro_left_deadzone
-                    text: 'ee'
-                    multiline: False
-                    on_text_validate: root.gyro_set_deadzone(self.text)
-
-
-
 
         BoxLayout:
-            size_hint: (0.15, 0.05)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.06}
+            size_hint: (0.22, 0.05)
+            pos_hint: {'center_x': 0.13, 'center_y': 0.055}
             GUI_Button:
                 id: gyro_left_on_off
                 text: 'always ON'
@@ -159,6 +149,16 @@
                 text: 'absolute/relative'
                 id: gyro_left_absolute_relative
                 on_release: root.gyro_absolute_relative()
+
+            BoxLayout:
+                Label:
+                    text: 'DZ'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_left_deadzone
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_deadzone(self.text)
 
 
 
@@ -236,6 +236,7 @@
 
 
 
+
 <BackgroundGyro@Label>:
     size_hint: (0.24, 0.3)
     canvas.before:
@@ -248,6 +249,8 @@
 
 
 
+
+
 <BackgroundMouse@Label>:
     size_hint: (0.18, 0.3)
     canvas.before:
@@ -257,6 +260,9 @@
             pos: self.pos
             size: self.size
             radius: [10]
+
+
+
 
 
 
