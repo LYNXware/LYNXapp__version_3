@@ -66,13 +66,30 @@ events = [
     'JR2',  # 40
 
     # scroll wheel events
-    'WF',  # 41
-    'WM',  # 42
+    'WM',  # 41
+    'WF',  # 42
     'WB',  # 43
+    'WS',  # 44
 
-    # mouse speed
-    'MH',  # 44
-    'MV'  # 45
+    # mouse
+    'MNF',  # 45 on/off
+    'MH',  # 46
+    'MV',  # 47
+
+    # gyroscope
+    'GNF',  # 48 on/off
+    'GAR',   # 49 absolute/relative
+    'GDZ',   # 50 dead zone
+
+    'GM',   # 50 with mouse
+    'GMSF',  # 51 mouse speed factor
+    'GMXD',  # 52 mouse x direction
+    'GMYD',  # 53 mouse y direction
+
+    'GF',    # 54 forward
+    'GB',   # 55 backward
+    'GL',   # 56 left
+    'GR',   # 57 right
 ]
 
 
@@ -85,16 +102,25 @@ events_sub_right = {}
 for i, event in enumerate(events):
     # print(f'i {i}   b {event}')
     if event == 'MH' or event == 'MV':
-        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_2 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_3 = EventClass(bytearray(b'\x64'), '-', '-')
-        event_object_4 = EventClass(bytearray(b'\x64'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_2 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_3 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+        event_object_4 = EventClass(bytearray(b'\x64'), '-', '-') # 100
+    elif event == 'MNF' or  event == 'WS' or event == 'GMSF' or event == 'GDZ':
+        event_object_1 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
+        event_object_2 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
+        event_object_3 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
+        event_object_4 = EventClass(bytearray(b'\x31'), '-', '-')   # 1
+    elif event == 'JS' or event == 'GNF' or event == 'GM' or event == 'GAR' or event == 'GMXD' or event == 'GMYD':
+        event_object_1 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_2 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_3 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
+        event_object_4 = EventClass(bytearray(b'\x30'), '0', '0') # 0 flag off
     else:
-        # event_object = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_1 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_2 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_3 = EventClass(bytearray(b'\x30'), '-', '-')
-        event_object_4 = EventClass(bytearray(b'\x30'), '-', '-')
+        event_object_1 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
+        event_object_2 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
+        event_object_3 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
+        event_object_4 = EventClass(bytearray(b'\x1a\xf0'), 'none', 'none')
 
     events_main_left[f'L{event}'] = event_object_1
     events_main_right[f'R{event}'] = event_object_2

@@ -1,0 +1,287 @@
+
+<MouseLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        FloatLayout:
+            size_hint: (0.15, 0.2)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Slider:
+                id: y_mouse_slider
+                size_hint: (1, 1)
+                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                min: 70
+                max: 200
+                step: 1
+                orientation: 'vertical'
+                on_value: root.mouse_vertical(self.value)
+            Label:
+                id: y_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                color: app.theme['gui_text']
+
+
+            Slider:
+                id: x_mouse_slider
+                size_hint: (0.8, 1)
+                pos_hint: {'center_x': 0.6, 'center_y': 0.1}
+                min: 70
+                max: 200
+                step: 1
+                orientation: 'horizontal'
+                on_value: root.mouse_horizontal(self.value)
+            Label:
+                id: x_mouse_label
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                color: app.theme['gui_text']
+
+
+
+
+
+<MouseRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+
+        BackgroundMouse:
+            pos_hint: {'center_x': 0.9, 'center_y': 0.2}
+
+        Y_slider:
+            id: y_mouse_slider
+            pos_hint: {'center_x': 0.97, 'center_y': 0.25}
+            on_value: root.mouse_vertical(self.value)
+        Label:
+            id: y_mouse_label
+            pos_hint: {'center_x': 0.9, 'center_y': 0.3}
+            color: app.theme['gui_text']
+
+        X_slider:
+            id: x_mouse_slider
+            pos_hint: {'center_x': 0.88, 'center_y': 0.15}
+            orientation: 'horizontal'
+            on_value: root.mouse_horizontal(self.value)
+        Label:
+            id: x_mouse_label
+            pos_hint: {'center_x': 0.9, 'center_y': 0.2}
+            color: app.theme['gui_text']
+
+        BoxLayout:
+            size_hint: (0.15, 0.05)
+            pos_hint: {'center_x': 0.9, 'center_y': 0.1}
+            CustomToggleButton:
+                id: mouse_right_toggle_on
+                text: 'ON'
+                group: 'mouse-right'
+                on_release: root.mouse_on()
+            CustomToggleButton:
+                id: mouse_right_toggle_off
+                text: 'OFF'
+                group: 'mouse-right'
+                on_release: root.mouse_off()
+
+
+
+
+<GyroscopeLeft>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        BackgroundGyro:
+            pos_hint: {'center_x': 0.134, 'center_y': 0.17}
+
+        DeviceButton:
+            name: 'LGF'
+            custom_pos_hint: 0.1, 0.275
+        DeviceButton:
+            name: 'LGB'
+            custom_pos_hint: 0.1, 0.13
+        DeviceButton:
+            name: 'LGL'
+            custom_pos_hint: 0.05, 0.2
+        DeviceButton:
+            name: 'LGR'
+            custom_pos_hint: 0.15, 0.2
+
+        BoxLayout:
+            size_hint: (0.04, 0.2)
+            pos_hint: {'center_x': 0.22, 'center_y': 0.2}
+            orientation: 'vertical'
+            GUI_Button:
+                id: gyro_left_mouse_on_off
+                text: 'on/off'
+                on_release: root.gyro_mouse_on_off()
+            GUI_Button:
+                id: gyro_left_flip_x
+                text: 'flip X'
+                on_release: root.gyro_flip_x()
+            GUI_Button:
+                id: gyro_left_flip_y
+                text: 'flip Y'
+                on_release: root.gyro_flip_y()
+            BoxLayout:
+                Label:
+                    text: 'SF'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_left_speed
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_speed(self.text)
+
+        BoxLayout:
+            size_hint: (0.22, 0.05)
+            pos_hint: {'center_x': 0.13, 'center_y': 0.055}
+            GUI_Button:
+                id: gyro_left_on_off
+                text: 'always ON'
+                on_release: root.gyro_on_off()
+
+            GUI_Button:
+                text: 'absolute/relative'
+                id: gyro_left_absolute_relative
+                on_release: root.gyro_absolute_relative()
+
+            BoxLayout:
+                Label:
+                    text: 'DZ'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_left_deadzone
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_deadzone(self.text)
+
+
+
+
+
+
+<GyroscopeRight>:
+    FloatLayout:
+        size: root.size
+        pos: root.pos
+        BackgroundGyro:
+            pos_hint: {'center_x': 0.866, 'center_y': 0.17}
+
+        DeviceButton:
+            name: 'RGF'
+            custom_pos_hint: 0.9, 0.275
+        DeviceButton:
+            name: 'RGB'
+            custom_pos_hint: 0.9, 0.13
+        DeviceButton:
+            name: 'RGL'
+            custom_pos_hint: 0.85, 0.2
+        DeviceButton:
+            name: 'RGR'
+            custom_pos_hint: 0.95, 0.2
+
+        BoxLayout:
+            size_hint: (0.04, 0.2)
+            pos_hint: {'center_x': 0.78, 'center_y': 0.2}
+            orientation: 'vertical'
+            GUI_Button:
+                id: gyro_right_mouse_on_off
+                text: 'on/off'
+                on_release: root.gyro_mouse_on_off()
+            GUI_Button:
+                id: gyro_right_flip_x
+                text: 'flip X'
+                on_release: root.gyro_flip_x()
+            GUI_Button:
+                id: gyro_right_flip_y
+                text: 'flip Y'
+                on_release: root.gyro_flip_y()
+            BoxLayout:
+                Label:
+                    text: 'SF'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_right_speed
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_speed(self.text)
+
+
+        BoxLayout:
+            size_hint: (0.22, 0.05)
+            pos_hint: {'center_x': 0.87, 'center_y': 0.055}
+            GUI_Button:
+                id: gyro_right_on_off
+                text: 'always ON'
+                on_release: root.gyro_on_off()
+
+            GUI_Button:
+                text: 'absolute/relative'
+                id: gyro_right_absolute_relative
+                on_release: root.gyro_absolute_relative()
+
+            BoxLayout:
+                Label:
+                    text: 'DZ'
+                    color: app.theme['gui_text']
+                CustomTextInput:
+                    id: gyro_right_deadzone
+                    text: 'ee'
+                    multiline: False
+                    on_text_validate: root.gyro_set_deadzone(self.text)
+
+
+
+
+<BackgroundGyro@Label>:
+    size_hint: (0.24, 0.3)
+    canvas.before:
+        Color:
+            rgba: (0,0,0,0.2)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+
+
+
+
+
+<BackgroundMouse@Label>:
+    size_hint: (0.18, 0.3)
+    canvas.before:
+        Color:
+            rgba: (0,0,0,0.2)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+
+
+
+
+
+
+<Y_slider@Slider>:
+    size_hint: (0.1, 0.2)
+    min: 70
+    max: 200
+    step: 1
+    orientation: 'vertical'
+
+
+
+<X_slider@Slider>:
+    size_hint: (0.15, 0.1)
+    min: 70
+    max: 200
+    step: 1
+    orientation: 'horizontal'
+
+
+

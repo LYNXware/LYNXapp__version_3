@@ -1,11 +1,9 @@
 """
-Version: 0.2.0
-Date: 01.09.2023
+Version: 0.3.0
+Date: 01.12.2023
 Developer: Apd Devil
 Remark:
 """
-
-# main
 
 
 from kivy.app import App
@@ -78,6 +76,7 @@ class MainApp(App):
 
         Builder.load_file(resource_path('kv_files/screen_start.kv'))
         Builder.load_file(resource_path('kv_files/modules.kv'))
+        Builder.load_file(resource_path('kv_files/modules_additional.kv'))
         Builder.load_file(resource_path('kv_files/custom_widgets.kv'))
 
         main_kv = Builder.load_file(resource_path('kv_files/main.kv'))
@@ -126,3 +125,5 @@ class MainApp(App):
 if __name__ == '__main__':
     print(f'LYNXapp Version: {__version__}')
     MainApp().run()
+
+

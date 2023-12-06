@@ -119,28 +119,33 @@
             CellBox:
                 CustomStaticButton:
                     text: 'Left Click'
-                    asciiValue: b'\xf0\xf1'
+                    asciiValue: b'\x10\xf1'
                 CustomStaticButton:
                     text: 'Middle Click'
-                    asciiValue: b'\xf0\xf2'
+                    asciiValue: b'\x10\xf2'
                 CustomStaticButton:
                     text: 'Right Click'
-                    asciiValue: b'\xf0\xf3'
+                    asciiValue: b'\x10\xf3'
                 CustomStaticButton:
                     text: 'Scroll Up '
-                    asciiValue: b'\xf0\xf4'
+                    asciiValue: b'\x10\xf4'
                 CustomStaticButton:
                     text: 'Scroll Down '
-                    asciiValue: b'\xf0\xf5'
+                    asciiValue: b'\x10\xf5'
 
             CellBox:
                 CustomStaticButton:
                     text: 'major / minor'
-                    asciiValue: b'\xfa\xfb' #0xFA 0xFB
+                    asciiValue: b'\x1a\xfa\xfb'
                 CustomStaticButton:
                     text: 'main / sub'
-                    asciiValue: b'\xfa\xfc'  #0xFA 0xFB
-
+                    asciiValue: b'\x1a\xfa\xfc'
+                CustomStaticButton:
+                    text: 'gyro trigger'
+                    asciiValue: b'\x1a\xfd'
+                CustomStaticButton:
+                    text: 'none'
+                    asciiValue: b'\x1a\xf0'
 
 <CustomDynamicButton>:
     color: app.theme['gui_button_text']

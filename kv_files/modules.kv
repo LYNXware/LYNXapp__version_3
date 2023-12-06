@@ -13,6 +13,8 @@
                 root.change_device(self.text)
                 root.parent.parent.update_start_window()
 
+
+
 <SpinnerRight>:
     FloatLayout:
         size: root.size
@@ -125,13 +127,6 @@
         size: root.size
         pos: root.pos
 
-#	    CatButton:
-#            size_hint: 0.25, 0.2
-#            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
-#            text: 'Drag me'
-#            on_release: print('cat button')
-
-
         DeviceButton:
             name: 'RI1'
             id: RI1
@@ -200,6 +195,8 @@
             name: 'RP5'
             id: RP3
             custom_pos_hint: 0.9389350268685882, 0.45101663585951945
+
+
 <FingerButtonsRight2>:
     FloatLayout:
         size: root.size
@@ -267,6 +264,7 @@
             id: LT33
             custom_pos_hint: 0.29213, 0.21719
 
+
 <ThumbButtonsRight>:
     FloatLayout:
         size: root.size
@@ -325,15 +323,15 @@
         pos: root.pos
 
         Label:
-            size_hint: (0.045, 0.25)
-            pos_hint: {'center_x': 0.41, 'center_y': 0.645}
+            size_hint: (0.045, 0.325)
+            pos_hint: {'center_x': 0.41, 'center_y': 0.615}
             canvas.before:
                 Color:
                     rgba: (0,0,0,0.3)
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]
+                    radius: [10]
 
         DeviceButton:
             name: 'LWB'
@@ -344,7 +342,11 @@
         DeviceButton:
             name: 'LWF'
             custom_pos_hint: 0.41, 0.73
-
+        CustomTextInput:
+            id: left_ws
+            size_hint: (0.04, 0.05)
+            pos_hint: {'center_x': 0.41, 'center_y': 0.488}
+            on_text_validate: root.set_wheel_speed(self.text)
 
 
 <WheelRight>:
@@ -353,15 +355,15 @@
         pos: root.pos
 
         Label:
-            size_hint: (0.045, 0.25)
-            pos_hint: {'center_x': 0.59, 'center_y': 0.645}
+            size_hint: (0.045, 0.325)
+            pos_hint: {'center_x': 0.59, 'center_y': 0.615}
             canvas.before:
                 Color:
                     rgba: (0,0,0,0.3)
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]
+                    radius: [10]
 
         DeviceButton:
             name: 'RWB'
@@ -372,6 +374,11 @@
         DeviceButton:
             name: 'RWF'
             custom_pos_hint: 0.59, 0.73
+        CustomTextInput:
+            id: right_ws
+            size_hint: (0.04, 0.05)
+            pos_hint: {'center_x': 0.59, 'center_y': 0.488}
+            on_text_validate: root.set_wheel_speed(self.text)
 
 
 
@@ -566,7 +573,7 @@
             name: 'RTB1'
             custom_pos_hint: 0.7948, 0.3780
         DeviceButton:
-            name: 'RTB3'
+            name: 'RTB5'
             custom_pos_hint: 0.7948, 0.0961
 
         DeviceButton:
@@ -631,7 +638,7 @@
             name: 'RTB1'
             custom_pos_hint: 0.7948, 0.3780
         DeviceButton:
-            name: 'RTB3'
+            name: 'RTB5'
             custom_pos_hint: 0.7948, 0.0961
 
         DeviceButton:
@@ -662,96 +669,4 @@
         DeviceButton:
             name: 'RJR2'
             custom_pos_hint: 0.6424, 0.4242
-
-
-
-
-<MouseLeft>:
-    FloatLayout:
-        size: root.size
-        pos: root.pos
-        FloatLayout:
-            size_hint: (0.15, 0.2)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
-
-            Slider:
-                id: y_mouse_slider
-                size_hint: (1, 1)
-                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'vertical'
-                on_value: root.mouse_vertical(self.value)
-            Label:
-                id: y_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-                color: app.theme['gui_text']
-
-
-            Slider:
-                id: x_mouse_slider
-                size_hint: (0.8, 1)
-                pos_hint: {'center_x': 0.6, 'center_y': 0.1}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'horizontal'
-                on_value: root.mouse_horizontal(self.value)
-            Label:
-                id: x_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-                color: app.theme['gui_text']
-
-<MouseRight>:
-    FloatLayout:
-        size: root.size
-        pos: root.pos
-        FloatLayout:
-            size_hint: (0.15, 0.2)
-            pos_hint: {'center_x': 0.9, 'center_y': 0.25}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
-
-            Slider:
-                id: y_mouse_slider
-                size_hint: (1, 1)
-                pos_hint: {'center_x': 0.9, 'center_y': 0.5}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'vertical'
-                on_value: root.mouse_vertical(self.value)
-            Label:
-                id: y_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-                color: app.theme['gui_text']
-
-
-            Slider:
-                id: x_mouse_slider
-                size_hint: (0.8, 1)
-                pos_hint: {'center_x': 0.4, 'center_y': 0.1}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'horizontal'
-                on_value: root.mouse_horizontal(self.value)
-            Label:
-                id: x_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-                color: app.theme['gui_text']
-
 

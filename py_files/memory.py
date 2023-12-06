@@ -80,7 +80,7 @@ def getLayouts(layer):
 
 def getAsciiLanguages():
     memory_dir = get_memory_dir()
-    filepath = f'{memory_dir}/language'
+    filepath = f'{memory_dir}/KeyTable_Language'
     languages_list = os.listdir(filepath)
     languages_list = [x.split('.')[0] for x in languages_list]
     print(f'memory.py -> get_languages: {languages_list}')
@@ -88,7 +88,12 @@ def getAsciiLanguages():
 
 def loadAsciiLanguage(language):
     memory_dir = get_memory_dir()
-    filepath = f'{memory_dir}/language/{language}.json'
+    filepath = f'{memory_dir}/KeyTable_Language/{language}.json'
+
+    if not os.path.exists(filepath):
+        filepath = f'{memory_dir}/KeyTable_Language/{os.listdir(f"{memory_dir}/KeyTable_Language")[0]}'
+
+
     with open(filepath, 'r') as infile:
         # read the JSON data from the file into a dictionary
         language = json.load(infile)
