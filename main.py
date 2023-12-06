@@ -5,7 +5,6 @@ Developer: Apd Devil
 Remark:
 """
 
-#
 
 
 from kivy.app import App
