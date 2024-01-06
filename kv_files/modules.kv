@@ -392,9 +392,10 @@
             size_hint: (0.07, 0.05)
             pos_hint: {'center_x': 0.43, 'center_y': 0.15}
             on_release:
+                print('*********************************************')
                 root.steps()
                 app.root.ids.startscreen.children[0].update_start_window()
-#                app.root.get_screen('StartWindow').children[1].update_start_window()
+#                app.root.get_screen('StartScreen').children[0].update_start_window()
 
         Label:
             size_hint: (0.157, 0.09)
@@ -456,9 +457,10 @@
             size_hint: (0.07, 0.05)
             pos_hint: {'center_x': 0.43, 'center_y': 0.15}
             on_release:
+                print('*********************************************')
                 root.steps()
                 app.root.ids.startscreen.children[0].update_start_window()
-#                app.root.get_screen('StartWindow').children[1].update_start_window()
+#                app.root.get_screen('StartScreen').children[0].update_start_window()
 
         Label:
             size_hint: (0.265, 0.09)
@@ -539,8 +541,8 @@
             pos_hint: {'center_x': 0.57, 'center_y': 0.15}
             on_release:
                 root.steps()
-#                app.root.get_screen('StartWindow').children[1].update_start_window()
-                app.root.ids.startscreen.children[0].update_start_window()
+                app.root.get_screen('StartScreen').children[0].update_start_window()
+#                app.root.ids.startscreen.children[0].update_start_window()
 
         Label:
             size_hint: (0.157, 0.09)
@@ -604,8 +606,8 @@
             pos_hint: {'center_x': 0.57, 'center_y': 0.15}
             on_release:
                 root.steps()
-#                app.root.get_screen('StartWindow').children[1].update_start_window()
-                app.root.ids.startscreen.children[0].update_start_window()
+                app.root.get_screen('StartScreen').children[0].update_start_window()
+#                app.root.ids.startscreen.children[0].update_start_window()
 
         Label:
             size_hint: (0.265, 0.09)
