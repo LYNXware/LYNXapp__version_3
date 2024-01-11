@@ -4,7 +4,7 @@ The cat is a computer input device with different modules. Together with the sof
 
 The complete project documentation is at: https://www.lynxware.org/
 
-![Alt Text](readme/setup.webp)
+![Alt Text](readme/cats.webp)
 
 
 
@@ -12,7 +12,7 @@ The complete project documentation is at: https://www.lynxware.org/
 
 This software is for key assignment and layout creation for the LYNXsetup
 
-![Alt Text](readme/lynxapp.png)
+![Alt Text](readme/app.webp)
 
 
 

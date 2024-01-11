@@ -81,15 +81,15 @@ events = [
     'GAR',   # 49 absolute/relative
     'GDZ',   # 50 dead zone
 
-    'GM',   # 50 with mouse
-    'GMSF',  # 51 mouse speed factor
-    'GMXD',  # 52 mouse x direction
-    'GMYD',  # 53 mouse y direction
+    'GM',   # 51 with mouse
+    'GMSF',  # 52 mouse speed factor
+    'GMXD',  # 53 mouse x direction
+    'GMYD',  # 54 mouse y direction
 
-    'GF',    # 54 forward
-    'GB',   # 55 backward
-    'GL',   # 56 left
-    'GR',   # 57 right
+    'GF',    # 55 forward
+    'GB',   # 56 backward
+    'GL',   # 57 left
+    'GR',   # 58 right
 ]
 
 

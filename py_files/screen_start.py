@@ -472,7 +472,7 @@ class JoystickLeft2(Widget):
             setup.main_left['LJS'].ascii_set = b'\x30'
         # setup.save(setup.active_layout)
         setup.save_current_layout()
-        print('JoystickLeft2')
+        print('------------------------------JoystickLeft2')
 
 
 class JoystickRight(Widget):
