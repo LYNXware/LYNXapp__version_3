@@ -1,6 +1,12 @@
 
-DELIMITER_EVENT = b'\x01'
-DELIMITER_LAYOUT = b'\x02'
+
+DELIMITER_EVENT = b'\xff\xff'
+DELIMITER_LAYOUT = b'\xfe\xfe'
+
+
+# DELIMITER_EVENT = b'\x01'
+# DELIMITER_LAYOUT = b'\x02'
+
 
 LEFT_CAT = b'\x0c'
 RIGHT_CAT = b'\x0b'
