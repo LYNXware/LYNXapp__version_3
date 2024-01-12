@@ -1,5 +1,6 @@
 print("screen_start.py")
 
+# import time
 import serial.tools.list_ports
 
 from kivy.clock import Clock
@@ -218,6 +219,8 @@ class StartScreenCustom(FloatLayout):
                 self.ids.id_minor.led_color = self.led_green
 
     def transmit_layouts(self):
+
+        # time.sleep(2)
 
         if not devices.lynxhub_port:
             self.transmit_layout_cats()
