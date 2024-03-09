@@ -5,7 +5,8 @@ Developer: Apd Devil
 Remark:
 """
 
-
+from kivy.config import Config
+Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
