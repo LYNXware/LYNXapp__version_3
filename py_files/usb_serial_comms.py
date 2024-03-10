@@ -43,21 +43,23 @@ class USB_cats:
 
             split_port = str_port.split(' ')
             comm_port = (split_port[0])
+            try:
+                serial_comm = serial.Serial(comm_port, baudrate=115200, timeout=1)
+                serial_comm.write('are_you_a_cat'.encode())
+                serial_comm.flush()
 
-            serial_comm = serial.Serial(comm_port, baudrate=115200, timeout=1)
-            serial_comm.write('are_you_a_cat'.encode())
-            serial_comm.flush()
+                time.sleep(0.1)
 
-            time.sleep(0.1)
+                response = serial_comm.readline().decode("utf-8")[:-2]
+                serial_comm.close()
+                print(f'usb_serial_comms.py -> response: {response}')
 
-            response = serial_comm.readline().decode("utf-8")[:-2]
-            serial_comm.close()
-            print(f'usb_serial_comms.py -> response: {response}')
-
-            if "LYNXhub" in response:
-                self.add_lynxhub(comm_port, response)
-            else:
-                self.add_cats(comm_port, response)
+                if "LYNXhub" in response:
+                    self.add_lynxhub(comm_port, response)
+                else:
+                    self.add_cats(comm_port, response)
+            except:
+                print(f'Unable to open {comm_port} for usage')
 
         self.running = False
         print(f'usb_serial_comms.py -> running: {self.running}')
