@@ -32,7 +32,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='LYNXapp',
+    name='LYNXapp_031',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
