@@ -1,0 +1,23 @@
+1 FILEVERSION 1,0,0,0
+FILEOS 0x4
+FILETYPE 0x1
+{
+BLOCK "StringFileInfo"
+{
+    BLOCK "040904B0"
+    {
+        VALUE "CompanyName", "LYNXware"
+        VALUE "FileDescription", "Your File Description"
+        VALUE "FileVersion", "1.0.0.0"
+        VALUE "InternalName", "Your Internal Name"
+        VALUE "LegalCopyright", "Copyright © 2023"
+        VALUE "OriginalFilename", "LYNXapp.exe"
+        VALUE "ProductName", "CAT"
+        VALUE "ProductVersion", "0.3.0.0"
+    }
+}
+BLOCK "VarFileInfo"
+{
+    VALUE "Translation", 0x0409 0x04B0
+}
+}

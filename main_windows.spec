@@ -46,4 +46,8 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     uac_admin=True, #  line to request admin privileges
+    version='Your Company Name',
+    company_name='Your Company Name',
+    product_name='Your Product Name',
+    product_version='1.0.0',
 )
