@@ -3,45 +3,44 @@
     FloatLayout:
         size: root.size
         pos: root.pos
-        FloatLayout:
-            size_hint: (0.15, 0.2)
-            pos_hint: {'center_x': 0.1, 'center_y': 0.25}
-            canvas.before:
-                Color:
-                    rgba: (0,0,0,0.2)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
 
-            Slider:
-                id: y_mouse_slider
-                size_hint: (1, 1)
-                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'vertical'
-                on_value: root.mouse_vertical(self.value)
-            Label:
-                id: y_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-                color: app.theme['gui_text']
+        BackgroundMouse:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
+
+        Y_slider:
+            id: y_mouse_slider
+            pos_hint: {'center_x': 0.03, 'center_y': 0.25}
+            on_value: root.mouse_vertical(self.value)
+        Label:
+            id: y_mouse_label
+            pos_hint: {'center_x': 0.1, 'center_y': 0.3}
+            color: app.theme['gui_text']
+
+        X_slider:
+            id: x_mouse_slider
+            pos_hint: {'center_x': 0.1, 'center_y': 0.15}
+            orientation: 'horizontal'
+            on_value: root.mouse_horizontal(self.value)
+        Label:
+            id: x_mouse_label
+            pos_hint: {'center_x': 0.1, 'center_y': 0.2}
+            color: app.theme['gui_text']
+
+        BoxLayout:
+            size_hint: (0.15, 0.05)
+            pos_hint: {'center_x': 0.1, 'center_y': 0.1}
+            CustomToggleButton:
+                id: mouse_left_toggle_on
+                text: 'ON'
+                group: 'mouse-right'
+                on_release: root.mouse_on()
+            CustomToggleButton:
+                id: mouse_left_toggle_off
+                text: 'OFF'
+                group: 'mouse-right'
+                on_release: root.mouse_off()
 
 
-            Slider:
-                id: x_mouse_slider
-                size_hint: (0.8, 1)
-                pos_hint: {'center_x': 0.6, 'center_y': 0.1}
-                min: 70
-                max: 200
-                step: 1
-                orientation: 'horizontal'
-                on_value: root.mouse_horizontal(self.value)
-            Label:
-                id: x_mouse_label
-                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-                color: app.theme['gui_text']
 
 
 
@@ -66,7 +65,7 @@
 
         X_slider:
             id: x_mouse_slider
-            pos_hint: {'center_x': 0.88, 'center_y': 0.15}
+            pos_hint: {'center_x': 0.9, 'center_y': 0.15}
             orientation: 'horizontal'
             on_value: root.mouse_horizontal(self.value)
         Label:

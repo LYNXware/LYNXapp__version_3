@@ -580,6 +580,25 @@ class MouseLeft(Widget):
         # setup.save(setup.active_layout)
         setup.save_current_layout()
 
+    def mouse_on(self):
+
+        if setup.sublayer:
+            setup.sub_left['LMNF'].ascii_set = b'\x31'
+        else:
+            setup.main_left['LMNF'].ascii_set = b'\x31'
+        setup.save_current_layout()
+        print('mouse on')
+
+    def mouse_off(self):
+        if setup.sublayer:
+            setup.sub_left['LMNF'].ascii_set = b'\x30'
+        else:
+            setup.main_left['LMNF'].ascii_set = b'\x30'
+        setup.save_current_layout()
+        print('mouse off')
+
+
+
 
 class MouseRight(Widget):
     def on_kv_post(self, *args):
