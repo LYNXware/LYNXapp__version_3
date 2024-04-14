@@ -5,6 +5,21 @@ import threading
 import serial.tools.list_ports
 
 
+
+
+
+
+
+def filter_serial_ports(ports):
+    # Filter out Bluetooth ports
+    return [port for port in ports if 'Bluetooth' not in port.description]
+
+
+
+
+
+
+
 # class for serial communication with the cat via usb
 class USB_cats:
 
@@ -24,11 +39,20 @@ class USB_cats:
     def get_devices(self):
 
         self.running = True
-        # print(f'usb_serial_comms.py -> running: {self.running}')
         self.ports_dict = {}
         self.right.clear()
         self.left.clear()
 
+
+        print(':::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+
+        ports_object = serial.tools.list_ports.comports()
+        filtered_ports = filter_serial_ports(ports_object)
+
+        for port in filtered_ports:
+            print(port.device)
+
+        print(':::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
 
         ports_object = serial.tools.list_ports.comports()
         self.available = len(ports_object)
