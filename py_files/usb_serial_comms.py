@@ -47,7 +47,10 @@ class USB_cats:
         print(':::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
 
         ports_object = serial.tools.list_ports.comports()
+        print(ports_object)
+
         filtered_ports = filter_serial_ports(ports_object)
+        print(filtered_ports)
 
         for port in filtered_ports:
             print(port.device)
