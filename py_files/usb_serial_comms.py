@@ -6,16 +6,25 @@ import serial.tools.list_ports
 
 
 
-
+# def filter_serial_ports(ports):
+#     # Filter out Bluetooth ports
+#     return [port for port in ports if 'Bluetooth' not in port.description]
 
 
 
 def filter_serial_ports(ports):
-    # Filter out Bluetooth ports
-    return [port for port in ports if 'Bluetooth' not in port.description]
-
-
-
+    print("------------------------------------------------------------------------")
+    filtered_ports = []
+    for port in ports:
+        try:
+            print("port description => ", port.description)
+            if 'Bluetooth' not in port.description:
+                filtered_ports.append(port)
+        except AttributeError:
+            # If 'description' attribute is missing, skip this port
+            pass
+    print("------------------------------------------------------------------------")
+    return filtered_ports
 
 
 
