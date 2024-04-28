@@ -66,16 +66,21 @@ class USB_cats:
 
         print(':::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
 
-        ports_object = serial.tools.list_ports.comports()
-        self.available = len(ports_object)
+        filtered_ports = serial.tools.list_ports.comports()
+        self.available = len(filtered_ports)
         print(f'usb_serial_comms.py -> available devices: {self.available}')
+
+        # ports_object = serial.tools.list_ports.comports()
+        # self.available = len(ports_object)
+        # print(f'usb_serial_comms.py -> available devices: {self.available}')
 
 
 
         for i in range(self.available):
 
-            str_port = str(ports_object[i])
-            # print(str_port)
+            str_port = str(filtered_ports[i])
+            # str_port = str(ports_object[i])
+            print(str_port)
 
             split_port = str_port.split(' ')
             comm_port = (split_port[0])
